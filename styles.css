@@ -1,0 +1,1600 @@
+/* ==========================================================================
+   CHECK-UP DI MOBILITÀ — SALES PAGE (ANDREA BOLZAN)
+   Stili isolati e con namespace esclusivo per GoHighLevel
+   Wrapper: #ab-mobility-checkup
+   ========================================================================== */
+
+#ab-mobility-checkup {
+  /* Design Tokens */
+  --ab-color-canvas: #f4f1e9;
+  --ab-color-canvas-alt: #ece8dc;
+  --ab-color-surface: #fffdf8;
+  --ab-color-surface-hover: #f9f6ee;
+  --ab-color-ink: #17201d;
+  --ab-color-ink-muted: #424e49;
+  --ab-color-muted: #5f6964;
+  --ab-color-primary: #1f5848;
+  --ab-color-primary-hover: #174638;
+  --ab-color-primary-dark: #12372c;
+  --ab-color-primary-subtle: #e8f0ec;
+  --ab-color-accent: #c96e4b;
+  --ab-color-accent-hover: #b45f3e;
+  --ab-color-accent-subtle: #fbf0ea;
+  --ab-color-line: rgba(23, 32, 29, 0.12);
+  --ab-color-line-dark: rgba(255, 255, 255, 0.14);
+  --ab-color-success: #287558;
+  --ab-color-danger: #a74436;
+  --ab-color-danger-subtle: #faecea;
+
+  --ab-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ab-font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", serif;
+  --ab-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --ab-space-1: 4px;
+  --ab-space-2: 8px;
+  --ab-space-3: 12px;
+  --ab-space-4: 16px;
+  --ab-space-5: 20px;
+  --ab-space-6: 24px;
+  --ab-space-8: 32px;
+  --ab-space-10: 40px;
+  --ab-space-12: 48px;
+  --ab-space-16: 64px;
+  --ab-space-20: 80px;
+  --ab-space-24: 96px;
+
+  --ab-radius-sm: 6px;
+  --ab-radius-md: 10px;
+  --ab-radius-lg: 16px;
+  --ab-radius-xl: 24px;
+  --ab-radius-full: 9999px;
+
+  --ab-shadow-sm: 0 1px 3px rgba(23, 32, 29, 0.05);
+  --ab-shadow-md: 0 4px 14px rgba(23, 32, 29, 0.07);
+  --ab-shadow-lg: 0 12px 30px rgba(23, 32, 29, 0.09);
+  --ab-shadow-btn: 0 4px 12px rgba(31, 88, 72, 0.22);
+  --ab-shadow-wa: 0 4px 12px rgba(37, 211, 102, 0.25);
+
+  --ab-container-max: 1160px;
+  --ab-container-narrow: 780px;
+
+  /* Resets scoped to wrapper */
+  box-sizing: border-box;
+  font-family: var(--ab-font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ab-color-ink);
+  background-color: var(--ab-color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+#ab-mobility-checkup *,
+#ab-mobility-checkup *::before,
+#ab-mobility-checkup *::after {
+  box-sizing: border-box;
+}
+
+/* Tabular Numbers */
+#ab-mobility-checkup .ab-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Container Utility */
+#ab-mobility-checkup .ab-container {
+  width: 100%;
+  max-width: var(--ab-container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ab-space-5);
+  padding-right: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-container--narrow {
+  max-width: var(--ab-container-narrow);
+}
+
+/* Layout Utilities */
+#ab-mobility-checkup .ab-section {
+  padding-top: var(--ab-space-16);
+  padding-bottom: var(--ab-space-16);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-section--surface {
+  background-color: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-section--canvas {
+  background-color: var(--ab-color-canvas);
+}
+
+#ab-mobility-checkup .ab-section--dark {
+  background-color: var(--ab-color-ink);
+  color: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-section--deep-green {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+}
+
+/* Typography Classes */
+#ab-mobility-checkup .ab-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ab-color-accent);
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-title-h1 {
+  font-family: var(--ab-font-serif);
+  font-size: 32px;
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-4);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-title-h2 {
+  font-family: var(--ab-font-serif);
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-3);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-section--dark .ab-title-h2,
+#ab-mobility-checkup .ab-section--deep-green .ab-title-h2 {
+  color: #ffffff;
+}
+
+#ab-mobility-checkup .ab-title-h3 {
+  font-family: var(--ab-font-sans);
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-2);
+}
+
+#ab-mobility-checkup .ab-subtitle {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ab-color-muted);
+  margin: 0 0 var(--ab-space-6);
+  text-wrap: pretty;
+}
+
+#ab-mobility-checkup .ab-section--dark .ab-subtitle,
+#ab-mobility-checkup .ab-section--deep-green .ab-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#ab-mobility-checkup .ab-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ab-color-ink-muted);
+  margin: 0 0 var(--ab-space-4);
+  text-wrap: pretty;
+}
+
+#ab-mobility-checkup .ab-body:last-child {
+  margin-bottom: 0;
+}
+
+/* Call To Action Buttons */
+#ab-mobility-checkup .ab-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-6);
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--ab-font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 15px 26px;
+  min-height: 48px;
+  border-radius: var(--ab-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-wrap: balance;
+  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-cta:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-cta--primary {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+  box-shadow: var(--ab-shadow-btn);
+}
+
+#ab-mobility-checkup .ab-cta--primary:hover {
+  background-color: var(--ab-color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 88, 72, 0.32);
+}
+
+#ab-mobility-checkup .ab-cta--primary:active {
+  background-color: var(--ab-color-primary-dark);
+  transform: translateY(1px);
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp {
+  background-color: #25d366;
+  color: #0d381c;
+  box-shadow: var(--ab-shadow-wa);
+  font-weight: 700;
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp:hover {
+  background-color: #20ba59;
+  transform: translateY(-1px);
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp:active {
+  transform: translateY(1px);
+}
+
+#ab-mobility-checkup .ab-cta--secondary {
+  background-color: transparent;
+  color: var(--ab-color-primary);
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-cta--secondary:hover {
+  background-color: var(--ab-color-primary-subtle);
+  border-color: var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-cta-microcopy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ab-color-muted);
+  text-align: center;
+  margin-top: var(--ab-space-2);
+}
+
+/* ==========================================================================
+   0. BARRA OFFERTA STICKY
+   ========================================================================== */
+#ab-mobility-checkup .ab-top-bar {
+  background-color: #12372c;
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+#ab-mobility-checkup .ab-top-bar.ab-top-bar--hidden {
+  display: none !important;
+}
+
+#ab-mobility-checkup .ab-countdown-timer {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+#ab-mobility-checkup .ab-hero {
+  padding-top: var(--ab-space-12);
+  padding-bottom: var(--ab-space-16);
+}
+
+#ab-mobility-checkup .ab-hero__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-hero__content {
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-preheadline {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+  background: var(--ab-color-primary-subtle);
+  padding: 6px 14px;
+  border-radius: var(--ab-radius-full);
+  margin-bottom: var(--ab-space-4);
+  width: fit-content;
+}
+
+#ab-mobility-checkup .ab-hero__media {
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-vsl-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ab-shadow-md);
+}
+
+#ab-mobility-checkup .ab-vsl-ratio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background: #17201d;
+}
+
+#ab-mobility-checkup .ab-vsl-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf8;
+  padding: var(--ab-space-4);
+  text-align: center;
+  background: linear-gradient(145deg, #17201d 0%, #1f5848 100%);
+}
+
+#ab-mobility-checkup .ab-vsl-play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-3);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 200ms ease;
+}
+
+#ab-mobility-checkup .ab-vsl-play-btn svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+}
+
+#ab-mobility-checkup .ab-vsl-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+#ab-mobility-checkup .ab-vsl-caption {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+#ab-mobility-checkup .ab-hero-summary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ab-color-primary-dark);
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.15);
+  border-radius: var(--ab-radius-full);
+  padding: 8px 16px;
+  margin-top: var(--ab-space-3);
+  text-align: center;
+}
+
+/* ==========================================================================
+   2. QUELLO CHE IL CHECK-UP MOSTRA
+   ========================================================================== */
+#ab-mobility-checkup .ab-reveal-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+  list-style: none;
+  padding: 0;
+}
+
+#ab-mobility-checkup .ab-reveal-item {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+  display: flex;
+  gap: var(--ab-space-4);
+  align-items: flex-start;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+#ab-mobility-checkup .ab-reveal-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ab-shadow-md);
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-reveal-num {
+  font-family: var(--ab-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+  background: var(--ab-color-primary-subtle);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-reveal-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ab-color-ink);
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. PROVA SOCIALE INIZIALE
+   ========================================================================== */
+#ab-mobility-checkup .ab-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-proof-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-proof-card--featured {
+  border-left: 4px solid var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-proof-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-proof-name {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-proof-tag {
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--ab-color-canvas);
+  color: var(--ab-color-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ab-space-3);
+  margin: var(--ab-space-4) 0;
+}
+
+#ab-mobility-checkup .ab-ba-box {
+  background: var(--ab-color-canvas);
+  border: 1px dashed var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-3);
+  text-align: center;
+  font-size: 12px;
+  color: var(--ab-color-muted);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ab-mobility-checkup .ab-ba-box svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 6px;
+  opacity: 0.6;
+}
+
+/* Chat Slider with Scroll Snap */
+#ab-mobility-checkup .ab-chat-slider-wrap {
+  margin-top: var(--ab-space-8);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-chat-slider {
+  display: flex;
+  gap: var(--ab-space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--ab-space-4);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 88, 72, 0.3) transparent;
+}
+
+#ab-mobility-checkup .ab-chat-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+#ab-mobility-checkup .ab-chat-slider::-webkit-scrollbar-thumb {
+  background: rgba(31, 88, 72, 0.3);
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-chat-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-4);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-chat-bubble {
+  background: #e7f7e9;
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-radius: 12px 12px 2px 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #17201d;
+  margin-bottom: 8px;
+}
+
+#ab-mobility-checkup .ab-chat-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ab-color-muted);
+}
+
+/* ==========================================================================
+   4. TI RICONOSCI?
+   ========================================================================== */
+#ab-mobility-checkup .ab-problems-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+  margin-bottom: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-problem-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  display: flex;
+  gap: var(--ab-space-4);
+  align-items: flex-start;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+#ab-mobility-checkup .ab-problem-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 110, 75, 0.4);
+}
+
+#ab-mobility-checkup .ab-problem-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-accent-subtle);
+  color: var(--ab-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-problem-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+}
+
+#ab-mobility-checkup .ab-problem-quote {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+  margin: 0;
+  font-style: normal;
+}
+
+#ab-mobility-checkup .ab-reassurance-box {
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  text-align: center;
+  max-width: var(--ab-container-narrow);
+  margin: 0 auto;
+}
+
+#ab-mobility-checkup .ab-reassurance-box p {
+  font-family: var(--ab-font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ab-color-primary-dark);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. PONTE ASPIRAZIONALE
+   ========================================================================== */
+#ab-mobility-checkup .ab-bridge {
+  padding-top: var(--ab-space-20);
+  padding-bottom: var(--ab-space-20);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-bridge__title {
+  font-family: var(--ab-font-serif);
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--ab-space-6);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-bridge__text {
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 680px;
+  margin: 0 auto var(--ab-space-8);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   6. PUNTO ZERO
+   ========================================================================== */
+#ab-mobility-checkup .ab-pointzero-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  margin: var(--ab-space-6) 0;
+}
+
+#ab-mobility-checkup .ab-flow-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-flow-arrow {
+  color: var(--ab-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 6px;
+}
+
+/* Quote Luca Ugolini */
+#ab-mobility-checkup .ab-quote-ugolini {
+  background: var(--ab-color-canvas);
+  border-left: 4px solid var(--ab-color-primary);
+  border-radius: 0 var(--ab-radius-md) var(--ab-radius-md) 0;
+  padding: var(--ab-space-5) var(--ab-space-6);
+  margin: var(--ab-space-6) 0;
+}
+
+#ab-mobility-checkup .ab-quote-ugolini p {
+  font-family: var(--ab-font-serif);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ab-color-ink);
+  margin: 0 0 8px;
+}
+
+#ab-mobility-checkup .ab-quote-ugolini cite {
+  font-family: var(--ab-font-sans);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+}
+
+/* ==========================================================================
+   7. MOVIMENTO ADATTIVO
+   ========================================================================== */
+#ab-mobility-checkup .ab-method-formula {
+  background: var(--ab-color-surface);
+  border: 2px dashed rgba(31, 88, 72, 0.25);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  margin: var(--ab-space-8) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-formula-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-formula-sign {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: var(--ab-color-primary-subtle);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-formula-equals {
+  border-top: 1px solid var(--ab-color-line);
+  padding-top: var(--ab-space-3);
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-primary-dark);
+}
+
+/* ==========================================================================
+   8. COME FUNZIONA
+   ========================================================================== */
+#ab-mobility-checkup .ab-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-step-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  position: relative;
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-test-pill-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-test-pill {
+  background: var(--ab-color-canvas);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-3) var(--ab-space-4);
+  font-size: 14px;
+}
+
+#ab-mobility-checkup .ab-test-pill strong {
+  color: var(--ab-color-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+#ab-mobility-checkup .ab-info-callout {
+  background: var(--ab-color-surface);
+  border-left: 4px solid var(--ab-color-accent);
+  border-radius: 0 var(--ab-radius-lg) var(--ab-radius-lg) 0;
+  padding: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+/* ==========================================================================
+   9. MAPPA DEL MOVIMENTO (SECONDA HERO)
+   ========================================================================== */
+#ab-mobility-checkup .ab-map-hero {
+  background: linear-gradient(180deg, var(--ab-color-canvas) 0%, var(--ab-color-surface) 100%);
+  border-top: 1px solid var(--ab-color-line);
+  border-bottom: 1px solid var(--ab-color-line);
+}
+
+#ab-mobility-checkup .ab-map-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-map-mockup-wrapper {
+  background: #ffffff;
+  border: 1px solid rgba(23, 32, 29, 0.16);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-lg);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-map-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ab-color-accent);
+  background: var(--ab-color-accent-subtle);
+  border: 1px solid rgba(201, 110, 75, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-map-doc-title {
+  font-family: var(--ab-font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ab-color-ink);
+  border-bottom: 2px solid var(--ab-color-ink);
+  padding-bottom: 8px;
+  margin-bottom: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-map-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#ab-mobility-checkup .ab-map-q-item {
+  background: var(--ab-color-canvas);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-4);
+  border-left: 3px solid var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-map-q-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ab-color-primary-dark);
+  margin-bottom: 4px;
+}
+
+#ab-mobility-checkup .ab-map-q-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ab-color-ink-muted);
+  margin: 0;
+}
+
+#ab-mobility-checkup .ab-map-bonus-exercises {
+  background: #fdf6ee;
+  border: 2px dashed rgba(201, 110, 75, 0.4);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  margin-top: var(--ab-space-6);
+}
+
+#ab-mobility-checkup .ab-bonus-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-accent);
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   10. DESTINAZIONI DI MOVIMENTO & 11. PERCHÉ UNA DESTINAZIONE
+   ========================================================================== */
+#ab-mobility-checkup .ab-destinations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-destination-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-dest-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-primary-subtle);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-dest-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+#ab-mobility-checkup .ab-why-dest-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-6);
+}
+
+#ab-mobility-checkup .ab-why-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-why-card strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ab-color-primary);
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   12. CHI È ANDREA BOLZAN
+   ========================================================================== */
+#ab-mobility-checkup .ab-bio-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-bio-image-col {
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-bio-photo-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ab-shadow-md);
+}
+
+#ab-mobility-checkup .ab-bio-photo-placeholder {
+  aspect-ratio: 4/5;
+  background: linear-gradient(160deg, #1f5848 0%, #17201d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf8;
+  padding: var(--ab-space-6);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-bio-avatar-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-bio-avatar-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+#ab-mobility-checkup .ab-bio-photo-caption {
+  padding: var(--ab-space-3) var(--ab-space-4);
+  font-size: 13px;
+  color: var(--ab-color-muted);
+  text-align: center;
+  border-top: 1px solid var(--ab-color-line);
+  background: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ab-space-4);
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-metric-item {
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-metric-number {
+  font-family: var(--ab-font-sans);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-metric-label {
+  font-size: 13px;
+  color: var(--ab-color-ink-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   13. IL CHECK-UP FA PER TE?
+   ========================================================================== */
+#ab-mobility-checkup .ab-qualify-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-qualify-card {
+  background: var(--ab-color-surface);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-qualify-card--yes {
+  border: 2px solid var(--ab-color-success);
+}
+
+#ab-mobility-checkup .ab-qualify-card--no {
+  border: 2px solid var(--ab-color-danger);
+}
+
+#ab-mobility-checkup .ab-qualify-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-qualify-card--yes .ab-qualify-title {
+  color: var(--ab-color-success);
+}
+
+#ab-mobility-checkup .ab-qualify-card--no .ab-qualify-title {
+  color: var(--ab-color-danger);
+}
+
+#ab-mobility-checkup .ab-qualify-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-qualify-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-objections-block {
+  margin-top: var(--ab-space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-objection-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-objection-q {
+  font-family: var(--ab-font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-ink);
+  margin-bottom: 4px;
+}
+
+#ab-mobility-checkup .ab-objection-a {
+  font-size: 15px;
+  color: var(--ab-color-primary-dark);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   14. OFFERTA COMMERCIALE (STACK DEL VALORE)
+   ========================================================================== */
+#ab-mobility-checkup .ab-offer-box {
+  background: var(--ab-color-surface);
+  border: 2px solid var(--ab-color-primary);
+  border-radius: var(--ab-radius-xl);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-lg);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-offer-stack-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--ab-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-offer-check {
+  color: var(--ab-color-success);
+  font-weight: 800;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-pricing-card {
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-pricing-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: var(--ab-space-2);
+}
+
+#ab-mobility-checkup .ab-price-original {
+  font-size: 20px;
+  color: var(--ab-color-danger);
+  text-decoration: line-through;
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-price-promo {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+#ab-mobility-checkup .ab-offer-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: var(--ab-space-4) 0;
+}
+
+#ab-mobility-checkup .ab-badge-meta {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-badge-spots {
+  background: var(--ab-color-accent-subtle);
+  color: var(--ab-color-accent);
+  border: 1px solid rgba(201, 110, 75, 0.3);
+}
+
+#ab-mobility-checkup .ab-badge-credit {
+  background: #e9f5ee;
+  color: var(--ab-color-success);
+  border: 1px solid rgba(40, 117, 88, 0.3);
+}
+
+/* ==========================================================================
+   15. FAQ (DETAILS & SUMMARY)
+   ========================================================================== */
+#ab-mobility-checkup .ab-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-faq-item {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+#ab-mobility-checkup .ab-faq-item:hover {
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-faq-item[open] {
+  border-color: var(--ab-color-primary);
+  box-shadow: 0 4px 12px rgba(31, 88, 72, 0.08);
+}
+
+#ab-mobility-checkup .ab-faq-summary {
+  padding: var(--ab-space-4) var(--ab-space-5);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ab-color-ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+#ab-mobility-checkup .ab-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+#ab-mobility-checkup .ab-faq-summary:focus-visible {
+  outline: 2px solid var(--ab-color-primary);
+  outline-offset: -2px;
+}
+
+#ab-mobility-checkup .ab-faq-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 250ms ease;
+  color: var(--ab-color-primary);
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-faq-item[open] .ab-faq-icon {
+  transform: rotate(180deg);
+}
+
+#ab-mobility-checkup .ab-faq-content {
+  padding: 0 var(--ab-space-5) var(--ab-space-5);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ab-color-ink-muted);
+  border-top: 1px solid rgba(23, 32, 29, 0.06);
+  padding-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-faq-content p {
+  margin: 0 0 10px;
+}
+
+#ab-mobility-checkup .ab-faq-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+#ab-mobility-checkup .ab-footer {
+  background-color: var(--ab-color-ink);
+  color: #a4b0ab;
+  padding-top: var(--ab-space-12);
+  padding-bottom: var(--ab-space-16);
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ab-mobility-checkup .ab-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-footer-link {
+  color: #a4b0ab;
+  text-decoration: underline;
+  transition: color 150ms ease;
+}
+
+#ab-mobility-checkup .ab-footer-link:hover {
+  color: #ffffff;
+}
+
+#ab-mobility-checkup .ab-footer-disclaimer {
+  max-width: var(--ab-container-narrow);
+  margin: var(--ab-space-6) auto 0;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: #727e79;
+}
+
+/* ==========================================================================
+   GLOBAL STICKY CTA MOBILE
+   ========================================================================== */
+#ab-mobility-checkup .ab-sticky-mobile-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 253, 248, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--ab-color-line);
+  padding: 10px 16px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transform: translateY(120%);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#ab-mobility-checkup .ab-sticky-mobile-cta.ab-sticky--visible {
+  transform: translateY(0);
+}
+
+#ab-mobility-checkup .ab-sticky-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-sticky-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ab-color-muted);
+}
+
+#ab-mobility-checkup .ab-sticky-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-sticky-btn {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  min-height: 44px;
+  border-radius: var(--ab-radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: var(--ab-shadow-btn);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DESKTOP / TABLET BREAKPOINTS)
+   ========================================================================== */
+@media (min-width: 768px) {
+  #ab-mobility-checkup .ab-title-h1 {
+    font-size: 44px;
+  }
+
+  #ab-mobility-checkup .ab-title-h2 {
+    font-size: 34px;
+  }
+
+  #ab-mobility-checkup .ab-cta-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-cta {
+    width: auto;
+  }
+
+  #ab-mobility-checkup .ab-reveal-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-problems-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-why-dest-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-qualify-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #ab-mobility-checkup .ab-metrics-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #ab-mobility-checkup .ab-title-h1 {
+    font-size: 50px;
+    line-height: 1.14;
+  }
+
+  #ab-mobility-checkup .ab-hero__grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    align-items: center;
+    gap: var(--ab-space-10);
+  }
+
+  #ab-mobility-checkup .ab-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-map-layout {
+    display: grid;
+    grid-template-columns: 48% 52%;
+    align-items: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-destinations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-bio-grid {
+    display: grid;
+    grid-template-columns: 38% 62%;
+    align-items: center;
+  }
+
+  #ab-mobility-checkup .ab-offer-box {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    gap: var(--ab-space-8);
+    align-items: center;
+  }
+
+  #ab-mobility-checkup .ab-offer-stack-list {
+    margin-bottom: 0;
+  }
+
+  /* Desktop hides sticky mobile CTA */
+  #ab-mobility-checkup .ab-sticky-mobile-cta {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #ab-mobility-checkup,
+  #ab-mobility-checkup * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
