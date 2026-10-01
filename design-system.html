@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System — Check-up di Mobilità (Andrea Bolzan)</title>
+  <style>
+    /* Scope wrapper variables */
+    #ab-mobility-checkup, .ab-ds-wrapper {
+      --ab-color-canvas: #f4f1e9;
+      --ab-color-surface: #fffdf8;
+      --ab-color-surface-hover: #f9f6ee;
+      --ab-color-ink: #17201d;
+      --ab-color-muted: #5f6964;
+      --ab-color-primary: #1f5848;
+      --ab-color-primary-hover: #174638;
+      --ab-color-primary-subtle: #e8f0ec;
+      --ab-color-accent: #c96e4b;
+      --ab-color-accent-hover: #b45f3e;
+      --ab-color-accent-subtle: #fbf0ea;
+      --ab-color-line: rgba(23, 32, 29, 0.14);
+      --ab-color-line-dark: rgba(255, 255, 255, 0.15);
+      --ab-color-success: #287558;
+      --ab-color-danger: #a74436;
+      --ab-color-danger-subtle: #faecea;
+      
+      --ab-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --ab-font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", serif;
+      --ab-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      --ab-space-1: 4px;
+      --ab-space-2: 8px;
+      --ab-space-3: 12px;
+      --ab-space-4: 16px;
+      --ab-space-6: 24px;
+      --ab-space-8: 32px;
+      --ab-space-12: 48px;
+      --ab-space-16: 64px;
+      --ab-space-24: 96px;
+
+      --ab-radius-sm: 4px;
+      --ab-radius-md: 8px;
+      --ab-radius-lg: 14px;
+      --ab-radius-xl: 20px;
+      --ab-radius-full: 9999px;
+
+      --ab-shadow-sm: 0 1px 3px rgba(23, 32, 29, 0.06);
+      --ab-shadow-md: 0 4px 12px rgba(23, 32, 29, 0.08);
+      --ab-shadow-lg: 0 10px 28px rgba(23, 32, 29, 0.1);
+
+      --ab-transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+      --ab-transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      --ab-transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --ab-container-max: 1120px;
+      --ab-container-narrow: 760px;
+    }
+
+    /* Isolated Design System Page Styles */
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      background-color: #e5e2da;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #17201d;
+    }
+
+    .ab-ds-container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: #f4f1e9;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(23, 32, 29, 0.12);
+    }
+
+    .ab-ds-header {
+      background: #17201d;
+      color: #fffdf8;
+      padding: 40px 32px;
+    }
+
+    .ab-ds-header h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      letter-spacing: -0.02em;
+    }
+
+    .ab-ds-header p {
+      margin: 0;
+      color: #9ea8a3;
+      font-size: 16px;
+    }
+
+    .ab-ds-section {
+      padding: 40px 32px;
+      border-bottom: 1px solid rgba(23, 32, 29, 0.1);
+    }
+
+    .ab-ds-section:last-child {
+      border-bottom: none;
+    }
+
+    .ab-ds-title {
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 0 24px;
+      color: #1f5848;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Palette Grid */
+    .ab-palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .ab-swatch {
+      background: #fffdf8;
+      border-radius: 8px;
+      border: 1px solid rgba(23, 32, 29, 0.1);
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .ab-swatch__color {
+      height: 72px;
+      width: 100%;
+    }
+
+    .ab-swatch__info {
+      padding: 10px 12px;
+    }
+
+    .ab-swatch__name {
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .ab-swatch__hex {
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      color: #5f6964;
+    }
+
+    /* Typography Showcase */
+    .ab-type-row {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(23, 32, 29, 0.1);
+    }
+
+    .ab-type-row:last-child {
+      border-bottom: none;
+    }
+
+    .ab-type-meta {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: #5f6964;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ab-h1 {
+      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-size: 38px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0;
+      text-wrap: balance;
+      color: #17201d;
+    }
+
+    .ab-h2 {
+      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-size: 28px;
+      line-height: 1.25;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0;
+      text-wrap: balance;
+      color: #17201d;
+    }
+
+    .ab-h3 {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: #17201d;
+    }
+
+    .ab-body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #17201d;
+      text-wrap: pretty;
+      margin: 0;
+    }
+
+    .ab-body--large {
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .ab-body--small {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #5f6964;
+    }
+
+    /* Buttons & CTAs */
+    .ab-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .ab-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.25;
+      padding: 14px 28px;
+      min-height: 48px;
+      min-width: 48px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-align: center;
+      text-wrap: balance;
+      transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      box-sizing: border-box;
+    }
+
+    .ab-cta:focus-visible {
+      outline: 3px solid #1f5848;
+      outline-offset: 3px;
+    }
+
+    .ab-cta--primary {
+      background-color: #1f5848;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(31, 88, 72, 0.25);
+    }
+
+    .ab-cta--primary:hover {
+      background-color: #174638;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(31, 88, 72, 0.32);
+    }
+
+    .ab-cta--primary:active {
+      background-color: #11362b;
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(31, 88, 72, 0.2);
+    }
+
+    .ab-cta--whatsapp {
+      background-color: #25d366;
+      color: #0c331a;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+    }
+
+    .ab-cta--whatsapp:hover {
+      background-color: #22bf5b;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.32);
+    }
+
+    .ab-cta--whatsapp:active {
+      transform: translateY(1px);
+    }
+
+    .ab-cta--outline {
+      background: transparent;
+      border-color: #1f5848;
+      color: #1f5848;
+    }
+
+    .ab-cta--outline:hover {
+      background: #e8f0ec;
+    }
+
+    .ab-cta--disabled,
+    .ab-cta[disabled] {
+      background-color: #d8dad6;
+      color: #8c9390;
+      border-color: transparent;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Badges */
+    .ab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      line-height: 1.2;
+    }
+
+    .ab-badge--primary {
+      background: #e8f0ec;
+      color: #1f5848;
+      border: 1px solid rgba(31, 88, 72, 0.2);
+    }
+
+    .ab-badge--accent {
+      background: #fbf0ea;
+      color: #c96e4b;
+      border: 1px solid rgba(201, 110, 75, 0.2);
+    }
+
+    .ab-badge--dark {
+      background: #17201d;
+      color: #fffdf8;
+    }
+
+    /* Blockquote */
+    .ab-quote {
+      position: relative;
+      background: #fffdf8;
+      border-left: 4px solid #1f5848;
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 16px 0;
+      box-shadow: 0 2px 8px rgba(23, 32, 29, 0.04);
+    }
+
+    .ab-quote p {
+      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.5;
+      color: #17201d;
+      margin: 0 0 10px;
+    }
+
+    .ab-quote footer {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #5f6964;
+    }
+
+    /* FAQ Details/Summary Component */
+    .ab-faq-item {
+      background: #fffdf8;
+      border: 1px solid rgba(23, 32, 29, 0.12);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .ab-faq-item:hover {
+      border-color: rgba(31, 88, 72, 0.35);
+    }
+
+    .ab-faq-item[open] {
+      border-color: #1f5848;
+      box-shadow: 0 4px 14px rgba(31, 88, 72, 0.08);
+    }
+
+    .ab-faq-summary {
+      padding: 18px 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #17201d;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .ab-faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .ab-faq-summary:focus-visible {
+      outline: 2px solid #1f5848;
+      outline-offset: -2px;
+    }
+
+    .ab-faq-icon {
+      width: 18px;
+      height: 18px;
+      transition: transform 250ms ease;
+      color: #1f5848;
+      flex-shrink: 0;
+    }
+
+    .ab-faq-item[open] .ab-faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .ab-faq-content {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #404a45;
+      border-top: 1px solid rgba(23, 32, 29, 0.06);
+      padding-top: 14px;
+    }
+
+    /* Timeline Stepper Component */
+    .ab-stepper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .ab-step-card {
+      background: #fffdf8;
+      border: 1px solid rgba(23, 32, 29, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .ab-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      background: #1f5848;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    /* Mappa Mockup Component */
+    .ab-map-mockup {
+      background: #fffdf8;
+      border: 1px solid rgba(23, 32, 29, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(23, 32, 29, 0.07);
+      position: relative;
+    }
+
+    .ab-map-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #c96e4b;
+      background: #fbf0ea;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 110, 75, 0.25);
+    }
+
+    .ab-map-header {
+      border-bottom: 2px solid #17201d;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ab-map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .ab-map-cell {
+      padding: 10px;
+      background: #f4f1e9;
+      border-radius: 6px;
+      border-left: 3px solid #1f5848;
+    }
+
+    .ab-map-cell strong {
+      display: block;
+      color: #1f5848;
+      margin-bottom: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ab-ds-container">
+    <div class="ab-ds-header">
+      <h1>Check-up di Mobilità — Design System</h1>
+      <p>Guida visuale, token e componenti per la Sales Page di Andrea Bolzan</p>
+    </div>
+
+    <!-- 1. COLOR TOKENS -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">1. Tavolozza Cromatica</div>
+      <div class="ab-palette-grid">
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #f4f1e9;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Canvas</div>
+            <div class="ab-swatch__hex">#f4f1e9</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #fffdf8; border-bottom: 1px solid #eee;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Surface</div>
+            <div class="ab-swatch__hex">#fffdf8</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #17201d;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Ink (Testo Primario)</div>
+            <div class="ab-swatch__hex">#17201d</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #5f6964;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Muted (Testo Secondario)</div>
+            <div class="ab-swatch__hex">#5f6964</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #1f5848;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Primary Forest Green</div>
+            <div class="ab-swatch__hex">#1f5848</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #174638;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Primary Hover</div>
+            <div class="ab-swatch__hex">#174638</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #c96e4b;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Accent Terracotta</div>
+            <div class="ab-swatch__hex">#c96e4b</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #287558;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Success</div>
+            <div class="ab-swatch__hex">#287558</div>
+          </div>
+        </div>
+        <div class="ab-swatch">
+          <div class="ab-swatch__color" style="background-color: #a74436;"></div>
+          <div class="ab-swatch__info">
+            <div class="ab-swatch__name">Danger / Warning</div>
+            <div class="ab-swatch__hex">#a74436</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TYPOGRAPHY -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">2. Gerarchia Tipografica</div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">H1 — Serif Display 38px / 1.15</div>
+        <h1 class="ab-h1">Sblocca cosa ti impedisce di muoverti come vorresti con il Check-up</h1>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">H2 — Serif Section Heading 28px / 1.25</div>
+        <h2 class="ab-h2">Quello che il Check-up ti mostra e che oggi probabilmente non vedi</h2>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">H3 — Sans Component Heading 20px / 1.35</div>
+        <h3 class="ab-h3">Primo appuntamento: parliamo e ti osservo</h3>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">Body Large — Sans 18px / 1.55</div>
+        <p class="ab-body ab-body--large">Dalla verticale all'accosciata, dal pike al trekking: in due appuntamenti online analizziamo mobilità, forza e controllo.</p>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">Body Regular — Sans 16px / 1.6</div>
+        <p class="ab-body">Quando inizio a lavorare con qualcuno, la prima cosa che gli chiedo è di descrivermi il suo punto zero: da dove parte, cosa lo blocca, su cosa può contare.</p>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">Body Small — Sans 14px / 1.5</div>
+        <p class="ab-body ab-body--small">Tutto a distanza: ti serve solo un telefono e uno spazio in cui puoi muoverti liberamente.</p>
+      </div>
+      <div class="ab-type-row">
+        <div class="ab-type-meta">Prezzi & Tabular Nums — 150 € -> 57 €</div>
+        <div style="font-variant-numeric: tabular-nums; font-weight: 700; font-size: 26px;">
+          <span style="text-decoration: line-through; color: #a74436; margin-right: 12px; font-weight: 400;">150 €</span>
+          <span style="color: #1f5848;">57 €</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. BUTTONS & CTAS -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">3. Pulsanti e Call To Action</div>
+      <div class="ab-btn-row">
+        <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL">Prenota il Check-up al prezzo più basso di sempre</a>
+        <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL">Scrivimi su WhatsApp</a>
+        <a class="ab-cta ab-cta--outline" href="#CHECKOUT_URL">Approfondisci l'offerta</a>
+        <button class="ab-cta ab-cta--disabled" disabled>Offerta Scaduta</button>
+      </div>
+      <div style="font-size: 13px; color: #5f6964;">
+        Target touch minimo garantito: 48px di altezza. Stati :hover, :active e :focus-visible testati.
+      </div>
+    </div>
+
+    <!-- 4. BADGES & CITAZIONI -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">4. Badge e Citazioni Editoriali</div>
+      <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 24px;">
+        <span class="ab-badge ab-badge--primary">2 Appuntamenti Online</span>
+        <span class="ab-badge ab-badge--accent">Mappa Personale</span>
+        <span class="ab-badge ab-badge--dark">Primi Esercizi</span>
+      </div>
+      <blockquote class="ab-quote">
+        <p>«Mi ha permesso di vedere l'allenamento in maniera differente, facendomi vedere un mondo oltre il solo allenamento della forza su cui mi concentravo in precedenza.»</p>
+        <footer>Luca Ugolini, 34 anni</footer>
+      </blockquote>
+    </div>
+
+    <!-- 5. COMPONENTI DINAMICI: FAQ & MAPPA -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">5. FAQ e Mockup Mappa del Movimento</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div>
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Funziona davvero a distanza?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              Sì: è così che lavoro con i miei clienti, e oggi ne seguo più di 40 a distanza. Per i test mi basta vederti muovere in videochiamata.
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Ho un dolore o un vecchio infortunio. Posso farlo?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              Sì: dolori e infortuni passati li raccolgo come parte del tuo contesto. Il Check-up però non è una visita medica e non fa diagnosi. Se emerge qualcosa che va oltre il mio lavoro, ti indirizzo al professionista giusto.
+            </div>
+          </details>
+        </div>
+
+        <div>
+          <div class="ab-map-mockup">
+            <div class="ab-map-badge">Esempio di Mappa</div>
+            <div class="ab-map-header">
+              <strong style="font-size: 15px; color: #17201d; font-family: serif;">Mappa del Movimento — Andrea Bolzan</strong>
+              <div style="font-size: 12px; color: #5f6964;">Documento personale di analisi e direzione</div>
+            </div>
+            <div class="ab-map-grid">
+              <div class="ab-map-cell">
+                <strong>1. Destinazione</strong>
+                Verticale libera e controllo spalle
+              </div>
+              <div class="ab-map-cell">
+                <strong>2. Punto Zero</strong>
+                Flessione dorsale limitata, buona forza core
+              </div>
+              <div class="ab-map-cell">
+                <strong>3. Punti di Forza</strong>
+                Spinta scapolare e stabilità polsi
+              </div>
+              <div class="ab-map-cell">
+                <strong>4. Priorità</strong>
+                Apertura toracica prima di spingere sulle linee
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ACCESSIBILITA' & MOTION -->
+    <div class="ab-ds-section">
+      <div class="ab-ds-title">6. Linee Guida di Accessibilità e Motion</div>
+      <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.7; color: #404a45;">
+        <li>Contrasto testo corpo (#17201d su #f4f1e9): <strong>13.5:1</strong> (Conforme AAA).</li>
+        <li>Tasti e link conformi WCAG 2.1 AA (minimo 44×44px di hit-target).</li>
+        <li>Nessuna proprietà <code>transition: all</code>. Transizioni esplicite su <code>transform</code>, <code>opacity</code>, <code>background-color</code>.</li>
+        <li>Completo supporto alle preferenze di movimento ridotto: <code>@media (prefers-reduced-motion: reduce)</code>.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
