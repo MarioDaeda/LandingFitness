@@ -181,3 +181,17 @@ Applicazione principi Impeccable:
 ### Componente Globale: Sticky CTA Mobile
 - **Obiettivo**: Mantenere la conversione a portata di pollice su smartphone.
 - **Comportamento**: Compare quando la CTA dell'hero scompare dallo scroll; scompare quando si raggiunge il footer o l'offerta finale. Include prezzo compatto (57 €) e bottone rapido. Rispetta `env(safe-area-inset-bottom)`.
+
+---
+
+## Integrazione Foto e Asset da Google Drive
+
+Per l'integrazione del materiale multimediale condiviso da Qiu (3 cartelle Google Drive: *Testimonianze* per i video reali dei clienti, *screen* per le chat WhatsApp e le 8 schede recensione con foto e testo integrale, e *Bolza* per le fotografie atletiche di Andrea Bolzan), fare riferimento al documento di dettaglio:
+👉 **`PLAN-INTEGRAZIONE-FOTO.md`**
+
+Il piano specifica:
+1. Audit reale e inventario completo dei file estratti dalle 3 cartelle Google Drive con ID, dimensioni e formati.
+2. Mappatura esatta nelle sezioni 1 (Hero VSL poster), 3 (Prova Sociale: recensioni e slider WhatsApp) e 12 (Ritratto Bio Andrea Bolzan).
+3. Integrazione locale istantanea (`assets/`) e automazione in `build-ghl.js` con sostituzione automatica verso CDN Google Drive per `highlevel-paste.html`.
+4. Stili CSS scoped `#ab-mobility-checkup` dedicati per rendering responsive, privo di CLS e conforme Core Web Vitals.
+5. Flusso di build e verifica automatica con `build-ghl.js` e `test-verify-all.js`.

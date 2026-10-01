@@ -35,6 +35,47 @@ if (lastDivIndex === -1) {
 
 const checkupDiv = beforeScript.substring(0, lastDivIndex + 6).trim();
 
+// Mappatura automatica asset locali -> CDN Google Drive ad alte prestazioni per GoHighLevel
+const CDN_MAP = {
+  // Andrea Bolzan (Folder: Bolza - 1XmdtQgltDi3Q4PDGp3zvYfPaNT0G0Oha)
+  'assets/andrea/IMG_7648.jpg': 'https://lh3.googleusercontent.com/d/1Xagbv25DzeoQerhQGOcRR1oJpaxkYzup=s1200',
+  'assets/andrea/IMG_7649.jpg': 'https://lh3.googleusercontent.com/d/15UxBgSMf4rUVGcLQ1u8ga7bRiZdZhSaW=s1200',
+  'assets/andrea/IMG_7650.jpg': 'https://lh3.googleusercontent.com/d/1nbRD4GwrL9v_nMAIfZ2SLKmaR1JoDMca=s1200',
+  'assets/andrea/IMG_7651.jpg': 'https://lh3.googleusercontent.com/d/1eRM85m9_xPp1lTT2uyPiWnCRfwwZObrh=s1200',
+  'assets/andrea/IMG_7652.jpg': 'https://lh3.googleusercontent.com/d/1ilx4y0i0kNj7LfHllFx6aMVWS-l7xIc0=s1200',
+
+  // Social Proof Reviews (Folder: screen/recensione - 1NNwaqOviLcjahV278L02LetO2m4OPeIi)
+  'assets/social-proof/reviews/Lucia Orlando.jpg': 'https://lh3.googleusercontent.com/d/1ocuUX0qi9Jc_F-pi2c67_E7HxVrZUhOf=s800',
+  'assets/social-proof/reviews/Andrea Ferrari.jpg': 'https://lh3.googleusercontent.com/d/1jcKX8X36HhDDB2Y97budf4U7RVzPM5oC=s800',
+  'assets/social-proof/reviews/Luca Timpani.jpg': 'https://lh3.googleusercontent.com/d/1wcFBWAbxx0SwJ_HuzdhuC_OpyIdb_12p=s800',
+  'assets/social-proof/reviews/Michele Vicari.jpg': 'https://lh3.googleusercontent.com/d/1GvOJHW68oK2J8UuLnD-WUnry6Y_oyO6K=s800',
+  'assets/social-proof/reviews/Monica Gavillucci.jpg': 'https://lh3.googleusercontent.com/d/1ZF4URLsENQtTVO-2J4zaueNGlqHVUXO-=s800',
+  'assets/social-proof/reviews/Luca Ugolini.jpg': 'https://lh3.googleusercontent.com/d/1iwZaeWmIMqAmDAtmH7_Ll1KAdtVxU2df=s800',
+  'assets/social-proof/reviews/Dario Parodi.jpg': 'https://lh3.googleusercontent.com/d/1GyJVrJvDfnts0Vyb-pR_hi0xGxMahcqj=s800',
+  'assets/social-proof/reviews/Katia Lagona.jpg': 'https://lh3.googleusercontent.com/d/149Ya-clHOsi-B6nmw2Kv7kUq-jXHHyzP=s800',
+
+  // Social Proof Chats (Folder: screen - 1jHGrmlWsk1uf4CNwgQTm6N4j1neHyQ-p)
+  'assets/social-proof/chats/chat-1.png': 'https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800',
+  'assets/social-proof/chats/chat-2.png': 'https://lh3.googleusercontent.com/d/1b_xRngPbai3CBXk8Hvnyq40F9fuSC9hB=s800',
+  'assets/social-proof/chats/chat-3.png': 'https://lh3.googleusercontent.com/d/1B8fa8g5Y1LHViDIv9RLlZV0FbA7uUi4y=s800',
+  'assets/social-proof/chats/chat-4.png': 'https://lh3.googleusercontent.com/d/1QVOfAQ_mo41tQyEjk_4Pq7ywsLHh_fxq=s800',
+  'assets/social-proof/chats/chat-5.png': 'https://lh3.googleusercontent.com/d/1ugLIIYHhgo0jepzD-KVqEjwnqdd1xwJl=s800',
+  'assets/social-proof/chats/chat-6.png': 'https://lh3.googleusercontent.com/d/1qX-cP83WG0k7mk-i05ZymmEyLiuf5VVx=s800',
+  'assets/social-proof/chats/chat-7.png': 'https://lh3.googleusercontent.com/d/14b0typpayeijkwjHFJORcIvexz2WoY4j=s800',
+  'assets/social-proof/chats/chat-8.png': 'https://lh3.googleusercontent.com/d/1cwULfmv2gfnjquv9PuqCG1sFkJkJ2Yl4=s800',
+  'assets/social-proof/chats/chat-9.png': 'https://lh3.googleusercontent.com/d/16x_C-HGzJNv4MtTc1usNzQBq32G1CXVu=s800',
+  'assets/social-proof/chats/chat-10.png': 'https://lh3.googleusercontent.com/d/1KwzmJrmOSB4wfjoRL1dHdoLx2e5yt2uP=s800',
+  'assets/social-proof/chats/chat-11.png': 'https://lh3.googleusercontent.com/d/136Qu0OM4pX-2uL2AkBuAdgndcdVOcju1=s800',
+  'assets/social-proof/chats/chat-12.png': 'https://lh3.googleusercontent.com/d/1dR6YO8iFeYHpBJtcSRL7mJOfQzRz0iD5=s800',
+  'assets/social-proof/chats/chat-13.png': 'https://lh3.googleusercontent.com/d/1GyzGZZQT4AkVfSjRzBv6JBMVsx3achWU=s800',
+  'assets/social-proof/chats/chat-14.png': 'https://lh3.googleusercontent.com/d/1CS6bnH8dC_2KbIci-ujdEKJkx6NbhvuE=s800'
+};
+
+let ghlCheckupDiv = checkupDiv;
+for (const [localPath, cdnUrl] of Object.entries(CDN_MAP)) {
+  ghlCheckupDiv = ghlCheckupDiv.split(localPath).join(cdnUrl);
+}
+
 const finalOutput = `<!-- ==========================================================================
      CHECK-UP DI MOBILITÀ — SALES PAGE (ANDREA BOLZAN)
      Deliverable per elemento Custom Code / HTML di GoHighLevel
@@ -45,7 +86,7 @@ const finalOutput = `<!-- ======================================================
 ${cssContent.trim()}
 </style>
 
-${checkupDiv}
+${ghlCheckupDiv}
 
 <!-- Script opzionali GSAP & ScrollTrigger via CDN (progressive enhancement non bloccante) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
