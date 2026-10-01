@@ -1,0 +1,2913 @@
+<!-- ==========================================================================
+     CHECK-UP DI MOBILITÀ — SALES PAGE (ANDREA BOLZAN)
+     Deliverable per elemento Custom Code / HTML di GoHighLevel
+     ========================================================================== -->
+
+<style>
+/* ==========================================================================
+   CHECK-UP DI MOBILITÀ — SALES PAGE (ANDREA BOLZAN)
+   Stili isolati e con namespace esclusivo per GoHighLevel
+   Wrapper: #ab-mobility-checkup
+   ========================================================================== */
+
+#ab-mobility-checkup {
+  /* Design Tokens */
+  --ab-color-canvas: #f4f1e9;
+  --ab-color-canvas-alt: #ece8dc;
+  --ab-color-surface: #fffdf8;
+  --ab-color-surface-hover: #f9f6ee;
+  --ab-color-ink: #17201d;
+  --ab-color-ink-muted: #424e49;
+  --ab-color-muted: #5f6964;
+  --ab-color-primary: #1f5848;
+  --ab-color-primary-hover: #174638;
+  --ab-color-primary-dark: #12372c;
+  --ab-color-primary-subtle: #e8f0ec;
+  --ab-color-accent: #c96e4b;
+  --ab-color-accent-hover: #b45f3e;
+  --ab-color-accent-subtle: #fbf0ea;
+  --ab-color-line: rgba(23, 32, 29, 0.12);
+  --ab-color-line-dark: rgba(255, 255, 255, 0.14);
+  --ab-color-success: #287558;
+  --ab-color-danger: #a74436;
+  --ab-color-danger-subtle: #faecea;
+
+  --ab-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ab-font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", serif;
+  --ab-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --ab-space-1: 4px;
+  --ab-space-2: 8px;
+  --ab-space-3: 12px;
+  --ab-space-4: 16px;
+  --ab-space-5: 20px;
+  --ab-space-6: 24px;
+  --ab-space-8: 32px;
+  --ab-space-10: 40px;
+  --ab-space-12: 48px;
+  --ab-space-16: 64px;
+  --ab-space-20: 80px;
+  --ab-space-24: 96px;
+
+  --ab-radius-sm: 6px;
+  --ab-radius-md: 10px;
+  --ab-radius-lg: 16px;
+  --ab-radius-xl: 24px;
+  --ab-radius-full: 9999px;
+
+  --ab-shadow-sm: 0 1px 3px rgba(23, 32, 29, 0.05);
+  --ab-shadow-md: 0 4px 14px rgba(23, 32, 29, 0.07);
+  --ab-shadow-lg: 0 12px 30px rgba(23, 32, 29, 0.09);
+  --ab-shadow-btn: 0 4px 12px rgba(31, 88, 72, 0.22);
+  --ab-shadow-wa: 0 4px 12px rgba(37, 211, 102, 0.25);
+
+  --ab-container-max: 1160px;
+  --ab-container-narrow: 780px;
+
+  /* Resets scoped to wrapper */
+  box-sizing: border-box;
+  font-family: var(--ab-font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ab-color-ink);
+  background-color: var(--ab-color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+#ab-mobility-checkup *,
+#ab-mobility-checkup *::before,
+#ab-mobility-checkup *::after {
+  box-sizing: border-box;
+}
+
+/* Tabular Numbers */
+#ab-mobility-checkup .ab-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Container Utility */
+#ab-mobility-checkup .ab-container {
+  width: 100%;
+  max-width: var(--ab-container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ab-space-5);
+  padding-right: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-container--narrow {
+  max-width: var(--ab-container-narrow);
+}
+
+/* Layout Utilities */
+#ab-mobility-checkup .ab-section {
+  padding-top: var(--ab-space-16);
+  padding-bottom: var(--ab-space-16);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-section--surface {
+  background-color: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-section--canvas {
+  background-color: var(--ab-color-canvas);
+}
+
+#ab-mobility-checkup .ab-section--dark {
+  background-color: var(--ab-color-ink);
+  color: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-section--deep-green {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+}
+
+/* Typography Classes */
+#ab-mobility-checkup .ab-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ab-color-accent);
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-title-h1 {
+  font-family: var(--ab-font-serif);
+  font-size: 32px;
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-4);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-title-h2 {
+  font-family: var(--ab-font-serif);
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-3);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-section--dark .ab-title-h2,
+#ab-mobility-checkup .ab-section--deep-green .ab-title-h2 {
+  color: #ffffff;
+}
+
+#ab-mobility-checkup .ab-title-h3 {
+  font-family: var(--ab-font-sans);
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ab-color-ink);
+  margin: 0 0 var(--ab-space-2);
+}
+
+#ab-mobility-checkup .ab-subtitle {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ab-color-muted);
+  margin: 0 0 var(--ab-space-6);
+  text-wrap: pretty;
+}
+
+#ab-mobility-checkup .ab-section--dark .ab-subtitle,
+#ab-mobility-checkup .ab-section--deep-green .ab-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#ab-mobility-checkup .ab-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ab-color-ink-muted);
+  margin: 0 0 var(--ab-space-4);
+  text-wrap: pretty;
+}
+
+#ab-mobility-checkup .ab-body:last-child {
+  margin-bottom: 0;
+}
+
+/* Call To Action Buttons */
+#ab-mobility-checkup .ab-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-6);
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--ab-font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 15px 26px;
+  min-height: 48px;
+  border-radius: var(--ab-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-wrap: balance;
+  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-cta:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-cta--primary {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+  box-shadow: var(--ab-shadow-btn);
+}
+
+#ab-mobility-checkup .ab-cta--primary:hover {
+  background-color: var(--ab-color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 88, 72, 0.32);
+}
+
+#ab-mobility-checkup .ab-cta--primary:active {
+  background-color: var(--ab-color-primary-dark);
+  transform: translateY(1px);
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp {
+  background-color: #25d366;
+  color: #0d381c;
+  box-shadow: var(--ab-shadow-wa);
+  font-weight: 700;
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp:hover {
+  background-color: #20ba59;
+  transform: translateY(-1px);
+}
+
+#ab-mobility-checkup .ab-cta--whatsapp:active {
+  transform: translateY(1px);
+}
+
+#ab-mobility-checkup .ab-cta--secondary {
+  background-color: transparent;
+  color: var(--ab-color-primary);
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-cta--secondary:hover {
+  background-color: var(--ab-color-primary-subtle);
+  border-color: var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-cta-microcopy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ab-color-muted);
+  text-align: center;
+  margin-top: var(--ab-space-2);
+}
+
+/* ==========================================================================
+   0. BARRA OFFERTA STICKY
+   ========================================================================== */
+#ab-mobility-checkup .ab-top-bar {
+  background-color: #12372c;
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+#ab-mobility-checkup .ab-top-bar.ab-top-bar--hidden {
+  display: none !important;
+}
+
+#ab-mobility-checkup .ab-countdown-timer {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   1. HERO
+   ========================================================================== */
+#ab-mobility-checkup .ab-hero {
+  padding-top: var(--ab-space-12);
+  padding-bottom: var(--ab-space-16);
+}
+
+#ab-mobility-checkup .ab-hero__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-hero__content {
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-preheadline {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+  background: var(--ab-color-primary-subtle);
+  padding: 6px 14px;
+  border-radius: var(--ab-radius-full);
+  margin-bottom: var(--ab-space-4);
+  width: fit-content;
+}
+
+#ab-mobility-checkup .ab-hero__media {
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-vsl-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ab-shadow-md);
+}
+
+#ab-mobility-checkup .ab-vsl-ratio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background: #17201d;
+}
+
+#ab-mobility-checkup .ab-vsl-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf8;
+  padding: var(--ab-space-4);
+  text-align: center;
+  background: linear-gradient(145deg, #17201d 0%, #1f5848 100%);
+}
+
+#ab-mobility-checkup .ab-vsl-play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-3);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 200ms ease;
+}
+
+#ab-mobility-checkup .ab-vsl-play-btn svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px;
+}
+
+#ab-mobility-checkup .ab-vsl-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+#ab-mobility-checkup .ab-vsl-caption {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+#ab-mobility-checkup .ab-hero-summary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ab-color-primary-dark);
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.15);
+  border-radius: var(--ab-radius-full);
+  padding: 8px 16px;
+  margin-top: var(--ab-space-3);
+  text-align: center;
+}
+
+/* ==========================================================================
+   2. QUELLO CHE IL CHECK-UP MOSTRA
+   ========================================================================== */
+#ab-mobility-checkup .ab-reveal-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+  list-style: none;
+  padding: 0;
+}
+
+#ab-mobility-checkup .ab-reveal-item {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+  display: flex;
+  gap: var(--ab-space-4);
+  align-items: flex-start;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+#ab-mobility-checkup .ab-reveal-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ab-shadow-md);
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-reveal-num {
+  font-family: var(--ab-font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+  background: var(--ab-color-primary-subtle);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-reveal-text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ab-color-ink);
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. PROVA SOCIALE INIZIALE
+   ========================================================================== */
+#ab-mobility-checkup .ab-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-proof-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-proof-card--featured {
+  border-left: 4px solid var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-proof-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-proof-name {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-proof-tag {
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--ab-color-canvas);
+  color: var(--ab-color-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ab-space-3);
+  margin: var(--ab-space-4) 0;
+}
+
+#ab-mobility-checkup .ab-ba-box {
+  background: var(--ab-color-canvas);
+  border: 1px dashed var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-3);
+  text-align: center;
+  font-size: 12px;
+  color: var(--ab-color-muted);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ab-mobility-checkup .ab-ba-box svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 6px;
+  opacity: 0.6;
+}
+
+/* Chat Slider with Scroll Snap */
+#ab-mobility-checkup .ab-chat-slider-wrap {
+  margin-top: var(--ab-space-8);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-chat-slider {
+  display: flex;
+  gap: var(--ab-space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--ab-space-4);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 88, 72, 0.3) transparent;
+}
+
+#ab-mobility-checkup .ab-chat-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+#ab-mobility-checkup .ab-chat-slider::-webkit-scrollbar-thumb {
+  background: rgba(31, 88, 72, 0.3);
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-chat-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-4);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-chat-bubble {
+  background: #e7f7e9;
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-radius: 12px 12px 2px 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #17201d;
+  margin-bottom: 8px;
+}
+
+#ab-mobility-checkup .ab-chat-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ab-color-muted);
+}
+
+/* ==========================================================================
+   4. TI RICONOSCI?
+   ========================================================================== */
+#ab-mobility-checkup .ab-problems-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+  margin-bottom: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-problem-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  display: flex;
+  gap: var(--ab-space-4);
+  align-items: flex-start;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+#ab-mobility-checkup .ab-problem-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 110, 75, 0.4);
+}
+
+#ab-mobility-checkup .ab-problem-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-accent-subtle);
+  color: var(--ab-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-problem-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+}
+
+#ab-mobility-checkup .ab-problem-quote {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+  margin: 0;
+  font-style: normal;
+}
+
+#ab-mobility-checkup .ab-reassurance-box {
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  text-align: center;
+  max-width: var(--ab-container-narrow);
+  margin: 0 auto;
+}
+
+#ab-mobility-checkup .ab-reassurance-box p {
+  font-family: var(--ab-font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ab-color-primary-dark);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. PONTE ASPIRAZIONALE
+   ========================================================================== */
+#ab-mobility-checkup .ab-bridge {
+  padding-top: var(--ab-space-20);
+  padding-bottom: var(--ab-space-20);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-bridge__title {
+  font-family: var(--ab-font-serif);
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: var(--ab-space-6);
+  text-wrap: balance;
+}
+
+#ab-mobility-checkup .ab-bridge__text {
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 680px;
+  margin: 0 auto var(--ab-space-8);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   6. PUNTO ZERO
+   ========================================================================== */
+#ab-mobility-checkup .ab-pointzero-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  margin: var(--ab-space-6) 0;
+}
+
+#ab-mobility-checkup .ab-flow-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-flow-arrow {
+  color: var(--ab-color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 6px;
+}
+
+/* Quote Luca Ugolini */
+#ab-mobility-checkup .ab-quote-ugolini {
+  background: var(--ab-color-canvas);
+  border-left: 4px solid var(--ab-color-primary);
+  border-radius: 0 var(--ab-radius-md) var(--ab-radius-md) 0;
+  padding: var(--ab-space-5) var(--ab-space-6);
+  margin: var(--ab-space-6) 0;
+}
+
+#ab-mobility-checkup .ab-quote-ugolini p {
+  font-family: var(--ab-font-serif);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ab-color-ink);
+  margin: 0 0 8px;
+}
+
+#ab-mobility-checkup .ab-quote-ugolini cite {
+  font-family: var(--ab-font-sans);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ab-color-primary);
+}
+
+/* ==========================================================================
+   7. MOVIMENTO ADATTIVO
+   ========================================================================== */
+#ab-mobility-checkup .ab-method-formula {
+  background: var(--ab-color-surface);
+  border: 2px dashed rgba(31, 88, 72, 0.25);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  margin: var(--ab-space-8) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-formula-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-formula-sign {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: var(--ab-color-primary-subtle);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-formula-equals {
+  border-top: 1px solid var(--ab-color-line);
+  padding-top: var(--ab-space-3);
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-primary-dark);
+}
+
+/* ==========================================================================
+   8. COME FUNZIONA
+   ========================================================================== */
+#ab-mobility-checkup .ab-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-step-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  position: relative;
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-test-pill-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-test-pill {
+  background: var(--ab-color-canvas);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-3) var(--ab-space-4);
+  font-size: 14px;
+}
+
+#ab-mobility-checkup .ab-test-pill strong {
+  color: var(--ab-color-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+#ab-mobility-checkup .ab-info-callout {
+  background: var(--ab-color-surface);
+  border-left: 4px solid var(--ab-color-accent);
+  border-radius: 0 var(--ab-radius-lg) var(--ab-radius-lg) 0;
+  padding: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+/* ==========================================================================
+   9. MAPPA DEL MOVIMENTO (SECONDA HERO)
+   ========================================================================== */
+#ab-mobility-checkup .ab-map-hero {
+  background: linear-gradient(180deg, var(--ab-color-canvas) 0%, var(--ab-color-surface) 100%);
+  border-top: 1px solid var(--ab-color-line);
+  border-bottom: 1px solid var(--ab-color-line);
+}
+
+#ab-mobility-checkup .ab-map-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-map-mockup-wrapper {
+  background: #ffffff;
+  border: 1px solid rgba(23, 32, 29, 0.16);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-lg);
+  position: relative;
+}
+
+#ab-mobility-checkup .ab-map-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ab-color-accent);
+  background: var(--ab-color-accent-subtle);
+  border: 1px solid rgba(201, 110, 75, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-map-doc-title {
+  font-family: var(--ab-font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ab-color-ink);
+  border-bottom: 2px solid var(--ab-color-ink);
+  padding-bottom: 8px;
+  margin-bottom: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-map-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#ab-mobility-checkup .ab-map-q-item {
+  background: var(--ab-color-canvas);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-4);
+  border-left: 3px solid var(--ab-color-primary);
+}
+
+#ab-mobility-checkup .ab-map-q-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ab-color-primary-dark);
+  margin-bottom: 4px;
+}
+
+#ab-mobility-checkup .ab-map-q-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ab-color-ink-muted);
+  margin: 0;
+}
+
+#ab-mobility-checkup .ab-map-bonus-exercises {
+  background: #fdf6ee;
+  border: 2px dashed rgba(201, 110, 75, 0.4);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-5);
+  margin-top: var(--ab-space-6);
+}
+
+#ab-mobility-checkup .ab-bonus-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-accent);
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   10. DESTINAZIONI DI MOVIMENTO & 11. PERCHÉ UNA DESTINAZIONE
+   ========================================================================== */
+#ab-mobility-checkup .ab-destinations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-destination-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-dest-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ab-radius-md);
+  background: var(--ab-color-primary-subtle);
+  color: var(--ab-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-dest-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+#ab-mobility-checkup .ab-why-dest-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-6);
+}
+
+#ab-mobility-checkup .ab-why-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-why-card strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ab-color-primary);
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   12. CHI È ANDREA BOLZAN
+   ========================================================================== */
+#ab-mobility-checkup .ab-bio-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-8);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-bio-image-col {
+  width: 100%;
+}
+
+#ab-mobility-checkup .ab-bio-photo-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ab-shadow-md);
+}
+
+#ab-mobility-checkup .ab-bio-photo-placeholder {
+  aspect-ratio: 4/5;
+  background: linear-gradient(160deg, #1f5848 0%, #17201d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fffdf8;
+  padding: var(--ab-space-6);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-bio-avatar-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-bio-avatar-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+#ab-mobility-checkup .ab-bio-photo-caption {
+  padding: var(--ab-space-3) var(--ab-space-4);
+  font-size: 13px;
+  color: var(--ab-color-muted);
+  text-align: center;
+  border-top: 1px solid var(--ab-color-line);
+  background: var(--ab-color-surface);
+}
+
+#ab-mobility-checkup .ab-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ab-space-4);
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-metric-item {
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-metric-number {
+  font-family: var(--ab-font-sans);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-metric-label {
+  font-size: 13px;
+  color: var(--ab-color-ink-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   13. IL CHECK-UP FA PER TE?
+   ========================================================================== */
+#ab-mobility-checkup .ab-qualify-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ab-space-6);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-qualify-card {
+  background: var(--ab-color-surface);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-sm);
+}
+
+#ab-mobility-checkup .ab-qualify-card--yes {
+  border: 2px solid var(--ab-color-success);
+}
+
+#ab-mobility-checkup .ab-qualify-card--no {
+  border: 2px solid var(--ab-color-danger);
+}
+
+#ab-mobility-checkup .ab-qualify-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-qualify-card--yes .ab-qualify-title {
+  color: var(--ab-color-success);
+}
+
+#ab-mobility-checkup .ab-qualify-card--no .ab-qualify-title {
+  color: var(--ab-color-danger);
+}
+
+#ab-mobility-checkup .ab-qualify-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-qualify-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-objections-block {
+  margin-top: var(--ab-space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-objection-card {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  padding: var(--ab-space-5);
+}
+
+#ab-mobility-checkup .ab-objection-q {
+  font-family: var(--ab-font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ab-color-ink);
+  margin-bottom: 4px;
+}
+
+#ab-mobility-checkup .ab-objection-a {
+  font-size: 15px;
+  color: var(--ab-color-primary-dark);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   14. OFFERTA COMMERCIALE (STACK DEL VALORE)
+   ========================================================================== */
+#ab-mobility-checkup .ab-offer-box {
+  background: var(--ab-color-surface);
+  border: 2px solid var(--ab-color-primary);
+  border-radius: var(--ab-radius-xl);
+  padding: var(--ab-space-6);
+  box-shadow: var(--ab-shadow-lg);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-offer-stack-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--ab-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-offer-check {
+  color: var(--ab-color-success);
+  font-weight: 800;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-pricing-card {
+  background: var(--ab-color-primary-subtle);
+  border: 1px solid rgba(31, 88, 72, 0.2);
+  border-radius: var(--ab-radius-lg);
+  padding: var(--ab-space-6);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-pricing-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: var(--ab-space-2);
+}
+
+#ab-mobility-checkup .ab-price-original {
+  font-size: 20px;
+  color: var(--ab-color-danger);
+  text-decoration: line-through;
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-price-promo {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+#ab-mobility-checkup .ab-offer-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: var(--ab-space-4) 0;
+}
+
+#ab-mobility-checkup .ab-badge-meta {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+#ab-mobility-checkup .ab-badge-spots {
+  background: var(--ab-color-accent-subtle);
+  color: var(--ab-color-accent);
+  border: 1px solid rgba(201, 110, 75, 0.3);
+}
+
+#ab-mobility-checkup .ab-badge-credit {
+  background: #e9f5ee;
+  color: var(--ab-color-success);
+  border: 1px solid rgba(40, 117, 88, 0.3);
+}
+
+/* ==========================================================================
+   15. FAQ (DETAILS & SUMMARY)
+   ========================================================================== */
+#ab-mobility-checkup .ab-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
+  margin-top: var(--ab-space-8);
+}
+
+#ab-mobility-checkup .ab-faq-item {
+  background: var(--ab-color-surface);
+  border: 1px solid var(--ab-color-line);
+  border-radius: var(--ab-radius-md);
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+#ab-mobility-checkup .ab-faq-item:hover {
+  border-color: rgba(31, 88, 72, 0.3);
+}
+
+#ab-mobility-checkup .ab-faq-item[open] {
+  border-color: var(--ab-color-primary);
+  box-shadow: 0 4px 12px rgba(31, 88, 72, 0.08);
+}
+
+#ab-mobility-checkup .ab-faq-summary {
+  padding: var(--ab-space-4) var(--ab-space-5);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ab-color-ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+#ab-mobility-checkup .ab-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+#ab-mobility-checkup .ab-faq-summary:focus-visible {
+  outline: 2px solid var(--ab-color-primary);
+  outline-offset: -2px;
+}
+
+#ab-mobility-checkup .ab-faq-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 250ms ease;
+  color: var(--ab-color-primary);
+  flex-shrink: 0;
+}
+
+#ab-mobility-checkup .ab-faq-item[open] .ab-faq-icon {
+  transform: rotate(180deg);
+}
+
+#ab-mobility-checkup .ab-faq-content {
+  padding: 0 var(--ab-space-5) var(--ab-space-5);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ab-color-ink-muted);
+  border-top: 1px solid rgba(23, 32, 29, 0.06);
+  padding-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-faq-content p {
+  margin: 0 0 10px;
+}
+
+#ab-mobility-checkup .ab-faq-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+#ab-mobility-checkup .ab-footer {
+  background-color: var(--ab-color-ink);
+  color: #a4b0ab;
+  padding-top: var(--ab-space-12);
+  padding-bottom: var(--ab-space-16);
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#ab-mobility-checkup .ab-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ab-space-4);
+  margin-top: var(--ab-space-4);
+}
+
+#ab-mobility-checkup .ab-footer-link {
+  color: #a4b0ab;
+  text-decoration: underline;
+  transition: color 150ms ease;
+}
+
+#ab-mobility-checkup .ab-footer-link:hover {
+  color: #ffffff;
+}
+
+#ab-mobility-checkup .ab-footer-disclaimer {
+  max-width: var(--ab-container-narrow);
+  margin: var(--ab-space-6) auto 0;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: #727e79;
+}
+
+/* ==========================================================================
+   GLOBAL STICKY CTA MOBILE
+   ========================================================================== */
+#ab-mobility-checkup .ab-sticky-mobile-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 253, 248, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--ab-color-line);
+  padding: 10px 16px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transform: translateY(120%);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#ab-mobility-checkup .ab-sticky-mobile-cta.ab-sticky--visible {
+  transform: translateY(0);
+}
+
+#ab-mobility-checkup .ab-sticky-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#ab-mobility-checkup .ab-sticky-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ab-color-muted);
+}
+
+#ab-mobility-checkup .ab-sticky-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ab-color-primary-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-sticky-btn {
+  background-color: var(--ab-color-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  min-height: 44px;
+  border-radius: var(--ab-radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: var(--ab-shadow-btn);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DESKTOP / TABLET BREAKPOINTS)
+   ========================================================================== */
+@media (min-width: 768px) {
+  #ab-mobility-checkup .ab-title-h1 {
+    font-size: 44px;
+  }
+
+  #ab-mobility-checkup .ab-title-h2 {
+    font-size: 34px;
+  }
+
+  #ab-mobility-checkup .ab-cta-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-cta {
+    width: auto;
+  }
+
+  #ab-mobility-checkup .ab-reveal-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-problems-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-why-dest-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-qualify-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #ab-mobility-checkup .ab-metrics-strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #ab-mobility-checkup .ab-title-h1 {
+    font-size: 50px;
+    line-height: 1.14;
+  }
+
+  #ab-mobility-checkup .ab-hero__grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    align-items: center;
+    gap: var(--ab-space-10);
+  }
+
+  #ab-mobility-checkup .ab-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-map-layout {
+    display: grid;
+    grid-template-columns: 48% 52%;
+    align-items: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-destinations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #ab-mobility-checkup .ab-bio-grid {
+    display: grid;
+    grid-template-columns: 38% 62%;
+    align-items: center;
+  }
+
+  #ab-mobility-checkup .ab-offer-box {
+    display: grid;
+    grid-template-columns: 58% 42%;
+    gap: var(--ab-space-8);
+    align-items: center;
+  }
+
+  #ab-mobility-checkup .ab-offer-stack-list {
+    margin-bottom: 0;
+  }
+
+  /* Desktop hides sticky mobile CTA */
+  #ab-mobility-checkup .ab-sticky-mobile-cta {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #ab-mobility-checkup,
+  #ab-mobility-checkup * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
+
+<div id="ab-mobility-checkup">
+
+
+    <!-- 0. BARRA OFFERTA STICKY -->
+    <aside class="ab-top-bar" aria-label="Offerta speciale a tempo" data-countdown-wrap>
+      <span>Offerta valida ancora per</span>
+      <span class="ab-countdown-timer" data-countdown-display>--:--:--</span>
+    </aside>
+
+    <!-- 1. HERO -->
+    <header class="ab-section ab-section--canvas ab-hero">
+      <div class="ab-container">
+        <div class="ab-hero__grid">
+          
+          <!-- Testo e CTA Hero -->
+          <div class="ab-hero__content">
+            <span class="ab-preheadline">Per chi ha più di 30 anni e si sente più rigido di quanto vorrebbe</span>
+            
+            <h1 class="ab-title-h1">
+              Sblocca cosa ti impedisce di muoverti come vorresti e inizia a migliorare davvero con il Check-up di Mobilità
+            </h1>
+
+            <p class="ab-subtitle">
+              Dalla verticale all'accosciata, dal pike al trekking o all'arrampicata: in due appuntamenti online analizziamo mobilità, forza e controllo. Ricevi la tua Mappa del Movimento, le priorità su cui lavorare e i primi esercizi personalizzati da fare subito.
+            </p>
+
+            <div class="ab-cta-group">
+              <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link data-hero-cta>
+                Prenota il Check-up al prezzo più basso di sempre
+              </a>
+              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                Scrivimi su WhatsApp
+              </a>
+            </div>
+
+            <div class="ab-hero-summary-pill">
+              <span>2 appuntamenti online</span>
+              <span>·</span>
+              <span>Mappa personale</span>
+              <span>·</span>
+              <span>Primi esercizi</span>
+            </div>
+          </div>
+
+          <!-- Video VSL Hero -->
+          <div class="ab-hero__media">
+            <div class="ab-vsl-card">
+              <div class="ab-vsl-ratio">
+                <div class="ab-vsl-placeholder" role="region" aria-label="Video di presentazione del Check-up di Mobilità">
+                  <div class="ab-vsl-play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  </div>
+                  <div class="ab-vsl-label">Video di Presentazione — Check-up di Mobilità</div>
+                  <div class="ab-vsl-caption">[VSL — Andrea Bolzan spiega come funziona il Check-up]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. QUELLO CHE IL CHECK-UP MOSTRA -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container ab-container--narrow">
+        <span class="ab-eyebrow">Consapevolezza e Direzione</span>
+        <h2 class="ab-title-h2">Quello che il Check-up ti mostra e che oggi probabilmente non vedi</h2>
+        <p class="ab-subtitle">Le risposte che da solo non riesci a darti, perché ci sei troppo dentro.</p>
+
+        <ol class="ab-reveal-list">
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">01</span>
+            <p class="ab-reveal-text">Qual è il vero punto critico tra te e il tuo movimento, e perché spesso non è dove lo stai cercando.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">02</span>
+            <p class="ab-reveal-text">Cosa ha senso fare per primo, e cosa puoi smettere di fare da domani senza perdere niente.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">03</span>
+            <p class="ab-reveal-text">Su cosa puoi già contare: i punti di forza che stai sottovalutando e che accorciano la strada.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">04</span>
+            <p class="ab-reveal-text">Perché la fatica che senti non dice quanto stai lavorando bene, e il test che confronta quello che senti con quello che fai davvero.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">05</span>
+            <p class="ab-reveal-text">Se il movimento o l'attività che desideri — una verticale, un'accosciata completa, un trekking… — è realistico per te adesso, o qual è il passo che viene prima.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">06</span>
+            <p class="ab-reveal-text">Gli esercizi con cui iniziare da solo dal giorno dopo, anche se poi con me non fai più niente.</p>
+          </li>
+          <li class="ab-reveal-item">
+            <span class="ab-reveal-num" aria-hidden="true">07</span>
+            <p class="ab-reveal-text">Se il tuo caso ha bisogno di un altro professionista, e quale, prima di perdere mesi nella direzione sbagliata.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3. PROVA SOCIALE INIZIALE -->
+    <section class="ab-section ab-section--canvas">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Risultati Reali</span>
+        <h2 class="ab-title-h2">Cosa dicono alcune delle oltre 400 persone che ho seguito</h2>
+        <p class="ab-subtitle">Esperienze dirette di chi ha trovato la propria direzione nel movimento.</p>
+
+        <div class="ab-proof-grid">
+          
+          <!-- Lucia -->
+          <article class="ab-proof-card ab-proof-card--featured">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Lucia, 65 anni</span>
+              <span class="ab-proof-tag">Prima & Dopo</span>
+            </div>
+            <p class="ab-body">Lucia è arrivata da me sentendosi molto rigida e bloccata nelle attività di tutti i giorni. Abbiamo analizzato esattamente cosa la frenava.</p>
+            <div class="ab-before-after">
+              <div class="ab-ba-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[Foto Prima — Lucia]</span>
+              </div>
+              <div class="ab-ba-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[Foto Dopo — Lucia]</span>
+              </div>
+            </div>
+            <p class="ab-body" style="font-size: 14px; color: var(--ab-color-muted); font-style: italic;">
+              La lettura di Andrea: "L'età non definisce la possibilità di migliorare: definisce solo il punto da cui partire."
+            </p>
+          </article>
+
+          <!-- Andrea Ferrari -->
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Andrea Ferrari, 38 anni</span>
+              <span class="ab-proof-tag">Video Testimonianza</span>
+            </div>
+            <div class="ab-vsl-ratio" style="border-radius: 8px; overflow: hidden; margin: 12px 0;">
+              <div class="ab-vsl-placeholder">
+                <div class="ab-vsl-play-btn" style="width: 48px; height: 48px;" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+                <div style="font-size: 13px; font-weight: 600;">[ASSET DA RECUPERARE: video-testimonianza relativa all'ernia]</div>
+              </div>
+            </div>
+            <p class="ab-body" style="font-size: 14px;">Il ritorno al movimento sicuro dopo aver gestito la paura legata all'ernia.</p>
+          </article>
+
+          <!-- Luca Timpani & Michele Vicari -->
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Luca Timpani (38) e Michele Vicari (43)</span>
+              <span class="ab-proof-tag">Verticale & Controllo</span>
+            </div>
+            <p class="ab-body">Entrambi praticavano yoga da anni con costanza, ma la verticale libera sembrava un traguardo irraggiungibile. Lavorando sulle componenti specifiche di spinta scapolare e stabilità, hanno sbloccato la posizione in sicurezza.</p>
+          </article>
+
+          <!-- Monica PT -->
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Monica, 52 anni</span>
+              <span class="ab-proof-tag">Personal Trainer</span>
+            </div>
+            <blockquote style="margin: 0; font-style: italic; color: var(--ab-color-ink);">
+              «Perché ho cambiato? Perché mi mancava un rapporto umano, un'empatia che con Andrea ho trovato.»
+            </blockquote>
+          </article>
+
+        </div>
+
+        <!-- Slider Screenshot Chat WhatsApp -->
+        <div class="ab-chat-slider-wrap">
+          <h3 class="ab-title-h3" style="font-size: 17px; margin-bottom: 12px;">Messaggi e riscontri diretti su WhatsApp</h3>
+          <div class="ab-chat-slider" tabindex="0" aria-label="Slider messaggi chat dei clienti">
+            
+            <div class="ab-chat-card">
+              <div class="ab-chat-bubble">
+                "Andrea ciao! Oggi per la prima volta sono riuscito a toccare terra con i palmi senza sentire tirare la schiena. Sensazione incredibile!"
+              </div>
+              <div class="ab-chat-meta">
+                <span>Cliente Check-up</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <div class="ab-chat-bubble">
+                "La Mappa è stata una rivelazione: finalmente ho capito perché dopo mesi di stretching alle gambe ero sempre al punto di partenza."
+              </div>
+              <div class="ab-chat-meta">
+                <span>Cliente a distanza</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <div class="ab-chat-bubble">
+                "Trekking di 5 ore sulle Dolomiti fatto ieri. Niente fastidi al ginocchio né schiena a pezzi la sera. Grazie davvero!"
+              </div>
+              <div class="ab-chat-meta">
+                <span>Appassionato montagna</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <div class="ab-chat-bubble">
+                "I 3 esercizi che mi hai dato sono diventati il mio rito mattutino: semplici, precisi e finalmente efficaci."
+              </div>
+              <div class="ab-chat-meta">
+                <span>Professionista over 40</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. TI RICONOSCI? -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Diagnosi di Partenza</span>
+        <h2 class="ab-title-h2">Ti riconosci in almeno una di queste situazioni?</h2>
+        <p class="ab-subtitle">Esperienze reali vissute da chi oggi si allena con una direzione chiara.</p>
+
+        <div class="ab-problems-grid">
+          
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Ciocco di Legno -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="7" cy="12" r="4"></circle><path d="M11 8h9a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-9"></path><path d="M7 10v4"></path></svg>
+            </div>
+            <p class="ab-problem-quote">«Mi sento rigido come un pezzo di legno.»</p>
+          </div>
+
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Grafico Piatto -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"></path><path d="M19 15H7"></path></svg>
+            </div>
+            <p class="ab-problem-quote">«Faccio stretching, palestra o yoga, ma i risultati non sono mai proporzionati all'impegno che ci metto.»</p>
+          </div>
+
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Figura in Verticale -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="18" r="2"></circle><line x1="12" y1="16" x2="12" y2="8"></line><line x1="9" y1="5" x2="15" y2="5"></line><line x1="9" y1="12" x2="15" y2="12"></line></svg>
+            </div>
+            <p class="ab-problem-quote">«Provo la verticale da anni, ma non arriva.»</p>
+          </div>
+
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Montagna -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
+            </div>
+            <p class="ab-problem-quote">«Vorrei godermi un trekking, una giornata di arrampicata o di beach-volley senza pensare sempre alla schiena.»</p>
+          </div>
+
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Cronometro / Fischietto -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="14" r="8"></circle><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="10" x2="12" y2="14"></line><line x1="10" y1="2" x2="14" y2="2"></line></svg>
+            </div>
+            <p class="ab-problem-quote">«Alleno gli altri, ma su di me vado a sensazione.»</p>
+          </div>
+
+          <div class="ab-problem-card">
+            <div class="ab-problem-icon-wrap" aria-hidden="true">
+              <!-- Icona Bussola -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+            </div>
+            <p class="ab-problem-quote">«Non so da dove partire, e a volte nemmeno dove voglio arrivare.»</p>
+          </div>
+
+        </div>
+
+        <div class="ab-reassurance-box">
+          <p>Se ti riconosci anche in una sola di queste frasi, sappi che non è colpa tua, e quasi mai è una questione di impegno.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PONTE ASPIRAZIONALE -->
+    <section class="ab-section ab-section--deep-green ab-bridge">
+      <div class="ab-container ab-container--narrow">
+        <h2 class="ab-bridge__title">Immagina una cosa</h2>
+        <p class="ab-bridge__text">
+          Come sarebbe sapere esattamente cosa ti separa dal movimento che desideri, cosa fare domani mattina, e vedere finalmente l'impegno che ci metti già trasformarsi in risultati?
+        </p>
+        <div style="display: flex; justify-content: center;">
+          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="background: #ffffff; color: var(--ab-color-primary);">
+            Prenota il Check-up al prezzo più basso di sempre
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. IL PUNTO ZERO -->
+    <section class="ab-section ab-section--canvas">
+      <div class="ab-container ab-container--narrow">
+        <span class="ab-eyebrow">La Causa Invisibile</span>
+        <h2 class="ab-title-h2">Non ti manca l'impegno, ti manca sapere da dove parti</h2>
+        
+        <p class="ab-body">
+          Quando inizio a lavorare con qualcuno, la prima cosa che gli chiedo è di descrivermi il suo punto zero: da dove parte, cosa lo blocca, su cosa può contare. Quasi nessuno riesce a rispondermi.
+        </p>
+
+        <p class="ab-body">
+          Non perché non ci tenga, ma perché il proprio corpo lo vive da dentro tutti i giorni, e da dentro non si riesce a vederlo.
+        </p>
+
+        <p class="ab-body">
+          Così si finisce per fare quello che fanno quasi tutti: replicare esercizi visti online, lavorare su quello che viene meglio invece che su quello che serve, aggiungere un po' di stretching quando qualcosa tira. E piano piano succede la cosa peggiore.
+        </p>
+
+        <!-- Schema visuale percorso a vicolo cieco -->
+        <div class="ab-pointzero-flow">
+          <div class="ab-flow-step">
+            <span style="color: var(--ab-color-danger);">●</span>
+            <span>Tentativi casuali</span>
+          </div>
+          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-step">
+            <span style="color: var(--ab-color-danger);">●</span>
+            <span>Lavoro su ciò che viene meglio</span>
+          </div>
+          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-step">
+            <span style="color: var(--ab-color-danger);">●</span>
+            <span>Stretching aggiunto senza criterio</span>
+          </div>
+          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-step">
+            <span style="color: var(--ab-color-danger);">●</span>
+            <span>Limite normalizzato nella vita quotidiana</span>
+          </div>
+        </div>
+
+        <p class="ab-body" style="font-weight: 600; font-size: 18px; color: var(--ab-color-ink);">
+          Il problema non è sentirti rigido: è iniziare a vivere intorno a quella rigidità. Rinunci a un movimento, eviti un'attività, ti abitui a un limite come se fosse normale.
+        </p>
+
+        <blockquote class="ab-quote-ugolini">
+          <p>«Mi ha permesso di vedere l'allenamento in maniera differente, facendomi vedere un mondo oltre il solo allenamento della forza su cui mi concentravo in precedenza, anche in maniera errata e senza una direzione.»</p>
+          <cite>— Luca Ugolini, 34 anni</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 7. MOVIMENTO ADATTIVO -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container ab-container--narrow">
+        <span class="ab-eyebrow">Il Metodo</span>
+        <h2 class="ab-title-h2">Il Movimento Adattivo, il modo in cui lavoro, è totalmente diverso</h2>
+
+        <p class="ab-body">
+          Si parte da quello che vuoi riuscire a fare — una verticale, un'accosciata completa, un trekking — e si adatta tutto il resto a dove sei adesso: mobilità, forza, controllo, tempi, progressioni, la tua vita e il modo in cui risponde il tuo corpo.
+        </p>
+
+        <p class="ab-body">
+          Ma per adattare qualcosa a dove sei, prima devi sapere dove sei. Ed è esattamente quello che fa il Check-up di Mobilità.
+        </p>
+
+        <!-- Equazione Visiva -->
+        <div class="ab-method-formula">
+          <div class="ab-formula-item">
+            <span class="ab-formula-sign">1</span>
+            <span>Obiettivo desiderato</span>
+          </div>
+          <div class="ab-formula-item">
+            <span class="ab-formula-sign">+</span>
+            <span>Punto di partenza reale</span>
+          </div>
+          <div class="ab-formula-item">
+            <span class="ab-formula-sign">+</span>
+            <span>Mobilità, forza e controllo</span>
+          </div>
+          <div class="ab-formula-item">
+            <span class="ab-formula-sign">+</span>
+            <span>Progressione compatibile con la tua vita</span>
+          </div>
+          <div class="ab-formula-equals">
+            = Movimento Adattivo
+          </div>
+        </div>
+
+        <div class="ab-cta-group">
+          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+            Prenota il Check-up al prezzo più basso di sempre
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. COME FUNZIONA -->
+    <section class="ab-section ab-section--canvas">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Il Percorso Guidato</span>
+        <h2 class="ab-title-h2">Come funziona il Check-up di Mobilità</h2>
+        <p class="ab-subtitle">Due appuntamenti in videochiamata, un solo scopo: costruire la tua Mappa del Movimento in tre step.</p>
+
+        <div class="ab-steps-grid">
+          
+          <!-- Step 1 -->
+          <div class="ab-step-card">
+            <span class="ab-step-badge">1</span>
+            <h3 class="ab-title-h3">Primo appuntamento: parliamo e ti osservo</h3>
+            <p class="ab-body" style="font-size: 14.5px;">
+              Mi racconti il tuo stile di vita, il lavoro, cosa hai già provato e dove vorresti arrivare. Se un obiettivo non ce l'hai, lo troviamo insieme. Poi passiamo ai test, sempre adattati a te:
+            </p>
+            <div class="ab-test-pill-list">
+              <div class="ab-test-pill">
+                <strong>Mobilità:</strong>
+                Spalle, colonna, anche e bacino, caviglie. Capire quali posizioni hai a disposizione.
+              </div>
+              <div class="ab-test-pill">
+                <strong>Forza e controllo:</strong>
+                Push-up, affondi, plank, estensioni dorsali, o alternative al tuo livello.
+              </div>
+              <div class="ab-test-pill">
+                <strong>Sforzo percepito:</strong>
+                Mi dici quanta fatica senti da 1 a 10 e lo confrontiamo con ciò che vedo.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="ab-step-card">
+            <span class="ab-step-badge">2</span>
+            <h3 class="ab-title-h3">Costruisco la tua Mappa</h3>
+            <p class="ab-body" style="font-size: 14.5px;">
+              Nei giorni successivi analizzo quello che è emerso durante la sessione video e costruisco la tua Mappa del Movimento personale.
+            </p>
+            <p class="ab-body" style="font-size: 14.5px; font-weight: 600; color: var(--ab-color-primary);">
+              La preparo personalmente io, caso per caso. Nessun algoritmo o scheda precompilata.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="ab-step-card">
+            <span class="ab-step-badge">3</span>
+            <h3 class="ab-title-h3">Secondo appuntamento: te la consegno e te la spiego</h3>
+            <p class="ab-body" style="font-size: 14.5px;">
+              Leggiamo la Mappa insieme, punto per punto. Esci sapendo esattamente da dove parti, cosa fare per primo e con i primi esercizi da fare da solo da subito.
+            </p>
+            <p class="ab-body" style="font-size: 14.5px;">
+              Se ha senso continuare insieme, te lo propongo. Se no, la Mappa resta tua.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Box Trasparenza Professionale -->
+        <div class="ab-info-callout">
+          <h3 class="ab-title-h3" style="font-size: 18px; color: var(--ab-color-accent);">E se emerge qualcosa che va oltre il mio lavoro?</h3>
+          <p class="ab-body">
+            Ti indirizzo al professionista giusto. Esattamente come fa il medico di base quando vede qualcosa che non va sulla tua pelle e ti manda dal dermatologo.
+          </p>
+          <p class="ab-body" style="margin-bottom: 0; font-weight: 600;">
+            Tutto a distanza: ti serve solo un telefono e uno spazio in cui puoi muoverti liberamente.
+          </p>
+        </div>
+
+        <div class="ab-cta-group" style="align-items: center; justify-content: center; margin-top: 32px;">
+          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+            Prenota il Check-up al prezzo più basso di sempre
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. MAPPA DEL MOVIMENTO (SECONDA HERO) -->
+    <section class="ab-section ab-map-hero">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Il Tuo Risultato Tangibile</span>
+        <h2 class="ab-title-h2">La tua Mappa del Movimento</h2>
+        <p class="ab-subtitle">Il documento che ti porti a casa dopo il Check-up, e che resta tuo.</p>
+
+        <div class="ab-map-layout">
+          
+          <!-- Mockup della Mappa -->
+          <div class="ab-map-mockup-wrapper">
+            <div class="ab-map-watermark">Esempio di Mappa</div>
+            <div class="ab-map-doc-title">Mappa del Movimento — Documento di Sintesi</div>
+            
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 1 · Obiettivo</span>
+                <div style="font-weight: 600; color: #1f5848; font-size: 15px;">Destinazione: Pike a terra & mobilità spalle</div>
+              </div>
+              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 2 · Analisi Funzionale</span>
+                <div style="font-weight: 600; color: #17201d; font-size: 14px;">Flessione anche: 7/10 · Tensione catena posteriore marcata</div>
+              </div>
+              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 3 · Sequenza Priorità</span>
+                <div style="font-weight: 600; color: #c96e4b; font-size: 14px;">1. Decompressione lombare -> 2. Allungamento attivo femorali</div>
+              </div>
+            </div>
+
+            <!-- Bonus Primi Esercizi -->
+            <div class="ab-map-bonus-exercises">
+              <div class="ab-bonus-title">+ I tuoi primi esercizi</div>
+              <p class="ab-body" style="font-size: 13.5px; margin: 0;">
+                Una piccola routine da fare da solo da subito, con la frequenza e le indicazioni per capire se sta funzionando.
+              </p>
+            </div>
+          </div>
+
+          <!-- Le 6 Domande Risolte -->
+          <div>
+            <h3 class="ab-title-h3" style="font-size: 20px; margin-bottom: 16px;">Dentro trovi le risposte a sei domande:</h3>
+            <ul class="ab-map-questions-list">
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">1. Dove vuoi arrivare?</div>
+                <p class="ab-map-q-desc">La tua destinazione: il movimento o l'attività che vuoi raggiungere, e perché conta per te.</p>
+              </li>
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">2. Da dove parti davvero?</div>
+                <p class="ab-map-q-desc">Il tuo punto zero, con i risultati dei test: cosa hai già a disposizione, cosa in parte e cosa è da costruire.</p>
+              </li>
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">3. Su cosa puoi contare?</div>
+                <p class="ab-map-q-desc">I tuoi punti di forza: le risorse che hai già e che puoi sfruttare per arrivare prima.</p>
+              </li>
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">4. Cosa ti sta frenando?</div>
+                <p class="ab-map-q-desc">I punti critici, cioè come ti muovi oggi, così smetti di lavorare alla cieca.</p>
+              </li>
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">5. Cosa fare per primo?</div>
+                <p class="ab-map-q-desc">Le priorità, in ordine e con il perché. E anche cosa puoi mettere in pausa, per non sprecare tempo ed energie.</p>
+              </li>
+              <li class="ab-map-q-item">
+                <div class="ab-map-q-title">6. Che strada prendere?</div>
+                <p class="ab-map-q-desc">La direzione: cosa puoi fare da solo, cosa possiamo fare insieme nel caso avesse senso, e se serve un altro professionista.</p>
+              </li>
+            </ul>
+
+            <div style="margin-top: 24px;">
+              <p class="ab-body" style="font-size: 14.5px;">
+                E se oggi non sai rispondere ad alcune di queste domande, è normale: trovare le risposte è il mio lavoro. Il primo appuntamento serve proprio a questo: fare chiarezza.
+              </p>
+              <p class="ab-body" style="font-size: 14.5px; font-weight: 600;">
+                La Mappa è tua e ti resta. Anche se poi con me non fai più niente, sai da dove parti e cosa fare per primo.
+              </p>
+            </div>
+
+            <div class="ab-cta-group">
+              <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+                Prenota il Check-up al prezzo più basso di sempre
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. DESTINAZIONI DI MOVIMENTO -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Applicazione Pratica</span>
+        <h2 class="ab-title-h2">Qual è il movimento che vuoi sbloccare?</h2>
+        <p class="ab-subtitle">Il Check-up è il primo passo per arrivarci, qualunque sia.</p>
+
+        <div class="ab-destinations-grid">
+          
+          <div class="ab-destination-card">
+            <div class="ab-dest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="18" r="2"></circle><line x1="12" y1="16" x2="12" y2="8"></line><line x1="8" y1="5" x2="16" y2="5"></line></svg>
+            </div>
+            <h3 class="ab-title-h3">La verticale</h3>
+            <p class="ab-body">
+              Quando la alleni, insegni al tuo corpo a capire dov'è nello spazio. E il giorno che inciampi sul marciapiede, se ne accorge.
+            </p>
+          </div>
+
+          <div class="ab-destination-card">
+            <div class="ab-dest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"></path><path d="m7 19 5-14 5 14"></path></svg>
+            </div>
+            <h3 class="ab-title-h3">La pike</h3>
+            <p class="ab-body" style="font-style: italic; font-size: 14px; margin-bottom: 8px;">Piegarsi in avanti a gambe tese.</p>
+            <p class="ab-body">
+              Per anni non ce l'ho avuta. I clienti che ci sono passati mi raccontano di dormire meglio, di avere meno tensione al collo, meno mal di testa.
+            </p>
+          </div>
+
+          <div class="ab-destination-card">
+            <div class="ab-dest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v7"></path><path d="M9 11h6"></path><path d="m8 15 4 5 4-5"></path></svg>
+            </div>
+            <h3 class="ab-title-h3">L'accosciata completa</h3>
+            <p class="ab-body">
+              Sederti a terra e rialzarti senza mani, abbassarti a raccogliere qualcosa senza pensarci: è la libertà di movimento che usi ogni giorno.
+            </p>
+          </div>
+
+          <div class="ab-destination-card">
+            <div class="ab-dest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
+            </div>
+            <h3 class="ab-title-h3">Il trekking</h3>
+            <p class="ab-body">
+              Camminare in montagna tutto il giorno, senza sentirti tutto scassato a metà strada, né il giorno dopo.
+            </p>
+          </div>
+
+          <div class="ab-destination-card">
+            <div class="ab-dest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </div>
+            <h3 class="ab-title-h3">L'arrampicata</h3>
+            <p class="ab-body">
+              Alzare i piedi dove serve, mentre i tuoi compagni restano con le anche inchiodate.
+            </p>
+          </div>
+
+          <div class="ab-destination-card" style="border-left: 4px solid var(--ab-color-accent);">
+            <div class="ab-dest-icon" style="background: var(--ab-color-accent-subtle); color: var(--ab-color-accent);" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+            </div>
+            <h3 class="ab-title-h3">Il tuo</h3>
+            <p class="ab-body">
+              Può essere qualcosa che non c'entra niente con questi. L'importante è averne uno. E se ancora non ce l'hai, lo troviamo insieme.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- 11. PERCHÉ UNA DESTINAZIONE -->
+        <div style="margin-top: 56px;">
+          <h3 class="ab-title-h2" style="font-size: 26px;">Perché avere una destinazione cambia tutto</h3>
+          <div class="ab-why-dest-grid">
+            <div class="ab-why-card">
+              <strong>Hai un criterio</strong>
+              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Smetti di chiederti se un esercizio è buono in assoluto, e inizi a chiederti se ti porta lì.</p>
+            </div>
+            <div class="ab-why-card">
+              <strong>Vedi i progressi senza bilancia né specchio</strong>
+              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Il mese scorso a terra arrivavi con le dita, oggi con i palmi.</p>
+            </div>
+            <div class="ab-why-card">
+              <strong>Resti costante</strong>
+              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Perché nessuno molla una cosa che vede funzionare.</p>
+            </div>
+          </div>
+
+          <div class="ab-cta-group" style="margin-top: 32px;">
+            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+              Prenota il Check-up al prezzo più basso di sempre
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 12. CHI È ANDREA BOLZAN -->
+    <section class="ab-section ab-section--canvas">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Esperienza e Metodo</span>
+        <h2 class="ab-title-h2">Chi è Andrea Bolzan?</h2>
+
+        <div class="ab-bio-grid">
+          
+          <div class="ab-bio-image-col">
+            <div class="ab-bio-photo-card">
+              <div class="ab-bio-photo-placeholder" role="img" aria-label="Ritratto di Andrea Bolzan, insegnante di movimento e mobilità">
+                <div class="ab-bio-avatar-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div style="font-weight: 700; font-size: 18px;">Andrea Bolzan</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 4px;">Insegnante di Movimento e Mobilità</div>
+              </div>
+              <div class="ab-bio-photo-caption">
+                [FOTOGRAFIA REALE: Ritratto editoriale di Andrea Bolzan]
+              </div>
+            </div>
+          </div>
+
+          <div class="ab-bio-text-col">
+            <p class="ab-body">
+              Al liceo lo chiamavano “il gobbo”. All'università, a una lezione di ginnastica artistica, bisognava appoggiare un bastone a terra senza piegare le gambe: le sue mani superavano a malapena le ginocchia.
+            </p>
+            <p class="ab-body">
+              Muoversi liberamente non gli è venuto naturale. Ha dovuto costruirselo.
+            </p>
+            <p class="ab-body">
+              Da 12 anni lo insegna di mestiere. Ha seguito oltre 400 persone tra workshop e percorsi a distanza, ed è co-fondatore di Movimento Senza Età e SJ Dunk Camp.
+            </p>
+            <p class="ab-body">
+              Poi, a ottobre 2025, un movimento stupido gli ha bloccato la schiena. Per un mese e mezzo ci metteva minuti per andare dal letto al bagno, e la paura di muoversi gli è rimasta addosso per mesi.
+            </p>
+            <p class="ab-body">
+              Ha usato su di sé quello che insegna agli altri: è ripartito dal suo punto zero, dagli esercizi più elementari. Il dolore alla schiena lo gestisce ancora, ogni giorno. Ma è tornato in montagna e ad arrampicare con i suoi amici.
+            </p>
+            <p class="ab-body" style="font-weight: 600; color: var(--ab-color-primary-dark);">
+              Per questo il Check-up parte dal punto zero: è da lì che è ripartito anche lui.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Numeri e Metriche -->
+        <div class="ab-metrics-strip">
+          <div class="ab-metric-item">
+            <div class="ab-metric-number">12</div>
+            <div class="ab-metric-label">Anni di esperienza</div>
+          </div>
+          <div class="ab-metric-item">
+            <div class="ab-metric-number">400+</div>
+            <div class="ab-metric-label">Persone seguite</div>
+          </div>
+          <div class="ab-metric-item">
+            <div class="ab-metric-number">25+</div>
+            <div class="ab-metric-label">Workshop ed eventi</div>
+          </div>
+          <div class="ab-metric-item">
+            <div class="ab-metric-number">40+</div>
+            <div class="ab-metric-label">Clienti attivi a distanza</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 13. IL CHECK-UP FA PER TE? -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Filtro e Chiarezza</span>
+        <h2 class="ab-title-h2">Il Check-up fa davvero per te?</h2>
+
+        <div class="ab-qualify-grid">
+          
+          <!-- Sì, se -->
+          <div class="ab-qualify-card ab-qualify-card--yes">
+            <div class="ab-qualify-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Sì, se:</span>
+            </div>
+            <ul class="ab-qualify-list">
+              <li>
+                <span>✓</span>
+                <span>Ti muovi o ti alleni, e hai la sensazione di aver perso qualcosa per strada.</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span>Hai un movimento o un'attività in mente, e non sai da dove partire.</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span>Ti alleni con costanza, ma senza una direzione e gli sforzi non sono proporzionati ai risultati.</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span>Lavori nel movimento e vuoi finalmente uno sguardo esterno su di te.</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span>Vuoi capire cosa fare adesso, prima che un fastidio diventi un limite.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- No, se -->
+          <div class="ab-qualify-card ab-qualify-card--no">
+            <div class="ab-qualify-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>No, se:</span>
+            </div>
+            <ul class="ab-qualify-list">
+              <li>
+                <span style="color: var(--ab-color-danger);">✕</span>
+                <span>Cerchi una scheda da eseguire senza capire perché.</span>
+              </li>
+              <li>
+                <span style="color: var(--ab-color-danger);">✕</span>
+                <span>Sei nella fase acuta di un infortunio o hai appena subito un intervento: in quel momento serve un'altra figura, e il Check-up può aspettare.</span>
+              </li>
+              <li>
+                <span style="color: var(--ab-color-danger);">✕</span>
+                <span>Cerchi qualcuno che ti prometta risultati in un numero preciso di settimane.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Obiezioni Comuni -->
+        <div class="ab-objections-block">
+          <div class="ab-objection-card">
+            <div class="ab-objection-q">«Parto da troppo lontano.»</div>
+            <div class="ab-objection-a">Più parti da lontano, più sapere da dove partire ti cambia la vita.</div>
+          </div>
+          <div class="ab-objection-card">
+            <div class="ab-objection-q">«Sto bene, non mi serve.»</div>
+            <div class="ab-objection-a">Se non ti fa male niente, sei nel momento migliore per intervenire.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 14. OFFERTA COMMERCIALE -->
+    <section id="ab-sezione-offerta" class="ab-section ab-section--canvas">
+      <div class="ab-container">
+        <span class="ab-eyebrow">La Proposta</span>
+        <h2 class="ab-title-h2">Cosa ricevi con il Check-up di Mobilità</h2>
+        <p class="ab-subtitle">Tutto quello che è compreso nel servizio:</p>
+
+        <div class="ab-offer-box">
+          
+          <!-- Lista di Valore -->
+          <div>
+            <ul class="ab-offer-stack-list">
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>Primo appuntamento in videochiamata:</strong> il tuo obiettivo e i test su mobilità, forza e controllo.</span>
+              </li>
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>La tua Mappa del Movimento:</strong> il documento personale con i sei punti, costruito da me.</span>
+              </li>
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>Secondo appuntamento:</strong> ti consegno la Mappa e la leggiamo insieme.</span>
+              </li>
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>I tuoi primi esercizi</strong> da fare da solo da subito.</span>
+              </li>
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>Il rimando al professionista giusto,</strong> se serve.</span>
+              </li>
+              <li class="ab-offer-item">
+                <span class="ab-offer-check">✓</span>
+                <span><strong>Un credito di 150 € sul percorso,</strong> se decidi di iniziare un percorso con me.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card Transazionale Prezzo & CTA -->
+          <div class="ab-pricing-card">
+            <span style="font-size: 13px; text-transform: uppercase; font-weight: 700; color: var(--ab-color-muted); letter-spacing: 0.05em;">Valore del Check-up</span>
+            
+            <div class="ab-pricing-row">
+              <span class="ab-price-original" data-regular-price>150 €</span>
+              <span class="ab-price-promo" data-promo-price>57 €</span>
+            </div>
+
+            <div class="ab-offer-badge-row">
+              <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong data-spots-available>X su 6</strong></span>
+              <span class="ab-badge-meta ab-badge-credit">Credito 150 € incluso</span>
+            </div>
+
+            <p style="font-size: 13.5px; line-height: 1.45; color: var(--ab-color-ink-muted); margin-bottom: 20px;">
+              Paghi 57 € qualcosa che ne vale 150. E avrai un credito di 150 € da poter scalare in un percorso con me.
+            </p>
+
+            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="width: 100%;">
+              Prenota il Check-up al prezzo più basso di sempre
+            </a>
+
+            <div style="margin-top: 14px;">
+              <span style="font-size: 13px; color: var(--ab-color-muted); display: block; margin-bottom: 6px;">Hai qualche domanda o dubbio?</span>
+              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link style="width: 100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                Scrivimi su WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. FAQ -->
+    <section class="ab-section ab-section--surface">
+      <div class="ab-container ab-container--narrow">
+        <span class="ab-eyebrow">Domande Frequenti</span>
+        <h2 class="ab-title-h2">Domande frequenti</h2>
+
+        <div class="ab-faq-list">
+          
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Funziona davvero a distanza?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Sì: è così che lavoro con i miei clienti, e oggi ne seguo più di 40 a distanza. Per i test mi basta vederti muovere in videochiamata.</p>
+              <p>Monica, personal trainer, aveva già alle spalle un percorso online:</p>
+              <blockquote style="margin: 8px 0; font-style: italic; color: var(--ab-color-primary-dark);">
+                «Perché ho cambiato? Perché mi mancava un rapporto umano, un'empatia che con Andrea ho trovato.»
+              </blockquote>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Non ho un obiettivo preciso. Ha senso lo stesso?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Sì. Molte persone arrivano sapendo solo che “così non va”. Il primo appuntamento serve anche a questo: trovare insieme un obiettivo concreto, che abbia senso per te.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Ho un dolore o un vecchio infortunio. Posso farlo?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Sì: dolori e infortuni passati li raccolgo come parte del tuo contesto. <strong>Il Check-up però non è una visita medica e non fa diagnosi.</strong> Se emerge qualcosa che va oltre il mio lavoro, ti indirizzo al professionista giusto.</p>
+              <p>Se invece sei nella fase acuta di un infortunio o hai appena subito un intervento, aspetta: in quel momento serve un'altra figura.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Ho più di 60 anni. Non è troppo tardi?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Lucia ha iniziato a 65 anni, ed era molto bloccata. L'età cambia da dove parti, non se ha senso partire.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Alla fine mi proporrai di continuare con te?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Se ha senso, sì, e te lo dico chiaramente. Ma la Mappa e i primi esercizi restano tuoi in ogni caso, e se decidi di continuare i 150 € del Check-up ti vengono scalati per intero dal percorso.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Cosa mi serve per i test?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Ti basterà uno smartphone per la videochiamata e un luogo dove puoi muoverti liberamente per i test fisici.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Quanto durano gli appuntamenti e quando ricevo la Mappa?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Indicativamente, ogni appuntamento dura circa 60 minuti. La Mappa sarà pronta indicativamente entro 3–5 giorni lavorativi dal primo appuntamento.</p>
+            </div>
+          </details>
+
+          <details class="ab-faq-item">
+            <summary class="ab-faq-summary">
+              <span>Dopo l'acquisto, quando faccio il primo appuntamento?</span>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="ab-faq-content">
+              <p>Subito dopo il pagamento puoi scegliere il giorno e l'ora dal mio calendario online.</p>
+            </div>
+          </details>
+
+        </div>
+
+        <div class="ab-cta-group" style="align-items: center; justify-content: center; margin-top: 36px;">
+          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+            Prenota il Check-up al prezzo più basso di sempre
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. CHIUSURA E FOOTER -->
+    <footer class="ab-footer">
+      <div class="ab-container">
+        
+        <div style="text-align: center; max-width: 640px; margin: 0 auto 36px;">
+          <h2 class="ab-title-h2" style="color: #ffffff; font-size: 24px; margin-bottom: 12px;">Pronto a capire da dove parti?</h2>
+          <p style="color: #a4b0ab; font-size: 15px; margin-bottom: 24px;">Due appuntamenti online, la tua Mappa del Movimento e i tuoi primi esercizi.</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="background: #ffffff; color: var(--ab-color-primary);">
+              Prenota il Check-up al prezzo più basso di sempre
+            </a>
+            <div style="color: #a4b0ab; font-size: 13px;">
+              Hai ancora qualche dubbio? <a href="#WHATSAPP_URL" data-whatsapp-link style="color: #25d366; text-decoration: underline;">Scrivimi su WhatsApp: ti rispondo personalmente</a>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Note Legali & Dati Fiscali -->
+        <div class="ab-footer-links">
+          <span class="ab-footer-link">[DATI FISCALI — P.IVA / Ragione Sociale]</span>
+          <span>·</span>
+          <a href="#" class="ab-footer-link">[PRIVACY POLICY]</a>
+          <span>·</span>
+          <a href="#" class="ab-footer-link">[TERMINI E CONDIZIONI]</a>
+          <span>·</span>
+          <a href="#" class="ab-footer-link">[COOKIE POLICY]</a>
+        </div>
+
+        <div class="ab-footer-disclaimer">
+          Il Check-up di Mobilità è un servizio educativo e di allenamento per il miglioramento del movimento personale. Non costituisce visita medica né attività sanitaria o terapeutica e non si sostituisce al parere di un medico o professionista sanitario qualificato.
+        </div>
+      </div>
+    </footer>
+
+    <!-- STICKY CTA MOBILE -->
+    <aside class="ab-sticky-mobile-cta" aria-label="Prenota Check-up rapidamente">
+      <div class="ab-sticky-info">
+        <span class="ab-sticky-label">Check-up Mobilità</span>
+        <span class="ab-sticky-price" data-promo-price>57 €</span>
+      </div>
+      <a class="ab-sticky-btn" href="#CHECKOUT_URL" data-checkout-link>
+        Prenota Ora
+      </a>
+    </aside>
+
+  
+</div>
+
+<!-- Script opzionali GSAP & ScrollTrigger via CDN (progressive enhancement non bloccante) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Script applicativo Check-up di Mobilità -->
+<script>
+/**
+ * CHECK-UP DI MOBILITÀ — JAVASCRIPT LOGIC
+ * GoHighLevel Compatible & Resilient Script
+ * Scoped inside #ab-mobility-checkup
+ */
+
+const AB_CONFIG = {
+  checkoutUrl: "#CHECKOUT_URL",
+  whatsappUrl: "#WHATSAPP_URL",
+  deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà nascosto senza mostrare zeri.
+  promoPrice: "57 €",
+  regularPrice: "150 €",
+  availableSpots: "X su 6",
+  enableAnimations: true,
+  enableStickyCta: true
+};
+
+(function () {
+  let initialized = false;
+
+  function initABPage() {
+    if (initialized) return;
+    initialized = true;
+
+    const root = document.getElementById("ab-mobility-checkup");
+    if (!root) return;
+
+    // 1. Configurazione dinamica dei link
+    setupLinks(root);
+
+    // 2. Gestione Countdown
+    setupCountdown(root);
+
+    // 3. Gestione Sticky Mobile CTA
+    if (AB_CONFIG.enableStickyCta) {
+      setupStickyCta(root);
+    }
+
+    // 4. Inizializzazione controllata GSAP (se presente ed abilitato)
+    if (AB_CONFIG.enableAnimations) {
+      setupGsapAnimations(root);
+    }
+  }
+
+  /**
+   * Valorizza tutti i link CTA con gli URL di configurazione
+   */
+  function setupLinks(root) {
+    const checkoutLinks = root.querySelectorAll("[data-checkout-link]");
+    checkoutLinks.forEach(function (link) {
+      if (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "") {
+        link.setAttribute("href", AB_CONFIG.checkoutUrl);
+      }
+    });
+
+    const whatsappLinks = root.querySelectorAll("[data-whatsapp-link]");
+    whatsappLinks.forEach(function (link) {
+      if (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "") {
+        link.setAttribute("href", AB_CONFIG.whatsappUrl);
+      }
+    });
+
+    // Aggiornamento prezzi e posti
+    const promoElements = root.querySelectorAll("[data-promo-price]");
+    promoElements.forEach(function (el) {
+      el.textContent = AB_CONFIG.promoPrice;
+    });
+
+    const regularElements = root.querySelectorAll("[data-regular-price]");
+    regularElements.forEach(function (el) {
+      el.textContent = AB_CONFIG.regularPrice;
+    });
+
+    const spotsElements = root.querySelectorAll("[data-spots-available]");
+    spotsElements.forEach(function (el) {
+      el.textContent = AB_CONFIG.availableSpots;
+    });
+  }
+
+  /**
+   * Gestione rigorosa del countdown:
+   * Se deadlineISO è vuoto, invalido o già scaduto -> nasconde completamente gli elementi
+   */
+  function setupCountdown(root) {
+    const topBar = root.querySelector(".ab-top-bar");
+    const offerCountdownWrap = root.querySelector("[data-countdown-wrap]");
+
+    if (!AB_CONFIG.deadlineISO || AB_CONFIG.deadlineISO.trim() === "") {
+      if (topBar) topBar.classList.add("ab-top-bar--hidden");
+      if (offerCountdownWrap) offerCountdownWrap.style.display = "none";
+      return;
+    }
+
+    const targetDate = new Date(AB_CONFIG.deadlineISO).getTime();
+    if (isNaN(targetDate)) {
+      if (topBar) topBar.classList.add("ab-top-bar--hidden");
+      if (offerCountdownWrap) offerCountdownWrap.style.display = "none";
+      return;
+    }
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        if (topBar) topBar.classList.add("ab-top-bar--hidden");
+        if (offerCountdownWrap) offerCountdownWrap.style.display = "none";
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const timeString = 
+        String(hours).padStart(2, "0") + "h " +
+        String(minutes).padStart(2, "0") + "m " +
+        String(seconds).padStart(2, "0") + "s";
+
+      const timerDisplays = root.querySelectorAll("[data-countdown-display]");
+      timerDisplays.forEach(function (display) {
+        display.textContent = timeString;
+      });
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  }
+
+  /**
+   * Sticky CTA Mobile:
+   * Appare dopo che la CTA hero è uscita dallo schermo, scompare vicino all'offerta finale o al footer
+   */
+  function setupStickyCta(root) {
+    const stickyBar = root.querySelector(".ab-sticky-mobile-cta");
+    const heroCta = root.querySelector("[data-hero-cta]");
+    const offerSection = root.querySelector("#ab-sezione-offerta");
+
+    if (!stickyBar || !heroCta) return;
+
+    if ("IntersectionObserver" in window) {
+      let heroPassed = false;
+      let offerReached = false;
+
+      function updateStickyVisibility() {
+        if (heroPassed && !offerReached) {
+          stickyBar.classList.add("ab-sticky--visible");
+        } else {
+          stickyBar.classList.remove("ab-sticky--visible");
+        }
+      }
+
+      const heroObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            heroPassed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+            updateStickyVisibility();
+          });
+        },
+        { threshold: 0.1 }
+      );
+      heroObserver.observe(heroCta);
+
+      if (offerSection) {
+        const offerObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              offerReached = entry.isIntersecting;
+              updateStickyVisibility();
+            });
+          },
+          { threshold: 0.1 }
+        );
+        offerObserver.observe(offerSection);
+      }
+    }
+  }
+
+  /**
+   * GSAP Progressive Enhancement:
+   * Solo le 4 aree consentite:
+   * 1. Hero composta
+   * 2. Linea step percorso
+   * 3. Reveal Mappa
+   * 4. Reveal selettivo gruppi
+   */
+  function setupGsapAnimations(root) {
+    if (typeof window.gsap === "undefined") return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    try {
+      // 1. Entrata hero composta
+      gsap.from(root.querySelectorAll(".ab-hero__content > *"), {
+        opacity: 0,
+        y: 18,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      // Se ScrollTrigger è disponibile, attiva reveal per le altre 3 aree
+      if (typeof window.ScrollTrigger !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 2. Linea step percorso
+        gsap.from(root.querySelectorAll(".ab-step-card"), {
+          scrollTrigger: {
+            trigger: root.querySelector(".ab-steps-grid"),
+            start: "top 80%"
+          },
+          opacity: 0,
+          y: 24,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out"
+        });
+
+        // 3. Reveal Mappa del Movimento
+        gsap.from(root.querySelector(".ab-map-mockup-wrapper"), {
+          scrollTrigger: {
+            trigger: root.querySelector(".ab-map-hero"),
+            start: "top 75%"
+          },
+          opacity: 0,
+          scale: 0.96,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+
+        // 4. Reveal selettivo card offerta
+        gsap.from(root.querySelector(".ab-offer-box"), {
+          scrollTrigger: {
+            trigger: root.querySelector(".ab-offer-box"),
+            start: "top 80%"
+          },
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          ease: "power2.out"
+        });
+      }
+    } catch (e) {
+      console.warn("[Check-up Mobilità] GSAP init warning:", e);
+    }
+  }
+
+  // Supporto Hydration GHL e Fallback DOMContentLoaded
+  document.addEventListener("hydrationDone", initABPage, { once: true });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initABPage, { once: true });
+  } else {
+    initABPage();
+  }
+})();
+
+</script>
