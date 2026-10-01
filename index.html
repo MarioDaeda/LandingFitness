@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check-up di Mobilità — Andrea Bolzan</title>
-  <meta name="description" content="Sblocca cosa ti impedisce di muoverti come vorresti con il Check-up di Mobilità a distanza con Andrea Bolzan. Due appuntamenti online e la tua Mappa del Movimento.">
+  <title>Check-up di Mobilità — Andrea Bolzan | Dal Punto Zero alla Direzione</title>
+  <meta name="description" content="In due appuntamenti online analizziamo mobilità, forza e controllo. Ricevi la tua Mappa del Movimento, le priorità e i primi esercizi su misura per sbloccare il tuo movimento.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ROOT CONTAINER FOR GOHIGHLEVEL -->
+  <!-- ==========================================================================
+       CHECK-UP DI MOBILITÀ — SALES PAGE (ANDREA BOLZAN)
+       Unico wrapper scoped per compatibilità GoHighLevel: #ab-mobility-checkup
+       ========================================================================== -->
   <div id="ab-mobility-checkup">
 
-    <!-- 0. BARRA OFFERTA STICKY -->
-    <aside class="ab-top-bar" aria-label="Offerta speciale a tempo" data-countdown-wrap>
-      <span>Offerta valida ancora per</span>
-      <span class="ab-countdown-timer" data-countdown-display>--:--:--</span>
+    <!-- 0. BARRA OFFERTA STICKY (Nascosta di default, visibile solo con deadlineISO attiva) -->
+    <aside class="ab-top-bar" aria-label="Offerta speciale a tempo" data-countdown-top-bar>
+      <span class="ab-top-bar__text">Offerta valida ancora per</span>
+      <span class="ab-countdown-timer" data-countdown-display></span>
     </aside>
 
     <!-- 1. HERO -->
@@ -25,7 +28,7 @@
           
           <!-- Testo e CTA Hero -->
           <div class="ab-hero__content">
-            <span class="ab-preheadline">Per chi ha più di 30 anni e si sente più rigido di quanto vorrebbe</span>
+            <span class="ab-preheadline">Per chi ha più di 30 anni e si sente più rigido di quanto vorrebbe.</span>
             
             <h1 class="ab-title-h1">
               Sblocca cosa ti impedisce di muoverti come vorresti e inizia a migliorare davvero con il Check-up di Mobilità
@@ -35,22 +38,28 @@
               Dalla verticale all'accosciata, dal pike al trekking o all'arrampicata: in due appuntamenti online analizziamo mobilità, forza e controllo. Ricevi la tua Mappa del Movimento, le priorità su cui lavorare e i primi esercizi personalizzati da fare subito.
             </p>
 
-            <div class="ab-cta-group">
-              <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link data-hero-cta>
-                Prenota il Check-up al prezzo più basso di sempre
-              </a>
-              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                Scrivimi su WhatsApp
-              </a>
-            </div>
+            <div class="ab-hero__actions">
+              <div class="ab-cta-group">
+                <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link data-hero-cta>
+                  Prenota il Check-up al prezzo più basso di sempre
+                </a>
+              </div>
 
-            <div class="ab-hero-summary-pill">
-              <span>2 appuntamenti online</span>
-              <span>·</span>
-              <span>Mappa personale</span>
-              <span>·</span>
-              <span>Primi esercizi</span>
+              <div class="ab-hero__whatsapp-block">
+                <p class="ab-hero__whatsapp-query">Hai qualche dubbio o domanda? Scrivimi su WhatsApp.</p>
+                <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                  Scrivimi su WhatsApp
+                </a>
+              </div>
+
+              <div class="ab-hero-summary-pill">
+                <span>2 appuntamenti online</span>
+                <span>·</span>
+                <span>Mappa personale</span>
+                <span>·</span>
+                <span>Primi esercizi</span>
+              </div>
             </div>
           </div>
 
@@ -58,14 +67,15 @@
           <div class="ab-hero__media">
             <div class="ab-vsl-card">
               <div class="ab-vsl-ratio">
-                <div class="ab-vsl-placeholder" role="region" aria-label="Video di presentazione del Check-up di Mobilità">
+                <div class="ab-vsl-placeholder" role="region" aria-label="Video di presentazione del Check-up di Mobilità" title="Video di presentazione del Check-up di Mobilità - Andrea Bolzan">
                   <div class="ab-vsl-play-btn" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                   </div>
                   <div class="ab-vsl-label">Video di Presentazione — Check-up di Mobilità</div>
-                  <div class="ab-vsl-caption">[VSL — Andrea Bolzan spiega come funziona il Check-up]</div>
+                  <div class="ab-vsl-caption">[VSL — riquadro video]</div>
                 </div>
               </div>
+              <p class="ab-vsl-alt-text">Alternativa testuale: Andrea Bolzan illustra gli obiettivi del Check-up di Mobilità, l'osservazione nei due incontri online e la costruzione della Mappa del Movimento.</p>
             </div>
           </div>
 
@@ -74,51 +84,72 @@
     </header>
 
     <!-- 2. QUELLO CHE IL CHECK-UP MOSTRA -->
-    <section class="ab-section ab-section--surface">
-      <div class="ab-container ab-container--narrow">
+    <section class="ab-section ab-section--surface" id="ab-quello-che-mostra">
+      <div class="ab-container">
         <span class="ab-eyebrow">Consapevolezza e Direzione</span>
         <h2 class="ab-title-h2">Quello che il Check-up ti mostra e che oggi probabilmente non vedi</h2>
         <p class="ab-subtitle">Le risposte che da solo non riesci a darti, perché ci sei troppo dentro.</p>
 
-        <ol class="ab-reveal-list">
+        <ol class="ab-reveal-grid">
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">01</span>
-            <p class="ab-reveal-text">Qual è il vero punto critico tra te e il tuo movimento, e perché spesso non è dove lo stai cercando.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">Il vero punto critico:</strong>
+              <p class="ab-reveal-text">Qual è il vero punto critico tra te e il tuo movimento, e perché spesso non è dove lo stai cercando.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">02</span>
-            <p class="ab-reveal-text">Cosa ha senso fare per primo, e cosa puoi smettere di fare da domani senza perdere niente.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">La prima priorità:</strong>
+              <p class="ab-reveal-text">Cosa ha senso fare per primo, e cosa puoi smettere di fare da domani senza perdere niente.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">03</span>
-            <p class="ab-reveal-text">Su cosa puoi già contare: i punti di forza che stai sottovalutando e che accorciano la strada.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">I punti di forza:</strong>
+              <p class="ab-reveal-text">Su cosa puoi già contare: i punti di forza che stai sottovalutando e che accorciano la strada.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">04</span>
-            <p class="ab-reveal-text">Perché la fatica che senti non dice quanto stai lavorando bene, e il test che confronta quello che senti con quello che fai davvero.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">Lo sforzo percepito:</strong>
+              <p class="ab-reveal-text">Perché la fatica che senti non dice quanto stai lavorando bene, e il test che confronta quello che senti con quello che fai davvero.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">05</span>
-            <p class="ab-reveal-text">Se il movimento o l'attività che desideri — una verticale, un'accosciata completa, un trekking… — è realistico per te adesso, o qual è il passo che viene prima.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">Il realismo dell'obiettivo:</strong>
+              <p class="ab-reveal-text">Se il movimento o l'attività che desideri — una verticale, un'accosciata completa, un trekking… — è realistico per te adesso, o qual è il passo che viene prima.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">06</span>
-            <p class="ab-reveal-text">Gli esercizi con cui iniziare da solo dal giorno dopo, anche se poi con me non fai più niente.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">I primi esercizi:</strong>
+              <p class="ab-reveal-text">Gli esercizi con cui iniziare da solo dal giorno dopo, anche se poi con me non fai più niente.</p>
+            </div>
           </li>
           <li class="ab-reveal-item">
             <span class="ab-reveal-num" aria-hidden="true">07</span>
-            <p class="ab-reveal-text">Se il tuo caso ha bisogno di un altro professionista, e quale, prima di perdere mesi nella direzione sbagliata.</p>
+            <div class="ab-reveal-content">
+              <strong class="ab-reveal-highlight">L'eventuale professionista esterno:</strong>
+              <p class="ab-reveal-text">Se il tuo caso ha bisogno di un altro professionista, e quale, prima di perdere mesi nella direzione sbagliata.</p>
+            </div>
           </li>
         </ol>
       </div>
     </section>
 
     <!-- 3. PROVA SOCIALE INIZIALE -->
-    <section class="ab-section ab-section--canvas">
+    <section class="ab-section ab-section--canvas" id="ab-prova-sociale">
       <div class="ab-container">
         <span class="ab-eyebrow">Risultati Reali</span>
         <h2 class="ab-title-h2">Cosa dicono alcune delle oltre 400 persone che ho seguito</h2>
-        <p class="ab-subtitle">Esperienze dirette di chi ha trovato la propria direzione nel movimento.</p>
+        <p class="ab-subtitle">Esperienze e riscontri da percorsi reali di lavoro sul movimento.</p>
 
         <div class="ab-proof-grid">
           
@@ -128,20 +159,19 @@
               <span class="ab-proof-name">Lucia, 65 anni</span>
               <span class="ab-proof-tag">Prima & Dopo</span>
             </div>
-            <p class="ab-body">Lucia è arrivata da me sentendosi molto rigida e bloccata nelle attività di tutti i giorni. Abbiamo analizzato esattamente cosa la frenava.</p>
             <div class="ab-before-after">
               <div class="ab-ba-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                <span>[Foto Prima — Lucia]</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Foto Prima — Lucia, 65 anni]</span>
               </div>
               <div class="ab-ba-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                <span>[Foto Dopo — Lucia]</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Foto Dopo — Lucia, 65 anni]</span>
               </div>
             </div>
-            <p class="ab-body" style="font-size: 14px; color: var(--ab-color-muted); font-style: italic;">
-              La lettura di Andrea: "L'età non definisce la possibilità di migliorare: definisce solo il punto da cui partire."
-            </p>
+            <div class="ab-proof-placeholder-note">
+              <span>[COPY DA INTEGRARE: Lettura di Andrea Bolzan sul percorso di Lucia (senza indicare tempi di trasformazione)]</span>
+            </div>
           </article>
 
           <!-- Andrea Ferrari -->
@@ -150,24 +180,26 @@
               <span class="ab-proof-name">Andrea Ferrari, 38 anni</span>
               <span class="ab-proof-tag">Video Testimonianza</span>
             </div>
-            <div class="ab-vsl-ratio" style="border-radius: 8px; overflow: hidden; margin: 12px 0;">
+            <div class="ab-vsl-ratio ab-vsl-ratio--sm">
               <div class="ab-vsl-placeholder">
-                <div class="ab-vsl-play-btn" style="width: 48px; height: 48px;" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <div class="ab-vsl-play-btn ab-vsl-play-btn--sm" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 </div>
-                <div style="font-size: 13px; font-weight: 600;">[ASSET DA RECUPERARE: video-testimonianza relativa all'ernia]</div>
+                <div class="ab-vsl-label-sm">[ASSET DA RECUPERARE: video-testimonianza relativa all'ernia]</div>
               </div>
             </div>
-            <p class="ab-body" style="font-size: 14px;">Il ritorno al movimento sicuro dopo aver gestito la paura legata all'ernia.</p>
+            <p class="ab-body ab-body--small">Il percorso di recupero e ritorno al movimento in sicurezza.</p>
           </article>
 
           <!-- Luca Timpani & Michele Vicari -->
           <article class="ab-proof-card">
             <div class="ab-proof-header">
-              <span class="ab-proof-name">Luca Timpani (38) e Michele Vicari (43)</span>
-              <span class="ab-proof-tag">Verticale & Controllo</span>
+              <span class="ab-proof-name">Luca Timpani (38 anni) e Michele Vicari (43 anni)</span>
+              <span class="ab-proof-tag">Studio del Movimento</span>
             </div>
-            <p class="ab-body">Entrambi praticavano yoga da anni con costanza, ma la verticale libera sembrava un traguardo irraggiungibile. Lavorando sulle componenti specifiche di spinta scapolare e stabilità, hanno sbloccato la posizione in sicurezza.</p>
+            <div class="ab-proof-placeholder-note">
+              <span>[CONTENUTO DA INTEGRARE: La verticale dopo anni di yoga]</span>
+            </div>
           </article>
 
           <!-- Monica PT -->
@@ -176,7 +208,7 @@
               <span class="ab-proof-name">Monica, 52 anni</span>
               <span class="ab-proof-tag">Personal Trainer</span>
             </div>
-            <blockquote style="margin: 0; font-style: italic; color: var(--ab-color-ink);">
+            <blockquote class="ab-quote-inline">
               «Perché ho cambiato? Perché mi mancava un rapporto umano, un'empatia che con Andrea ho trovato.»
             </blockquote>
           </article>
@@ -185,12 +217,13 @@
 
         <!-- Slider Screenshot Chat WhatsApp -->
         <div class="ab-chat-slider-wrap">
-          <h3 class="ab-title-h3" style="font-size: 17px; margin-bottom: 12px;">Messaggi e riscontri diretti su WhatsApp</h3>
-          <div class="ab-chat-slider" tabindex="0" aria-label="Slider messaggi chat dei clienti">
+          <h3 class="ab-title-h3 ab-chat-slider-title">Screenshot delle conversazioni dirette su WhatsApp</h3>
+          <div class="ab-chat-slider" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
             
             <div class="ab-chat-card">
-              <div class="ab-chat-bubble">
-                "Andrea ciao! Oggi per la prima volta sono riuscito a toccare terra con i palmi senza sentire tirare la schiena. Sensazione incredibile!"
+              <div class="ab-chat-placeholder-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Screenshot conversazione WhatsApp #1]</span>
               </div>
               <div class="ab-chat-meta">
                 <span>Cliente Check-up</span>
@@ -199,8 +232,9 @@
             </div>
 
             <div class="ab-chat-card">
-              <div class="ab-chat-bubble">
-                "La Mappa è stata una rivelazione: finalmente ho capito perché dopo mesi di stretching alle gambe ero sempre al punto di partenza."
+              <div class="ab-chat-placeholder-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Screenshot conversazione WhatsApp #2]</span>
               </div>
               <div class="ab-chat-meta">
                 <span>Cliente a distanza</span>
@@ -209,8 +243,9 @@
             </div>
 
             <div class="ab-chat-card">
-              <div class="ab-chat-bubble">
-                "Trekking di 5 ore sulle Dolomiti fatto ieri. Niente fastidi al ginocchio né schiena a pezzi la sera. Grazie davvero!"
+              <div class="ab-chat-placeholder-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Screenshot conversazione WhatsApp #3]</span>
               </div>
               <div class="ab-chat-meta">
                 <span>Appassionato montagna</span>
@@ -219,11 +254,12 @@
             </div>
 
             <div class="ab-chat-card">
-              <div class="ab-chat-bubble">
-                "I 3 esercizi che mi hai dato sono diventati il mio rito mattutino: semplici, precisi e finalmente efficaci."
+              <div class="ab-chat-placeholder-box">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>[ASSET: Screenshot conversazione WhatsApp #4]</span>
               </div>
               <div class="ab-chat-meta">
-                <span>Professionista over 40</span>
+                <span>Cliente over 40</span>
                 <span>WhatsApp</span>
               </div>
             </div>
@@ -235,11 +271,10 @@
     </section>
 
     <!-- 4. TI RICONOSCI? -->
-    <section class="ab-section ab-section--surface">
+    <section class="ab-section ab-section--surface" id="ab-ti-riconosci">
       <div class="ab-container">
         <span class="ab-eyebrow">Diagnosi di Partenza</span>
         <h2 class="ab-title-h2">Ti riconosci in almeno una di queste situazioni?</h2>
-        <p class="ab-subtitle">Esperienze reali vissute da chi oggi si allena con una direzione chiara.</p>
 
         <div class="ab-problems-grid">
           
@@ -300,14 +335,14 @@
     </section>
 
     <!-- 5. PONTE ASPIRAZIONALE -->
-    <section class="ab-section ab-section--deep-green ab-bridge">
+    <section class="ab-section ab-section--deep-green ab-bridge" id="ab-immagina">
       <div class="ab-container ab-container--narrow">
         <h2 class="ab-bridge__title">Immagina una cosa</h2>
         <p class="ab-bridge__text">
           Come sarebbe sapere esattamente cosa ti separa dal movimento che desideri, cosa fare domani mattina, e vedere finalmente l'impegno che ci metti già trasformarsi in risultati?
         </p>
-        <div style="display: flex; justify-content: center;">
-          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="background: #ffffff; color: var(--ab-color-primary);">
+        <div class="ab-bridge__btn-wrap">
+          <a class="ab-cta ab-cta--primary ab-cta--inverted" href="#CHECKOUT_URL" data-checkout-link>
             Prenota il Check-up al prezzo più basso di sempre
           </a>
         </div>
@@ -315,7 +350,7 @@
     </section>
 
     <!-- 6. IL PUNTO ZERO -->
-    <section class="ab-section ab-section--canvas">
+    <section class="ab-section ab-section--canvas" id="ab-punto-zero">
       <div class="ab-container ab-container--narrow">
         <span class="ab-eyebrow">La Causa Invisibile</span>
         <h2 class="ab-title-h2">Non ti manca l'impegno, ti manca sapere da dove parti</h2>
@@ -335,27 +370,27 @@
         <!-- Schema visuale percorso a vicolo cieco -->
         <div class="ab-pointzero-flow">
           <div class="ab-flow-step">
-            <span style="color: var(--ab-color-danger);">●</span>
+            <span class="ab-flow-dot">●</span>
             <span>Tentativi casuali</span>
           </div>
-          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-arrow" aria-hidden="true">↓</div>
           <div class="ab-flow-step">
-            <span style="color: var(--ab-color-danger);">●</span>
+            <span class="ab-flow-dot">●</span>
             <span>Lavoro su ciò che viene meglio</span>
           </div>
-          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-arrow" aria-hidden="true">↓</div>
           <div class="ab-flow-step">
-            <span style="color: var(--ab-color-danger);">●</span>
+            <span class="ab-flow-dot">●</span>
             <span>Stretching aggiunto senza criterio</span>
           </div>
-          <div class="ab-flow-arrow">↓</div>
+          <div class="ab-flow-arrow" aria-hidden="true">↓</div>
           <div class="ab-flow-step">
-            <span style="color: var(--ab-color-danger);">●</span>
+            <span class="ab-flow-dot">●</span>
             <span>Limite normalizzato nella vita quotidiana</span>
           </div>
         </div>
 
-        <p class="ab-body" style="font-weight: 600; font-size: 18px; color: var(--ab-color-ink);">
+        <p class="ab-body ab-body--emphasis">
           Il problema non è sentirti rigido: è iniziare a vivere intorno a quella rigidità. Rinunci a un movimento, eviti un'attività, ti abitui a un limite come se fosse normale.
         </p>
 
@@ -367,7 +402,7 @@
     </section>
 
     <!-- 7. MOVIMENTO ADATTIVO -->
-    <section class="ab-section ab-section--surface">
+    <section class="ab-section ab-section--surface" id="ab-movimento-adattivo">
       <div class="ab-container ab-container--narrow">
         <span class="ab-eyebrow">Il Metodo</span>
         <h2 class="ab-title-h2">Il Movimento Adattivo, il modo in cui lavoro, è totalmente diverso</h2>
@@ -396,14 +431,14 @@
           </div>
           <div class="ab-formula-item">
             <span class="ab-formula-sign">+</span>
-            <span>Progressione compatibile con la tua vita</span>
+            <span>Progressione compatibile con la vita</span>
           </div>
           <div class="ab-formula-equals">
             = Movimento Adattivo
           </div>
         </div>
 
-        <div class="ab-cta-group">
+        <div class="ab-cta-group ab-cta-group--center">
           <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
             Prenota il Check-up al prezzo più basso di sempre
           </a>
@@ -412,7 +447,7 @@
     </section>
 
     <!-- 8. COME FUNZIONA -->
-    <section class="ab-section ab-section--canvas">
+    <section class="ab-section ab-section--canvas" id="ab-come-funziona">
       <div class="ab-container">
         <span class="ab-eyebrow">Il Percorso Guidato</span>
         <h2 class="ab-title-h2">Come funziona il Check-up di Mobilità</h2>
@@ -424,7 +459,7 @@
           <div class="ab-step-card">
             <span class="ab-step-badge">1</span>
             <h3 class="ab-title-h3">Primo appuntamento: parliamo e ti osservo</h3>
-            <p class="ab-body" style="font-size: 14.5px;">
+            <p class="ab-body ab-body--small">
               Mi racconti il tuo stile di vita, il lavoro, cosa hai già provato e dove vorresti arrivare. Se un obiettivo non ce l'hai, lo troviamo insieme. Poi passiamo ai test, sempre adattati a te:
             </p>
             <div class="ab-test-pill-list">
@@ -447,11 +482,8 @@
           <div class="ab-step-card">
             <span class="ab-step-badge">2</span>
             <h3 class="ab-title-h3">Costruisco la tua Mappa</h3>
-            <p class="ab-body" style="font-size: 14.5px;">
-              Nei giorni successivi analizzo quello che è emerso durante la sessione video e costruisco la tua Mappa del Movimento personale.
-            </p>
-            <p class="ab-body" style="font-size: 14.5px; font-weight: 600; color: var(--ab-color-primary);">
-              La preparo personalmente io, caso per caso. Nessun algoritmo o scheda precompilata.
+            <p class="ab-body ab-body--small">
+              Nei giorni successivi analizzo quello che è emerso e costruisco la tua Mappa del Movimento. La preparo personalmente.
             </p>
           </div>
 
@@ -459,10 +491,10 @@
           <div class="ab-step-card">
             <span class="ab-step-badge">3</span>
             <h3 class="ab-title-h3">Secondo appuntamento: te la consegno e te la spiego</h3>
-            <p class="ab-body" style="font-size: 14.5px;">
-              Leggiamo la Mappa insieme, punto per punto. Esci sapendo esattamente da dove parti, cosa fare per primo e con i primi esercizi da fare da solo da subito.
+            <p class="ab-body ab-body--small">
+              Leggiamo la Mappa insieme, punto per punto. Esci sapendo da dove parti, cosa fare per primo e con i primi esercizi da fare da solo da subito.
             </p>
-            <p class="ab-body" style="font-size: 14.5px;">
+            <p class="ab-body ab-body--small">
               Se ha senso continuare insieme, te lo propongo. Se no, la Mappa resta tua.
             </p>
           </div>
@@ -471,16 +503,16 @@
 
         <!-- Box Trasparenza Professionale -->
         <div class="ab-info-callout">
-          <h3 class="ab-title-h3" style="font-size: 18px; color: var(--ab-color-accent);">E se emerge qualcosa che va oltre il mio lavoro?</h3>
+          <h3 class="ab-title-h3 ab-info-callout__title">E se emerge qualcosa che va oltre il mio lavoro?</h3>
           <p class="ab-body">
             Ti indirizzo al professionista giusto. Esattamente come fa il medico di base quando vede qualcosa che non va sulla tua pelle e ti manda dal dermatologo.
           </p>
-          <p class="ab-body" style="margin-bottom: 0; font-weight: 600;">
+          <p class="ab-body ab-info-callout__footer">
             Tutto a distanza: ti serve solo un telefono e uno spazio in cui puoi muoverti liberamente.
           </p>
         </div>
 
-        <div class="ab-cta-group" style="align-items: center; justify-content: center; margin-top: 32px;">
+        <div class="ab-cta-group ab-cta-group--center" style="margin-top: 32px;">
           <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
             Prenota il Check-up al prezzo più basso di sempre
           </a>
@@ -489,46 +521,41 @@
     </section>
 
     <!-- 9. MAPPA DEL MOVIMENTO (SECONDA HERO) -->
-    <section class="ab-section ab-map-hero">
+    <section class="ab-section ab-section--surface ab-map-hero" id="ab-mappa-movimento">
       <div class="ab-container">
-        <span class="ab-eyebrow">Il Tuo Risultato Tangibile</span>
-        <h2 class="ab-title-h2">La tua Mappa del Movimento</h2>
-        <p class="ab-subtitle">Il documento che ti porti a casa dopo il Check-up, e che resta tuo.</p>
-
+        
         <div class="ab-map-layout">
           
-          <!-- Mockup della Mappa -->
-          <div class="ab-map-mockup-wrapper">
-            <div class="ab-map-watermark">Esempio di Mappa</div>
-            <div class="ab-map-doc-title">Mappa del Movimento — Documento di Sintesi</div>
-            
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
-                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 1 · Obiettivo</span>
-                <div style="font-weight: 600; color: #1f5848; font-size: 15px;">Destinazione: Pike a terra & mobilità spalle</div>
+          <!-- Mockup della Mappa a sinistra su desktop / in alto su mobile -->
+          <div class="ab-map-mockup-col">
+            <div class="ab-map-mockup-wrapper">
+              <div class="ab-map-watermark">Esempio di Mappa</div>
+              <div class="ab-map-doc-header">
+                <div class="ab-map-doc-title">Mappa del Movimento</div>
+                <div class="ab-map-doc-subtitle">Documento Personale di Sintesi · Andrea Bolzan</div>
               </div>
-              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
-                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 2 · Analisi Funzionale</span>
-                <div style="font-weight: 600; color: #17201d; font-size: 14px;">Flessione anche: 7/10 · Tensione catena posteriore marcata</div>
+              
+              <div class="ab-map-doc-preview-body">
+                <div class="ab-map-doc-section-box">
+                  <div class="ab-map-doc-sec-tag">Destinazione</div>
+                  <div class="ab-map-doc-sec-text">[ASSET: Anteprima di 2–3 pagine della Mappa del Movimento]</div>
+                </div>
+                <div class="ab-map-doc-section-box">
+                  <div class="ab-map-doc-sec-tag">Punto Zero & Priorità</div>
+                  <div class="ab-map-doc-sec-text">Analisi dei test, punti di forza e sequenza di intervento personalizzata.</div>
+                </div>
               </div>
-              <div style="background: #f4f1e9; padding: 12px; border-radius: 8px;">
-                <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #5f6964;">Sezione 3 · Sequenza Priorità</span>
-                <div style="font-weight: 600; color: #c96e4b; font-size: 14px;">1. Decompressione lombare -> 2. Allungamento attivo femorali</div>
-              </div>
-            </div>
-
-            <!-- Bonus Primi Esercizi -->
-            <div class="ab-map-bonus-exercises">
-              <div class="ab-bonus-title">+ I tuoi primi esercizi</div>
-              <p class="ab-body" style="font-size: 13.5px; margin: 0;">
-                Una piccola routine da fare da solo da subito, con la frequenza e le indicazioni per capire se sta funzionando.
-              </p>
             </div>
           </div>
 
-          <!-- Le 6 Domande Risolte -->
-          <div>
-            <h3 class="ab-title-h3" style="font-size: 20px; margin-bottom: 16px;">Dentro trovi le risposte a sei domande:</h3>
+          <!-- Testo, 6 Domande e Primi Esercizi a destra su desktop / sotto su mobile -->
+          <div class="ab-map-text-col">
+            <span class="ab-eyebrow">Il Tuo Risultato Tangibile</span>
+            <h2 class="ab-title-h2">La tua Mappa del Movimento</h2>
+            <p class="ab-subtitle">Il documento che ti porti a casa dopo il Check-up, e che resta tuo.</p>
+
+            <h3 class="ab-title-h3 ab-map-questions-heading">Dentro trovi le risposte a sei domande:</h3>
+            
             <ul class="ab-map-questions-list">
               <li class="ab-map-q-item">
                 <div class="ab-map-q-title">1. Dove vuoi arrivare?</div>
@@ -556,11 +583,19 @@
               </li>
             </ul>
 
-            <div style="margin-top: 24px;">
-              <p class="ab-body" style="font-size: 14.5px;">
+            <!-- Elemento Distinto: I Tuoi Primi Esercizi -->
+            <div class="ab-map-bonus-exercises">
+              <div class="ab-bonus-title">+ I tuoi primi esercizi</div>
+              <p class="ab-body ab-bonus-desc">
+                Una piccola routine da fare da solo da subito, con la frequenza e le indicazioni per capire se sta funzionando.
+              </p>
+            </div>
+
+            <div class="ab-map-closing-copy">
+              <p class="ab-body">
                 E se oggi non sai rispondere ad alcune di queste domande, è normale: trovare le risposte è il mio lavoro. Il primo appuntamento serve proprio a questo: fare chiarezza.
               </p>
-              <p class="ab-body" style="font-size: 14.5px; font-weight: 600;">
+              <p class="ab-body ab-body--emphasis">
                 La Mappa è tua e ti resta. Anche se poi con me non fai più niente, sai da dove parti e cosa fare per primo.
               </p>
             </div>
@@ -577,7 +612,7 @@
     </section>
 
     <!-- 10. DESTINAZIONI DI MOVIMENTO -->
-    <section class="ab-section ab-section--surface">
+    <section class="ab-section ab-section--canvas" id="ab-destinazioni">
       <div class="ab-container">
         <span class="ab-eyebrow">Applicazione Pratica</span>
         <h2 class="ab-title-h2">Qual è il movimento che vuoi sbloccare?</h2>
@@ -586,6 +621,9 @@
         <div class="ab-destinations-grid">
           
           <div class="ab-destination-card">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Foto / Video Verticale]</span>
+            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="18" r="2"></circle><line x1="12" y1="16" x2="12" y2="8"></line><line x1="8" y1="5" x2="16" y2="5"></line></svg>
             </div>
@@ -596,17 +634,23 @@
           </div>
 
           <div class="ab-destination-card">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Foto / Video Pike]</span>
+            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"></path><path d="m7 19 5-14 5 14"></path></svg>
             </div>
             <h3 class="ab-title-h3">La pike</h3>
-            <p class="ab-body" style="font-style: italic; font-size: 14px; margin-bottom: 8px;">Piegarsi in avanti a gambe tese.</p>
+            <p class="ab-body ab-dest-clarify"><em>Piegarsi in avanti a gambe tese.</em></p>
             <p class="ab-body">
               Per anni non ce l'ho avuta. I clienti che ci sono passati mi raccontano di dormire meglio, di avere meno tensione al collo, meno mal di testa.
             </p>
           </div>
 
           <div class="ab-destination-card">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Foto / Video Accosciata]</span>
+            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v7"></path><path d="M9 11h6"></path><path d="m8 15 4 5 4-5"></path></svg>
             </div>
@@ -617,6 +661,9 @@
           </div>
 
           <div class="ab-destination-card">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Foto / Video Trekking]</span>
+            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
             </div>
@@ -627,6 +674,9 @@
           </div>
 
           <div class="ab-destination-card">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Foto / Video Arrampicata]</span>
+            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </div>
@@ -636,8 +686,11 @@
             </p>
           </div>
 
-          <div class="ab-destination-card" style="border-left: 4px solid var(--ab-color-accent);">
-            <div class="ab-dest-icon" style="background: var(--ab-color-accent-subtle); color: var(--ab-color-accent);" aria-hidden="true">
+          <div class="ab-destination-card ab-destination-card--custom">
+            <div class="ab-dest-media-placeholder">
+              <span class="ab-dest-media-tag">[ASSET: Il tuo movimento]</span>
+            </div>
+            <div class="ab-dest-icon ab-dest-icon--custom" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
             </div>
             <h3 class="ab-title-h3">Il tuo</h3>
@@ -648,36 +701,59 @@
 
         </div>
 
-        <!-- 11. PERCHÉ UNA DESTINAZIONE -->
-        <div style="margin-top: 56px;">
-          <h3 class="ab-title-h2" style="font-size: 26px;">Perché avere una destinazione cambia tutto</h3>
-          <div class="ab-why-dest-grid">
-            <div class="ab-why-card">
-              <strong>Hai un criterio</strong>
-              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Smetti di chiederti se un esercizio è buono in assoluto, e inizi a chiederti se ti porta lì.</p>
-            </div>
-            <div class="ab-why-card">
-              <strong>Vedi i progressi senza bilancia né specchio</strong>
-              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Il mese scorso a terra arrivavi con le dita, oggi con i palmi.</p>
-            </div>
-            <div class="ab-why-card">
-              <strong>Resti costante</strong>
-              <p class="ab-body" style="font-size: 14.5px; margin: 0;">Perché nessuno molla una cosa che vede funzionare.</p>
-            </div>
-          </div>
+      </div>
+    </section>
 
-          <div class="ab-cta-group" style="margin-top: 32px;">
-            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
-              Prenota il Check-up al prezzo più basso di sempre
-            </a>
+    <!-- 11. PERCHÉ UNA DESTINAZIONE (Sezione Distinta con Linea Visiva Punto Zero -> Destinazione) -->
+    <section class="ab-section ab-section--surface ab-why-dest" id="ab-perche-destinazione">
+      <div class="ab-container">
+        <span class="ab-eyebrow">Direzione e Costanza</span>
+        <h2 class="ab-title-h2">Perché avere una destinazione cambia tutto</h2>
+
+        <!-- Linea Visiva: Connessione tra Punto Zero e Destinazione -->
+        <div class="ab-journey-connector-bar" aria-hidden="true">
+          <div class="ab-journey-point ab-journey-point--start">
+            <span class="ab-journey-point__tag">PUNTO ZERO</span>
+            <span class="ab-journey-point__label">Da dove parti davvero</span>
+          </div>
+          <div class="ab-journey-line-track">
+            <div class="ab-journey-line-fill"></div>
+            <span class="ab-journey-mid-badge">Mappa del Movimento</span>
+          </div>
+          <div class="ab-journey-point ab-journey-point--end">
+            <span class="ab-journey-point__tag">DESTINAZIONE</span>
+            <span class="ab-journey-point__label">Dove vuoi arrivare</span>
           </div>
         </div>
 
+        <div class="ab-why-dest-grid">
+          <div class="ab-why-card">
+            <div class="ab-why-card__num">01</div>
+            <h3 class="ab-why-card__title">Hai un criterio</h3>
+            <p class="ab-body">Smetti di chiederti se un esercizio è buono in assoluto, e inizi a chiederti se ti porta lì.</p>
+          </div>
+          <div class="ab-why-card">
+            <div class="ab-why-card__num">02</div>
+            <h3 class="ab-why-card__title">Vedi i progressi senza bilancia né specchio</h3>
+            <p class="ab-body">Il mese scorso a terra arrivavi con le dita, oggi con i palmi.</p>
+          </div>
+          <div class="ab-why-card">
+            <div class="ab-why-card__num">03</div>
+            <h3 class="ab-why-card__title">Resti costante</h3>
+            <p class="ab-body">Perché nessuno molla una cosa che vede funzionare.</p>
+          </div>
+        </div>
+
+        <div class="ab-cta-group ab-cta-group--center" style="margin-top: 36px;">
+          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+            Prenota il Check-up al prezzo più basso di sempre
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- 12. CHI È ANDREA BOLZAN -->
-    <section class="ab-section ab-section--canvas">
+    <section class="ab-section ab-section--canvas" id="ab-chi-e-andrea">
       <div class="ab-container">
         <span class="ab-eyebrow">Esperienza e Metodo</span>
         <h2 class="ab-title-h2">Chi è Andrea Bolzan?</h2>
@@ -690,8 +766,8 @@
                 <div class="ab-bio-avatar-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </div>
-                <div style="font-weight: 700; font-size: 18px;">Andrea Bolzan</div>
-                <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 4px;">Insegnante di Movimento e Mobilità</div>
+                <div class="ab-bio-photo-title">Andrea Bolzan</div>
+                <div class="ab-bio-photo-role">Insegnante di Movimento e Mobilità</div>
               </div>
               <div class="ab-bio-photo-caption">
                 [FOTOGRAFIA REALE: Ritratto editoriale di Andrea Bolzan]
@@ -715,29 +791,29 @@
             <p class="ab-body">
               Ha usato su di sé quello che insegna agli altri: è ripartito dal suo punto zero, dagli esercizi più elementari. Il dolore alla schiena lo gestisce ancora, ogni giorno. Ma è tornato in montagna e ad arrampicare con i suoi amici.
             </p>
-            <p class="ab-body" style="font-weight: 600; color: var(--ab-color-primary-dark);">
+            <p class="ab-body ab-body--emphasis">
               Per questo il Check-up parte dal punto zero: è da lì che è ripartito anche lui.
             </p>
           </div>
 
         </div>
 
-        <!-- Numeri e Metriche -->
+        <!-- Numeri e Metriche (fissi, senza contatori animati) -->
         <div class="ab-metrics-strip">
           <div class="ab-metric-item">
-            <div class="ab-metric-number">12</div>
+            <div class="ab-metric-number ab-tabular">12</div>
             <div class="ab-metric-label">Anni di esperienza</div>
           </div>
           <div class="ab-metric-item">
-            <div class="ab-metric-number">400+</div>
+            <div class="ab-metric-number ab-tabular">400+</div>
             <div class="ab-metric-label">Persone seguite</div>
           </div>
           <div class="ab-metric-item">
-            <div class="ab-metric-number">25+</div>
+            <div class="ab-metric-number ab-tabular">25+</div>
             <div class="ab-metric-label">Workshop ed eventi</div>
           </div>
           <div class="ab-metric-item">
-            <div class="ab-metric-number">40+</div>
+            <div class="ab-metric-number ab-tabular">40+</div>
             <div class="ab-metric-label">Clienti attivi a distanza</div>
           </div>
         </div>
@@ -746,7 +822,7 @@
     </section>
 
     <!-- 13. IL CHECK-UP FA PER TE? -->
-    <section class="ab-section ab-section--surface">
+    <section class="ab-section ab-section--surface" id="ab-fa-per-te">
       <div class="ab-container">
         <span class="ab-eyebrow">Filtro e Chiarezza</span>
         <h2 class="ab-title-h2">Il Check-up fa davvero per te?</h2>
@@ -756,28 +832,28 @@
           <!-- Sì, se -->
           <div class="ab-qualify-card ab-qualify-card--yes">
             <div class="ab-qualify-title">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
               <span>Sì, se:</span>
             </div>
             <ul class="ab-qualify-list">
               <li>
-                <span>✓</span>
+                <span class="ab-check-icon">✓</span>
                 <span>Ti muovi o ti alleni, e hai la sensazione di aver perso qualcosa per strada.</span>
               </li>
               <li>
-                <span>✓</span>
+                <span class="ab-check-icon">✓</span>
                 <span>Hai un movimento o un'attività in mente, e non sai da dove partire.</span>
               </li>
               <li>
-                <span>✓</span>
+                <span class="ab-check-icon">✓</span>
                 <span>Ti alleni con costanza, ma senza una direzione e gli sforzi non sono proporzionati ai risultati.</span>
               </li>
               <li>
-                <span>✓</span>
+                <span class="ab-check-icon">✓</span>
                 <span>Lavori nel movimento e vuoi finalmente uno sguardo esterno su di te.</span>
               </li>
               <li>
-                <span>✓</span>
+                <span class="ab-check-icon">✓</span>
                 <span>Vuoi capire cosa fare adesso, prima che un fastidio diventi un limite.</span>
               </li>
             </ul>
@@ -786,20 +862,20 @@
           <!-- No, se -->
           <div class="ab-qualify-card ab-qualify-card--no">
             <div class="ab-qualify-title">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               <span>No, se:</span>
             </div>
             <ul class="ab-qualify-list">
               <li>
-                <span style="color: var(--ab-color-danger);">✕</span>
+                <span class="ab-cross-icon">✕</span>
                 <span>Cerchi una scheda da eseguire senza capire perché.</span>
               </li>
               <li>
-                <span style="color: var(--ab-color-danger);">✕</span>
+                <span class="ab-cross-icon">✕</span>
                 <span>Sei nella fase acuta di un infortunio o hai appena subito un intervento: in quel momento serve un'altra figura, e il Check-up può aspettare.</span>
               </li>
               <li>
-                <span style="color: var(--ab-color-danger);">✕</span>
+                <span class="ab-cross-icon">✕</span>
                 <span>Cerchi qualcuno che ti prometta risultati in un numero preciso di settimane.</span>
               </li>
             </ul>
@@ -831,8 +907,8 @@
 
         <div class="ab-offer-box">
           
-          <!-- Lista di Valore -->
-          <div>
+          <!-- Lista di Valore Compresa -->
+          <div class="ab-offer-features-col">
             <ul class="ab-offer-stack-list">
               <li class="ab-offer-item">
                 <span class="ab-offer-check">✓</span>
@@ -863,29 +939,35 @@
 
           <!-- Card Transazionale Prezzo & CTA -->
           <div class="ab-pricing-card">
-            <span style="font-size: 13px; text-transform: uppercase; font-weight: 700; color: var(--ab-color-muted); letter-spacing: 0.05em;">Valore del Check-up</span>
+            <span class="ab-pricing-label">Valore del Check-up</span>
             
             <div class="ab-pricing-row">
-              <span class="ab-price-original" data-regular-price>150 €</span>
-              <span class="ab-price-promo" data-promo-price>57 €</span>
+              <span class="ab-price-original ab-tabular" data-regular-price>150 €</span>
+              <span class="ab-price-promo ab-tabular" data-promo-price>57 €</span>
             </div>
 
-            <div class="ab-offer-badge-row">
-              <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong data-spots-available>X su 6</strong></span>
-              <span class="ab-badge-meta ab-badge-credit">Credito 150 € incluso</span>
+            <!-- Box Countdown Offerta (nascosto di default se deadlineISO non è valorizzato) -->
+            <div class="ab-offer-countdown-box" data-countdown-offer-box>
+              <span>Offerta valida ancora per</span>
+              <span class="ab-countdown-timer" data-countdown-display></span>
             </div>
 
-            <p style="font-size: 13.5px; line-height: 1.45; color: var(--ab-color-ink-muted); margin-bottom: 20px;">
+            <p class="ab-pricing-credit-text">
               Paghi 57 € qualcosa che ne vale 150. E avrai un credito di 150 € da poter scalare in un percorso con me.
             </p>
 
-            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="width: 100%;">
+            <div class="ab-offer-badge-row">
+              <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong class="ab-tabular" data-spots-available>X su 6</strong></span>
+              <span class="ab-badge-meta ab-badge-credit">Credito 150 € incluso</span>
+            </div>
+
+            <a class="ab-cta ab-cta--primary ab-cta--full" href="#CHECKOUT_URL" data-checkout-link>
               Prenota il Check-up al prezzo più basso di sempre
             </a>
 
-            <div style="margin-top: 14px;">
-              <span style="font-size: 13px; color: var(--ab-color-muted); display: block; margin-bottom: 6px;">Hai qualche domanda o dubbio?</span>
-              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link style="width: 100%;">
+            <div class="ab-offer-whatsapp-area">
+              <p class="ab-offer-whatsapp-query">Hai qualche domanda o dubbio? Scrivimi su WhatsApp.</p>
+              <a class="ab-cta ab-cta--whatsapp ab-cta--full" href="#WHATSAPP_URL" data-whatsapp-link>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 Scrivimi su WhatsApp
               </a>
@@ -896,8 +978,8 @@
       </div>
     </section>
 
-    <!-- 15. FAQ -->
-    <section class="ab-section ab-section--surface">
+    <!-- 15. FAQ (Native Details/Summary - 100% Funzionanti Senza JS) -->
+    <section class="ab-section ab-section--surface" id="ab-faq">
       <div class="ab-container ab-container--narrow">
         <span class="ab-eyebrow">Domande Frequenti</span>
         <h2 class="ab-title-h2">Domande frequenti</h2>
@@ -907,12 +989,12 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Funziona davvero a distanza?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Sì: è così che lavoro con i miei clienti, e oggi ne seguo più di 40 a distanza. Per i test mi basta vederti muovere in videochiamata.</p>
               <p>Monica, personal trainer, aveva già alle spalle un percorso online:</p>
-              <blockquote style="margin: 8px 0; font-style: italic; color: var(--ab-color-primary-dark);">
+              <blockquote class="ab-quote-inline">
                 «Perché ho cambiato? Perché mi mancava un rapporto umano, un'empatia che con Andrea ho trovato.»
               </blockquote>
             </div>
@@ -921,7 +1003,7 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Non ho un obiettivo preciso. Ha senso lo stesso?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Sì. Molte persone arrivano sapendo solo che “così non va”. Il primo appuntamento serve anche a questo: trovare insieme un obiettivo concreto, che abbia senso per te.</p>
@@ -931,10 +1013,10 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Ho un dolore o un vecchio infortunio. Posso farlo?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
-              <p>Sì: dolori e infortuni passati li raccolgo come parte del tuo contesto. <strong>Il Check-up però non è una visita medica e non fa diagnosi.</strong> Se emerge qualcosa che va oltre il mio lavoro, ti indirizzo al professionista giusto.</p>
+              <p>Sì: dolori e infortuni passati li raccolgo come parte del tuo contesto. <strong>Il Check-up però non è una visita medica, non formula diagnosi e non si sostituisce a un professionista sanitario.</strong> Se emerge qualcosa che va oltre il mio lavoro, ti indirizzo al professionista giusto.</p>
               <p>Se invece sei nella fase acuta di un infortunio o hai appena subito un intervento, aspetta: in quel momento serve un'altra figura.</p>
             </div>
           </details>
@@ -942,7 +1024,7 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Ho più di 60 anni. Non è troppo tardi?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Lucia ha iniziato a 65 anni, ed era molto bloccata. L'età cambia da dove parti, non se ha senso partire.</p>
@@ -952,7 +1034,7 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Alla fine mi proporrai di continuare con te?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Se ha senso, sì, e te lo dico chiaramente. Ma la Mappa e i primi esercizi restano tuoi in ogni caso, e se decidi di continuare i 150 € del Check-up ti vengono scalati per intero dal percorso.</p>
@@ -962,7 +1044,7 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Cosa mi serve per i test?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Ti basterà uno smartphone per la videochiamata e un luogo dove puoi muoverti liberamente per i test fisici.</p>
@@ -972,7 +1054,7 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Quanto durano gli appuntamenti e quando ricevo la Mappa?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
               <p>Indicativamente, ogni appuntamento dura circa 60 minuti. La Mappa sarà pronta indicativamente entro 3–5 giorni lavorativi dal primo appuntamento.</p>
@@ -982,49 +1064,64 @@
           <details class="ab-faq-item">
             <summary class="ab-faq-summary">
               <span>Dopo l'acquisto, quando faccio il primo appuntamento?</span>
-              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="ab-faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="ab-faq-content">
-              <p>Subito dopo il pagamento puoi scegliere il giorno e l'ora dal mio calendario online.</p>
+              <p>Subito dopo il pagamento puoi scegliere il giorno e l'ora dal mio calendario.</p>
             </div>
           </details>
 
         </div>
 
-        <div class="ab-cta-group" style="align-items: center; justify-content: center; margin-top: 36px;">
-          <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
-            Prenota il Check-up al prezzo più basso di sempre
-          </a>
+        <div class="ab-faq-cta-area">
+          <div class="ab-cta-group ab-cta-group--center">
+            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link>
+              Prenota il Check-up al prezzo più basso di sempre
+            </a>
+          </div>
+
+          <div class="ab-faq-whatsapp-block">
+            <p class="ab-faq-whatsapp-query">Hai ancora qualche dubbio? Scrivimi su WhatsApp: ti rispondo personalmente.</p>
+            <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              Scrivimi su WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 16. CHIUSURA E FOOTER -->
-    <footer class="ab-footer">
+    <footer class="ab-footer" id="ab-footer">
       <div class="ab-container">
         
-        <div style="text-align: center; max-width: 640px; margin: 0 auto 36px;">
-          <h2 class="ab-title-h2" style="color: #ffffff; font-size: 24px; margin-bottom: 12px;">Pronto a capire da dove parti?</h2>
-          <p style="color: #a4b0ab; font-size: 15px; margin-bottom: 24px;">Due appuntamenti online, la tua Mappa del Movimento e i tuoi primi esercizi.</p>
+        <div class="ab-footer-closing">
+          <h2 class="ab-title-h2 ab-footer-title">Pronto a capire da dove parti?</h2>
+          <p class="ab-footer-sub">Due appuntamenti online · Mappa personale · Primi esercizi</p>
           
-          <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-            <a class="ab-cta ab-cta--primary" href="#CHECKOUT_URL" data-checkout-link style="background: #ffffff; color: var(--ab-color-primary);">
+          <div class="ab-footer-cta-box">
+            <a class="ab-cta ab-cta--primary ab-cta--inverted" href="#CHECKOUT_URL" data-checkout-link>
               Prenota il Check-up al prezzo più basso di sempre
             </a>
-            <div style="color: #a4b0ab; font-size: 13px;">
-              Hai ancora qualche dubbio? <a href="#WHATSAPP_URL" data-whatsapp-link style="color: #25d366; text-decoration: underline;">Scrivimi su WhatsApp: ti rispondo personalmente</a>.
+            
+            <div class="ab-footer-whatsapp-box">
+              <p class="ab-footer-whatsapp-text">Hai ancora qualche dubbio? Scrivimi su WhatsApp: ti rispondo personalmente.</p>
+              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                Scrivimi su WhatsApp
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Note Legali & Dati Fiscali -->
+        <!-- Note Legali & Dati Fiscali (Placeholder espliciti) -->
         <div class="ab-footer-links">
-          <span class="ab-footer-link">[DATI FISCALI — P.IVA / Ragione Sociale]</span>
-          <span>·</span>
+          <span class="ab-footer-link">[DATI FISCALI — P.IVA / Ragione Sociale da inserire]</span>
+          <span aria-hidden="true">·</span>
           <a href="#" class="ab-footer-link">[PRIVACY POLICY]</a>
-          <span>·</span>
+          <span aria-hidden="true">·</span>
           <a href="#" class="ab-footer-link">[TERMINI E CONDIZIONI]</a>
-          <span>·</span>
+          <span aria-hidden="true">·</span>
           <a href="#" class="ab-footer-link">[COOKIE POLICY]</a>
         </div>
 
@@ -1035,12 +1132,12 @@
     </footer>
 
     <!-- STICKY CTA MOBILE -->
-    <aside class="ab-sticky-mobile-cta" aria-label="Prenota Check-up rapidamente">
+    <aside class="ab-sticky-mobile-cta" aria-label="Prenota Check-up velocemente">
       <div class="ab-sticky-info">
         <span class="ab-sticky-label">Check-up Mobilità</span>
-        <span class="ab-sticky-price" data-promo-price>57 €</span>
+        <span class="ab-sticky-price ab-tabular" data-promo-price>57 €</span>
       </div>
-      <a class="ab-sticky-btn" href="#CHECKOUT_URL" data-checkout-link>
+      <a class="ab-cta ab-cta--primary ab-sticky-btn" href="#CHECKOUT_URL" data-checkout-link>
         Prenota Ora
       </a>
     </aside>
