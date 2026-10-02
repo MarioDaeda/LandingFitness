@@ -367,33 +367,92 @@
     slider.insertAdjacentElement("afterend", dots);
 
     let ticking = false;
+    let cardOffsets = [];
+    let loopW = 0;
+    let currentActive = -1;
+    let lastFadeL = null;
+    let lastFadeR = null;
+
+    function computeGeometry() {
+      if (cards.length === 0) return;
+      const base = cards[0].offsetLeft;
+      cardOffsets = cards.map(function (card) {
+        return card.offsetLeft - base;
+      });
+      const firstClone = slider.querySelector(".ab-clone");
+      if (firstClone) {
+        loopW = firstClone.offsetLeft - base;
+      }
+    }
+    computeGeometry();
+
+    function getCardOffsets() {
+      if (cardOffsets.length === 0 || (total > 1 && cardOffsets[1] === 0)) {
+        computeGeometry();
+      }
+      return cardOffsets;
+    }
+
     function update() {
       ticking = false;
       const max = slider.scrollWidth - slider.clientWidth;
       const x = slider.scrollLeft;
       const looping = slider.classList.contains("ab-autoscrolling");
-      if (fadeLVar) slider.style.setProperty(fadeLVar, looping || x > 4 ? "36px" : "0px");
-      if (fadeRVar) slider.style.setProperty(fadeRVar, looping || x < max - 24 ? "36px" : "0px");
+
+      const fadeL = looping || x > 4 ? "36px" : "0px";
+      const fadeR = looping || x < max - 24 ? "36px" : "0px";
+      if (fadeLVar && fadeL !== lastFadeL) {
+        lastFadeL = fadeL;
+        slider.style.setProperty(fadeLVar, fadeL);
+      }
+      if (fadeRVar && fadeR !== lastFadeR) {
+        lastFadeR = fadeR;
+        slider.style.setProperty(fadeRVar, fadeR);
+      }
 
       let active = 0;
-      let best = Infinity;
-      const sliderLeft = slider.getBoundingClientRect().left;
-      const all = slider.querySelectorAll(cardSelector);
-      Array.prototype.forEach.call(all, function (card, i) {
-        const dist = Math.abs(card.getBoundingClientRect().left - sliderLeft);
-        if (dist < best) { best = dist; active = i % total; }
-      });
-      if (!looping && max > 0 && x >= max - 24) active = total - 1;
-      dotEls.forEach(function (d, i) { d.classList.toggle("is-active", i === active); });
+      const offsets = getCardOffsets();
+      if (offsets.length > 0) {
+        let best = Infinity;
+        const normX = (loopW > 0) ? (x % loopW) : x;
+        for (let i = 0; i < total; i++) {
+          const dist = Math.abs(offsets[i] - normX);
+          if (dist < best) {
+            best = dist;
+            active = i;
+          }
+        }
+      }
+      if (!looping && max > 0 && x >= max - 24) {
+        active = total - 1;
+      }
+
+      if (active !== currentActive) {
+        currentActive = active;
+        dotEls.forEach(function (d, i) {
+          d.classList.toggle("is-active", i === active);
+        });
+      }
     }
+
     function onScroll() {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
     }
+
     slider.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", function () {
+      computeGeometry();
+      onScroll();
+    });
     slider.querySelectorAll("img").forEach(function (img) {
       if (!img.complete) {
-        img.addEventListener("load", onScroll, { once: true });
+        img.addEventListener("load", function () {
+          computeGeometry();
+          onScroll();
+        }, { once: true });
       }
     });
     update();
@@ -445,9 +504,14 @@
       return cachedLw;
     }
 
+    function isModalOpen() {
+      const modal = document.querySelector(".ab-video-modal");
+      return !!(modal && modal.open);
+    }
+
     function tick(ts) {
       rafId = 0;
-      if (!inView || document.hidden) { last = 0; return; }
+      if (!inView || document.hidden || isModalOpen()) { last = 0; return; }
       if (!last) last = ts;
       const dt = Math.min(ts - last, 64);
       last = ts;
@@ -469,7 +533,7 @@
     }
 
     function start() {
-      if (!rafId && inView && !document.hidden) { last = 0; rafId = window.requestAnimationFrame(tick); }
+      if (!rafId && inView && !document.hidden && !isModalOpen()) { last = 0; rafId = window.requestAnimationFrame(tick); }
     }
 
     function pause() {
@@ -482,6 +546,7 @@
     function resumeLater(delay) {
       window.clearTimeout(resumeTimer);
       resumeTimer = window.setTimeout(function () {
+        if (isModalOpen()) return;
         pos = slider.scrollLeft;
         const lw = getLoopWidth();
         if (lw > 0 && pos >= lw) {
@@ -491,6 +556,7 @@
         slider.style.scrollSnapType = "none";
         slider.classList.remove("is-paused");
         paused = false;
+        start();
       }, delay);
     }
 
@@ -505,6 +571,9 @@
     slider.addEventListener("wheel", function () { pause(); resumeLater(RESUME_DELAY); }, { passive: true });
     slider.addEventListener("focusin", pause);
     slider.addEventListener("focusout", function () { resumeLater(RESUME_DELAY); });
+
+    slider.addEventListener("ab-pause", pause);
+    slider.addEventListener("ab-resume", function () { resumeLater(RESUME_DELAY); });
 
     window.addEventListener("resize", computeLoopWidth);
     slider.querySelectorAll("img").forEach(function (img) {
@@ -554,7 +623,19 @@
 
     dialog.addEventListener("close", function () {
       frame.innerHTML = "";
-      if (opener && opener.focus) opener.focus();
+      if (opener && opener.focus) {
+        try {
+          opener.focus({ preventScroll: true });
+        } catch (err) {
+          opener.focus();
+        }
+      }
+      root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
+        s.dispatchEvent(new CustomEvent("ab-resume"));
+      });
+    });
+    dialog.addEventListener("cancel", function () {
+      close();
     });
     dialog.querySelector(".ab-video-close").addEventListener("click", close);
     dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
@@ -584,6 +665,11 @@
       frame.innerHTML = "";
       frame.appendChild(iframe);
       frame.appendChild(fallback);
+
+      root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
+        s.dispatchEvent(new CustomEvent("ab-pause"));
+      });
+
       dialog.showModal();
     });
   }

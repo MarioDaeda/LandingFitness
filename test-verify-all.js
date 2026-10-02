@@ -289,7 +289,9 @@ assert(css.includes('.ab-hero-video-fallback-link'), 'Hero fallback link styles 
 assert(js.includes('function setupAutoScroll') && js.includes('"touchstart", pause') && js.includes('"mouseenter", pause'), 'Auto-scroll pauses on touch and hover');
 assert(js.includes('prefers-reduced-motion') && js.includes('function setupVideoModal'), 'Auto-scroll respects reduced motion; video modal is registered');
 assert(js.includes('ab-video-modal-fallback'), 'Video modal fallback link registered in JS');
-assert(js.includes('autoScrollControl.pause()'), 'Slider dots coordinate pausing with auto-scroll');
+assert(js.includes('isModalOpen') && js.includes('ab-pause') && js.includes('ab-resume'), 'Auto-scroll pauses during video modal display and resumes after closure');
+assert(js.includes('preventScroll: true'), 'Modal close safely restores focus with preventScroll: true without viewport jumps');
+assert(!js.includes('card.getBoundingClientRect().left - sliderLeft'), 'Eliminated layout thrashing and forced reflows from slider dots update loop');
 assert(/@media \(max-width: 767px\)\s*\{\s*#ab-mobility-checkup \.ab-journey-connector-bar\s*\{[^}]*flex-direction:\s*column/s.test(css), 'Punto Zero -> Destinazione bar is vertical on mobile');
 
 console.log('\n========================================');

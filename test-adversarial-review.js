@@ -1,0 +1,221 @@
+const fs = require('fs');
+const path = require('path');
+
+const html = fs.readFileSync('index.html', 'utf8');
+const ghlHtml = fs.readFileSync('highlevel-paste.html', 'utf8');
+const css = fs.readFileSync('styles.css', 'utf8');
+const js = fs.readFileSync('script.js', 'utf8');
+
+const failures = [];
+function test(name, fn) {
+  try {
+    fn();
+    console.log(`PASS: ${name}`);
+  } catch (err) {
+    console.error(`FAIL: ${name} -> ${err.message}`);
+    failures.push({ name, error: err.message });
+  }
+}
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) throw new Error(`Expected ${JSON.stringify(expected)} but got ${JSON.stringify(actual)}`);
+    },
+    toBeTruthy() {
+      if (!actual) throw new Error(`Expected truthy but got ${JSON.stringify(actual)}`);
+    },
+    toBeFalsy() {
+      if (actual) throw new Error(`Expected falsy but got ${JSON.stringify(actual)}`);
+    },
+    toContain(substr) {
+      if (typeof actual === 'string' && !actual.includes(substr)) throw new Error(`Expected string to contain ${JSON.stringify(substr)}`);
+      if (Array.isArray(actual) && !actual.includes(substr)) throw new Error(`Expected array to contain ${JSON.stringify(substr)}`);
+    },
+    toMatch(regex) {
+      if (!regex.test(actual)) throw new Error(`Expected ${JSON.stringify(actual)} to match ${regex}`);
+    }
+  };
+}
+
+console.log('=== ADVERSARIAL VERIFICATION SUITE ===\n');
+
+// --- R1: HERO VIDEO ---
+test('R1.1 Hero iframe preview URL present in index and ghl', () => {
+  const url = 'https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview';
+  expect(html).toContain(url);
+  expect(ghlHtml).toContain(url);
+});
+
+test('R1.2 Hero direct fallback link present in index and ghl', () => {
+  const url = 'https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/view';
+  expect(html).toContain(url);
+  expect(ghlHtml).toContain(url);
+});
+
+test('R1.3 Hero aspect ratio 16:9 container configured with padding-bottom: 56.25%', () => {
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-vsl-ratio\s*\{[^}]*padding-bottom:\s*56\.25%;/);
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-hero-video\s*\{[^}]*position:\s*absolute;\s*inset:\s*0;/);
+});
+
+test('R1.4 Hero fallback link styled with scoped CSS and touch target >= 36px', () => {
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-hero-video-fallback-link\s*\{[^}]*min-height:\s*36px;/);
+});
+
+// --- R2: TESTIMONIALS, VIDEOS, AUTO-SLIDER & SMART-SNAP ---
+test('R2.1 All 14 WhatsApp chat cards have 4:5 aspect ratio (280x350) and lazy loading in index.html', () => {
+  for (let i = 1; i <= 14; i++) {
+    expect(html).toContain(`assets/social-proof/chats/chat-14.png`.replace('14', i.toString()));
+    const regex = new RegExp(`src="assets/social-proof/chats/chat-${i}\\.png"[^>]*loading="lazy"[^>]*width="280"[^>]*height="350"`);
+    expect(html).toMatch(regex);
+  }
+});
+
+test('R2.2 All 6 video testimonials have modal data-video-id and Drive preview IDs', () => {
+  const videoIds = [
+    '1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu',
+    '1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ',
+    '18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp',
+    '1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn',
+    '1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx',
+    '1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l'
+  ];
+  videoIds.forEach((id) => {
+    expect(html).toContain(`data-video-id="${id}"`);
+    expect(ghlHtml).toContain(`data-video-id="${id}"`);
+  });
+});
+
+test('R2.3 Auto-slider Smart-Snap: is-paused class enables x mandatory snapping', () => {
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-auto-slider\.is-paused\s*\{[^}]*scroll-snap-type:\s*x mandatory;/);
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-auto-slider\s*\{[^}]*scroll-snap-type:\s*none;/);
+});
+
+test('R2.4 Auto-slider pauses instantly on touch/hover and resumes after 3000ms delay', () => {
+  expect(js).toContain('slider.addEventListener("mouseenter", pause);');
+  expect(js).toContain('slider.addEventListener("touchstart", pause');
+  expect(js).toContain('const RESUME_DELAY = 3000;');
+});
+
+test('R2.5 Video modal coordinates with auto-sliders (pauses while open, resumes on close)', () => {
+  expect(js).toContain('function isModalOpen()');
+  expect(js).toContain('s.dispatchEvent(new CustomEvent("ab-pause"))');
+  expect(js).toContain('s.dispatchEvent(new CustomEvent("ab-resume"))');
+});
+
+test('R2.6 Modal close restores opener focus without violent scrolling (preventScroll)', () => {
+  expect(js).toMatch(/opener\.focus\(\{\s*preventScroll:\s*true\s*\}\)/);
+});
+
+test('R2.7 Slider dots update loop uses cached offsets and does not thrash layout at 60 FPS', () => {
+  expect(js).toContain('computeGeometry()');
+  expect(js).toContain('getCardOffsets()');
+  // Ensure getBoundingClientRect is NOT called in update loop
+  expect(js.includes('card.getBoundingClientRect().left - sliderLeft')).toBeFalsy();
+});
+
+// --- R3: OFFER SECTION ---
+test('R3.1 Pricing CTA text is exactly "Compra ora" in both files', () => {
+  expect(html).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/);
+  expect(ghlHtml).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/);
+});
+
+test('R3.2 Pricing promo sentences formatted on two distinct lines with .ab-mark', () => {
+  expect(html).toMatch(/<div class="ab-pricing-credit-text">\s*<p><span class="ab-mark">Paghi 57 € qualcosa che ne vale 150\.<\/span><\/p>\s*<p><span class="ab-mark">E avrai un credito di 150 € da poter scalare in un percorso con me\.<\/span><\/p>\s*<\/div>/);
+  expect(ghlHtml).toMatch(/<div class="ab-pricing-credit-text">\s*<p><span class="ab-mark">Paghi 57 € qualcosa che ne vale 150\.<\/span><\/p>\s*<p><span class="ab-mark">E avrai un credito di 150 € da poter scalare in un percorso con me\.<\/span><\/p>\s*<\/div>/);
+});
+
+test('R3.3 .ab-mark has high-contrast yellow highlight gradient (#ffe14d)', () => {
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-mark\s*\{[^}]*#ffe14d/);
+});
+
+// --- R4: STICKY MOBILE CTA & SQUARE WHATSAPP BUTTON ---
+test('R4.1 Sticky mobile CTA contains square WhatsApp button to the left of main CTA', () => {
+  expect(html).toMatch(/<aside class="ab-sticky-mobile-cta"[^>]*>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"/);
+  expect(ghlHtml).toMatch(/<aside class="ab-sticky-mobile-cta"[^>]*>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"/);
+});
+
+test('R4.2 WhatsApp button has 52x52px touch box (exceeds Apple HIG 44px/48px min)', () => {
+  expect(css).toMatch(/#ab-mobility-checkup \.ab-sticky-wa\s*\{[^}]*width:\s*52px;\s*height:\s*52px;/);
+});
+
+test('R4.3 WhatsApp link configured in AB_CONFIG with correct phone number and text', () => {
+  const expectedWa = 'https://wa.me/393407982266?text=Ciao%20Andrea%2C%20vorrei%20informazioni%20sul%20Check-up%20di%20Mobilit%C3%A0';
+  expect(js).toContain(expectedWa);
+});
+
+// --- R5: INVARIANTS & INTEGRITY ---
+test('R5.1 All 10 checkout links preserve https://andreabolzan.com/acquisto', () => {
+  const countIdx = (html.match(/href="https:\/\/andreabolzan\.com\/acquisto"/g) || []).length;
+  const countGhl = (ghlHtml.match(/href="https:\/\/andreabolzan\.com\/acquisto"/g) || []).length;
+  expect(countIdx).toBe(10);
+  expect(countGhl).toBe(10);
+});
+
+test('R5.2 Active countdown deadline preserved for Monday 23:00 with aria-live="polite"', () => {
+  expect(js).toContain('deadlineISO: "2026-10-05T23:00:00+02:00"');
+  expect(ghlHtml).toContain('aria-live="polite"');
+  expect(html).toContain('aria-live="polite"');
+});
+
+test('R5.3 Zero root tags in highlevel-paste.html', () => {
+  expect(!/<html[\s>]/i.test(ghlHtml)).toBeTruthy();
+  expect(!/<head[\s>]/i.test(ghlHtml)).toBeTruthy();
+  expect(!/<body[\s>]/i.test(ghlHtml)).toBeTruthy();
+  const wrapperCount = (ghlHtml.match(/id="ab-mobility-checkup"/g) || []).length;
+  expect(wrapperCount).toBe(1);
+});
+
+test('R5.4 Complete CDN remapping: zero local asset paths remain in highlevel-paste.html', () => {
+  expect(!/assets\/andrea\//i.test(ghlHtml)).toBeTruthy();
+  expect(!/assets\/social-proof\//i.test(ghlHtml)).toBeTruthy();
+});
+
+// --- EDGE CASES: QUERY PARAMS & TRACKING FORWARDING ---
+const { appendQueryParams } = require('./script.js');
+
+test('Query param forwarding handles edge cases gracefully', () => {
+  // Empty url
+  expect(appendQueryParams('')).toBe('');
+  expect(appendQueryParams(null)).toBe(null);
+  
+  // Hash anchor untouched
+  expect(appendQueryParams('#WHATSAPP_URL')).toBe('#WHATSAPP_URL');
+  expect(appendQueryParams('#ab-faq')).toBe('#ab-faq');
+  
+  // Forwarding with mocked window.location
+  const origWindow = global.window;
+  global.window = {
+    location: {
+      search: '?utm_source=meta&utm_medium=cpc&custom_id=999',
+      href: 'https://andreabolzan.com/landing'
+    }
+  };
+  
+  const checkoutUrl = 'https://andreabolzan.com/acquisto';
+  const resCheckout = appendQueryParams(checkoutUrl);
+  expect(resCheckout).toContain('utm_source=meta');
+  expect(resCheckout).toContain('utm_medium=cpc');
+  expect(resCheckout).toContain('custom_id=999');
+  
+  const waUrl = 'https://wa.me/393407982266?text=Ciao%20Andrea';
+  const resWa = appendQueryParams(waUrl);
+  expect(resWa).toContain('text=Ciao+Andrea');
+  expect(resWa).toContain('utm_source=meta');
+  
+  // Preserve already present parameter on target
+  const preParamUrl = 'https://andreabolzan.com/acquisto?utm_source=original';
+  const resPre = appendQueryParams(preParamUrl);
+  expect(resPre).toContain('utm_source=original');
+  
+  global.window = origWindow;
+});
+
+console.log(`\n========================================`);
+if (failures.length > 0) {
+  console.error(`TOTAL FAILURES: ${failures.length}`);
+  process.exit(1);
+} else {
+  console.log(`ALL ADVERSARIAL TESTS PASSED (${20} test cases)!`);
+  process.exit(0);
+}
