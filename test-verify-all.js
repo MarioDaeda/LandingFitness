@@ -284,6 +284,7 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(count(/class="ab-mark"/g, src) === 2, `Two highlighted pricing sentences in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
   assert(!src.includes('ab-hero-video-fallback'), `Hero has no "Non vedi il video?" fallback link in ${label}`);
+  assert(src.includes('class="ab-hero-video-poster"'), `Hero shows a poster while the Drive player loads in ${label}`);
 }
 assert(/\.ab-mark\s*\{[^}]*#ffe14d/s.test(css), 'Pricing sentences are underlined/highlighted in yellow');
 assert(/\.ab-sticky-wa\s*\{[^}]*width:\s*52px;[^}]*height:\s*52px;/s.test(css), 'Sticky WhatsApp button is a 52px square');

@@ -48,6 +48,7 @@
     // 3b. Reveal allo scroll con stagger e slider swipe
     setupScrollReveal(root);
     setupVideoModal(root);
+    setupHeroVideoPoster(root);
     setupChatSlider(root);
     setupProofSlider(root);
     setupImageFade(root);
@@ -315,6 +316,31 @@
    * Immagini lazy: fade-in quando arrivano (placeholder colorato nel CSS).
    * Solo per le immagini non ancora caricate; error/load sbloccano sempre la visibilita'.
    */
+  /**
+   * Hero video: nasconde l'anteprima quando il player di Drive ha avuto il tempo di prepararsi
+   * (l'evento load arriva prima che il player sia visibile) o appena l'utente tocca il video.
+   */
+  function setupHeroVideoPoster(root) {
+    const iframe = root.querySelector(".ab-hero-video");
+    if (!iframe || !root.querySelector(".ab-hero-video-poster")) return;
+    const box = iframe.parentElement;
+    const PLAYER_READY_DELAY = 2500;
+    let revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      box.classList.add("is-ready");
+    }
+    function afterLoad() { window.setTimeout(reveal, PLAYER_READY_DELAY); }
+    if (iframe.classList.contains("is-loaded")) afterLoad();
+    else iframe.addEventListener("load", afterLoad, { once: true });
+    // Il tocco sull'iframe sposta il focus fuori dalla pagina
+    window.addEventListener("blur", function () {
+      if (document.activeElement === iframe) reveal();
+    });
+    window.setTimeout(reveal, 10000);
+  }
+
   function setupImageFade(root) {
     root.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
       if (img.complete) return;
