@@ -31,6 +31,9 @@
     const root = document.getElementById("ab-mobility-checkup");
     if (!root) return;
 
+    // 0. Listener touch per abilitare lo stato :active su iOS Safari
+    document.addEventListener("touchstart", function () {}, { passive: true });
+
     // 1. Configurazione dinamica dei link e testi ripetuti
     setupLinks(root);
 
@@ -42,9 +45,10 @@
       setupStickyCta(root);
     }
 
-    // 3b. Reveal allo scroll con stagger
+    // 3b. Reveal allo scroll con stagger e slider swipe
     setupScrollReveal(root);
     setupChatSlider(root);
+    setupProofSlider(root);
     setupImageFade(root);
 
     // 4. Inizializzazione controllata GSAP (se presente ed abilitato)
@@ -189,30 +193,30 @@
 
   /**
    * Sticky CTA Mobile:
-   * Appare dopo che la CTA hero è uscita dallo scroll superiore;
-   * Scompare appena si entra nella sezione offerta o nel footer per evitare sovrapposizioni.
+   * Appare dopo che l'Hero fold è uscito dallo scroll superiore;
+   * Scompare durante la visualizzazione della card offerta o nel footer per evitare sovrapposizioni.
    */
   function setupStickyCta(root) {
     const stickyBar = root.querySelector(".ab-sticky-mobile-cta");
-    const heroCta = root.querySelector("[data-hero-cta]");
-    const offerSection = root.querySelector("#ab-sezione-offerta");
+    const heroTarget = root.querySelector("[data-hero-cta]") || root.querySelector(".ab-hero");
+    const offerCard = root.querySelector(".ab-pricing-card") || root.querySelector(".ab-offer-box") || root.querySelector("#ab-sezione-offerta");
     const footer = root.querySelector("#ab-footer") || root.querySelector(".ab-footer");
 
-    if (!stickyBar || !heroCta) return;
+    if (!stickyBar || !heroTarget) return;
 
     if ("IntersectionObserver" in window) {
       let heroPassed = false;
-      let endAreaReached = false;
+      let hideAreaActive = false;
 
       function updateStickyVisibility() {
-        if (heroPassed && !endAreaReached) {
+        if (heroPassed && !hideAreaActive) {
           stickyBar.classList.add("ab-sticky--visible");
         } else {
           stickyBar.classList.remove("ab-sticky--visible");
         }
       }
 
-      // Osserva l'uscita della Hero CTA verso l'alto
+      // Osserva l'uscita dell'Hero fold verso l'alto
       const heroObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
@@ -222,24 +226,24 @@
         },
         { threshold: 0.1 }
       );
-      heroObserver.observe(heroCta);
+      heroObserver.observe(heroTarget);
 
-      // Osserva l'ingresso nella sezione offerta o nel footer
-      const endElements = [offerSection, footer].filter(Boolean);
-      const endObserver = new IntersectionObserver(
+      // Osserva l'ingresso e la visualizzazione della card offerta o del footer
+      const hideElements = [offerCard, footer].filter(Boolean);
+      const hideObserver = new IntersectionObserver(
         function () {
-          const anyIntersecting = endElements.some(function (el) {
+          const anyIntersecting = hideElements.some(function (el) {
             const rect = el.getBoundingClientRect();
             return rect.top < window.innerHeight && rect.bottom > 0;
           });
-          endAreaReached = anyIntersecting;
+          hideAreaActive = anyIntersecting;
           updateStickyVisibility();
         },
         { threshold: 0.05 }
       );
 
-      endElements.forEach(function (el) {
-        endObserver.observe(el);
+      hideElements.forEach(function (el) {
+        hideObserver.observe(el);
       });
     }
   }
@@ -305,16 +309,15 @@
   }
 
   /**
-   * Slider chat: fade ai bordi solo dove c'e' altro da scorrere + pallini di posizione.
+   * Helper per slider touch con scroll-snap nativo CSS: fade ai bordi + pallini di posizione.
    */
-  function setupChatSlider(root) {
-    const slider = root.querySelector(".ab-chat-slider");
+  function setupSliderDotsAndFade(slider, cardSelector, dotsClass, fadeLVar, fadeRVar) {
     if (!slider) return;
-    const cards = Array.prototype.slice.call(slider.querySelectorAll(".ab-chat-card"));
+    const cards = Array.prototype.slice.call(slider.querySelectorAll(cardSelector));
     if (cards.length < 2) return;
 
     const dots = document.createElement("div");
-    dots.className = "ab-slider-dots";
+    dots.className = dotsClass;
     dots.setAttribute("aria-hidden", "true");
     const dotEls = cards.map(function () {
       const d = document.createElement("span");
@@ -329,8 +332,8 @@
       ticking = false;
       const max = slider.scrollWidth - slider.clientWidth;
       const x = slider.scrollLeft;
-      slider.style.setProperty("--ab-fade-l", x > 4 ? "36px" : "0px");
-      slider.style.setProperty("--ab-fade-r", x < max - 24 ? "36px" : "0px");
+      if (fadeLVar) slider.style.setProperty(fadeLVar, x > 4 ? "36px" : "0px");
+      if (fadeRVar) slider.style.setProperty(fadeRVar, x < max - 24 ? "36px" : "0px");
 
       let active = 0;
       let best = Infinity;
@@ -347,6 +350,22 @@
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     update();
+  }
+
+  /**
+   * Slider chat: fade ai bordi solo dove c'e' altro da scorrere + pallini di posizione.
+   */
+  function setupChatSlider(root) {
+    const slider = root.querySelector(".ab-chat-slider");
+    setupSliderDotsAndFade(slider, ".ab-chat-card", "ab-slider-dots", "--ab-fade-l", "--ab-fade-r");
+  }
+
+  /**
+   * Slider recensioni e prove sociali: peek-ahead swipe con fade e pallini su mobile.
+   */
+  function setupProofSlider(root) {
+    const slider = root.querySelector(".ab-proof-grid");
+    setupSliderDotsAndFade(slider, ".ab-proof-card", "ab-slider-dots ab-proof-slider-dots", "--ab-proof-fade-l", "--ab-proof-fade-r");
   }
 
   /**

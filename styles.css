@@ -71,12 +71,33 @@
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #ab-mobility-checkup *,
 #ab-mobility-checkup *::before,
 #ab-mobility-checkup *::after {
   box-sizing: border-box;
+}
+
+/* Touch Targets, Gestures & iOS Tap Highlight */
+#ab-mobility-checkup a,
+#ab-mobility-checkup button,
+#ab-mobility-checkup summary,
+#ab-mobility-checkup [role="button"],
+#ab-mobility-checkup .ab-cta {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevenzione auto-zoom Safari iOS (font-size >= 16px) */
+#ab-mobility-checkup input,
+#ab-mobility-checkup select,
+#ab-mobility-checkup textarea {
+  font-size: 16px;
 }
 
 /* Numeri Tabulari */
@@ -137,7 +158,7 @@
 
 #ab-mobility-checkup .ab-title-h3 {
   font-family: var(--ab-font-sans);
-  font-size: 20px;
+  font-size: clamp(18px, 2.5vw, 20px);
   line-height: 1.35;
   font-weight: 700;
   text-transform: none;
@@ -158,7 +179,7 @@
 }
 
 #ab-mobility-checkup .ab-body {
-  font-size: 16px;
+  font-size: clamp(16px, 1.2vw, 17px);
   line-height: 1.6;
   color: var(--ab-color-ink);
   margin-top: 0;
@@ -168,7 +189,7 @@
 
 #ab-mobility-checkup .ab-body--emphasis {
   font-weight: 600;
-  font-size: 17.5px;
+  font-size: clamp(16.5px, 1.3vw, 18px);
   color: var(--ab-color-ink);
 }
 
@@ -506,18 +527,33 @@
    3. PROVA SOCIALE INIZIALE
    ========================================================================== */
 #ab-mobility-checkup .ab-proof-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--ab-space-6);
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: var(--ab-space-4);
+  gap: var(--ab-space-4);
   margin-bottom: var(--ab-space-12);
+  padding-bottom: var(--ab-space-4);
+  overscroll-behavior-x: contain;
+  --ab-proof-fade-l: 0px;
+  --ab-proof-fade-r: 36px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--ab-proof-fade-l), #000 calc(100% - var(--ab-proof-fade-r)), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--ab-proof-fade-l), #000 calc(100% - var(--ab-proof-fade-r)), transparent 100%);
 }
 
 #ab-mobility-checkup .ab-proof-card {
+  flex: 0 0 84%;
+  min-width: 84%;
+  max-width: 84%;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
   background: var(--ab-color-surface);
   border: 1px solid var(--ab-color-line);
   border-radius: var(--ab-radius-lg);
-  padding: var(--ab-space-6);
+  padding: var(--ab-space-5);
   box-shadow: var(--ab-shadow-sm);
+  touch-action: manipulation;
 }
 
 #ab-mobility-checkup .ab-proof-card--featured {
@@ -622,6 +658,7 @@
   -webkit-overflow-scrolling: touch;
   scroll-padding-inline: var(--ab-space-4);
   padding-bottom: var(--ab-space-3);
+  overscroll-behavior-x: contain;
   /* Fade ai bordi dove c'e' altro contenuto (valori aggiornati da JS) */
   --ab-fade-l: 0px;
   --ab-fade-r: 36px;
@@ -636,8 +673,11 @@
 }
 
 #ab-mobility-checkup .ab-chat-card {
-  flex: 0 0 280px;
+  flex: 0 0 84%;
+  min-width: 84%;
+  max-width: 84%;
   scroll-snap-align: start;
+  scroll-snap-stop: normal;
   background: var(--ab-color-canvas);
   border: 1px solid var(--ab-color-line);
   border-radius: var(--ab-radius-md);
@@ -646,6 +686,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--ab-space-3);
+  touch-action: manipulation;
 }
 
 #ab-mobility-checkup .ab-chat-placeholder-box {
@@ -759,6 +800,7 @@
   color: #ffffff;
   margin-top: 0;
   margin-bottom: var(--ab-space-4);
+  text-wrap: balance;
 }
 
 #ab-mobility-checkup .ab-bridge__text {
@@ -1862,7 +1904,7 @@
   box-shadow: 0 -4px 16px rgba(14, 18, 23, 0.14);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   transform: translateY(100%);
   opacity: 0;
@@ -1899,9 +1941,23 @@
 }
 
 #ab-mobility-checkup .ab-sticky-btn {
-  padding: 10px 18px;
-  font-size: 14.5px;
+  width: 100%;
+  max-width: 480px;
+  min-height: 52px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#ab-mobility-checkup .ab-sticky-btn:active {
+  transform: scale(0.98);
 }
 
 /* ==========================================================================
@@ -1916,7 +1972,30 @@
   }
 
   #ab-mobility-checkup .ab-proof-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    overflow-x: visible;
+    gap: var(--ab-space-6);
+    padding-bottom: 0;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  #ab-mobility-checkup .ab-proof-card {
+    flex: unset;
+    min-width: unset;
+    max-width: unset;
+    padding: var(--ab-space-6);
+  }
+
+  #ab-mobility-checkup .ab-chat-card {
+    flex: 0 0 280px;
+    min-width: 280px;
+    max-width: 280px;
+  }
+
+  #ab-mobility-checkup .ab-proof-slider-dots {
+    display: none !important;
   }
 
   #ab-mobility-checkup .ab-problems-grid {
@@ -2232,6 +2311,22 @@
   margin-top: var(--ab-space-3);
 }
 
+#ab-mobility-checkup .ab-proof-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: calc(var(--ab-space-4) * -1);
+  margin-bottom: var(--ab-space-10);
+}
+
+@media (max-width: 767px) {
+  #ab-mobility-checkup.ab-js .ab-proof-card[data-ab-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 #ab-mobility-checkup .ab-slider-dot {
   width: 8px;
   height: 8px;
@@ -2289,6 +2384,9 @@
 #ab-mobility-checkup .ab-problem-quote,
 #ab-mobility-checkup .ab-objection-q,
 #ab-mobility-checkup .ab-offer-item strong,
+#ab-mobility-checkup .ab-why-card__title,
+#ab-mobility-checkup .ab-step-card__title,
+#ab-mobility-checkup .ab-chat-slider-title,
 #ab-mobility-checkup .ab-reveal-highlight {
   text-wrap: balance;
 }

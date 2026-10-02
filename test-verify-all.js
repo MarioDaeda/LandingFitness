@@ -225,6 +225,40 @@ assert(css.includes('min-height: 44px;'), 'Footer links have min 44px touch targ
 // Verify all local assets in GHL deliverable are mapped to CDN
 assert(!/src=["']assets\//.test(ghlHtml), 'highlevel-paste.html has zero remaining local asset paths');
 
+console.log('\n=== 13. Mobile-First CRO & Viewport Engineering Checks ===');
+// 1. Sticky Bottom CTA Bar
+assert(/#ab-mobility-checkup \.ab-sticky-btn\s*\{[^}]*min-height:\s*52px;/s.test(css), 'Sticky CTA button has 52px touch height');
+assert(/Blocca il Check-up\s*·\s*<span[^>]*data-promo-price[^>]*>57\s*€<\/span>/.test(html), 'Sticky CTA button has micro-copy "Blocca il Check-up · 57 €" in index.html');
+assert(/Blocca il Check-up\s*·\s*<span[^>]*data-promo-price[^>]*>57\s*€<\/span>/.test(ghlHtml), 'Sticky CTA button has micro-copy "Blocca il Check-up · 57 €" in highlevel-paste.html');
+assert(css.includes('env(safe-area-inset-bottom'), 'Sticky CTA bar supports safe-area-inset-bottom for iOS home bar');
+assert(/#ab-mobility-checkup \.ab-sticky-btn:active\s*\{[^}]*transform:\s*scale\(/s.test(css), 'Sticky CTA button has active press feedback');
+
+// 2. Touch targets & iOS Safari touchstart
+assert(css.includes('touch-action: manipulation;'), 'touch-action: manipulation is configured for fast touch response');
+assert(css.includes('-webkit-tap-highlight-color: transparent;'), '-webkit-tap-highlight-color: transparent is configured');
+assert(js.includes('document.addEventListener("touchstart"') || js.includes("document.addEventListener('touchstart'"), 'iOS Safari touchstart listener is registered for instant :active feedback');
+
+// 3. Fluid typography & auto-zoom prevention
+assert(/#ab-mobility-checkup \.ab-title-h1\s*\{[^}]*font-size:\s*clamp\(/s.test(css), 'H1 uses fluid typography clamp()');
+assert(/#ab-mobility-checkup \.ab-title-h2\s*\{[^}]*font-size:\s*clamp\(/s.test(css), 'H2 uses fluid typography clamp()');
+assert(/#ab-mobility-checkup \.ab-title-h3\s*\{[^}]*font-size:\s*clamp\(/s.test(css), 'H3 uses fluid typography clamp()');
+assert(/#ab-mobility-checkup \.ab-title-h1\s*\{[^}]*text-wrap:\s*balance;/s.test(css), 'H1 has text-wrap: balance');
+assert(/#ab-mobility-checkup \.ab-title-h2\s*\{[^}]*text-wrap:\s*balance;/s.test(css), 'H2 has text-wrap: balance');
+assert(/#ab-mobility-checkup input,\s*#ab-mobility-checkup select,\s*#ab-mobility-checkup textarea\s*\{[^}]*font-size:\s*16px;/s.test(css), 'Form inputs have font-size: 16px to prevent iOS auto-zoom');
+
+// 4. Swipe Gestures & Peek-ahead layout (84% card + 16% preview)
+assert(/#ab-mobility-checkup \.ab-chat-card\s*\{[^}]*(?:flex:\s*0\s+0\s+84%|width:\s*84%|min-width:\s*84%)/s.test(css), 'Chat cards have 84% width peek-ahead layout on mobile');
+assert(/#ab-mobility-checkup \.ab-proof-card\s*\{[^}]*(?:flex:\s*0\s+0\s+84%|width:\s*84%|min-width:\s*84%)/s.test(css), 'Proof cards have 84% width peek-ahead layout on mobile');
+assert(/#ab-mobility-checkup \.ab-chat-slider\s*\{[^}]*scroll-snap-type:\s*x mandatory;/s.test(css), 'Chat slider uses native CSS scroll-snap');
+assert(/#ab-mobility-checkup \.ab-proof-grid\s*\{[^}]*scroll-snap-type:\s*x mandatory;/s.test(css), 'Proof grid uses native CSS scroll-snap on mobile');
+assert(/#ab-mobility-checkup \.ab-chat-slider\s*\{[^}]*-webkit-overflow-scrolling:\s*touch;/s.test(css), 'Chat slider has -webkit-overflow-scrolling: touch');
+assert(/#ab-mobility-checkup \.ab-proof-grid\s*\{[^}]*-webkit-overflow-scrolling:\s*touch;/s.test(css), 'Proof grid has -webkit-overflow-scrolling: touch');
+
+// 5. Dynamic viewport units & overscroll behavior
+assert(/#ab-mobility-checkup\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100dvh;/s.test(css), 'Dynamic viewport units (100dvh with 100vh fallback) are configured');
+assert(/#ab-mobility-checkup\s*\{[^}]*overscroll-behavior-y:\s*none;/s.test(css), 'overscroll-behavior-y: none is configured to prevent accidental bounce');
+assert(css.includes('overscroll-behavior-x: contain;'), 'overscroll-behavior-x: contain is configured on sliders');
+
 console.log('\n========================================');
 if (errors.length > 0) {
   console.error(`🚨 TOTAL FAILURES: ${errors.length}`);
