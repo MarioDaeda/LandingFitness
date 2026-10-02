@@ -370,7 +370,8 @@
    Mobile-first: Pre-headline -> Headline -> Subtitle -> VSL -> Actions
    ========================================================================== */
 #ab-mobility-checkup .ab-hero {
-  padding-top: var(--ab-space-12);
+  /* Su mobile attaccato al countdown, così il video entra nella prima schermata */
+  padding-top: var(--ab-space-3);
   padding-bottom: var(--ab-space-16);
 }
 
@@ -2034,6 +2035,10 @@
 
 /* Desktop (min-width: 992px) */
 @media (min-width: 992px) {
+  #ab-mobility-checkup .ab-hero {
+    padding-top: var(--ab-space-12);
+  }
+
   #ab-mobility-checkup .ab-hero__grid {
     display: grid;
     grid-template-columns: 55% 45%;
@@ -2361,7 +2366,7 @@
 }
 
 /* ==========================================================================
-   HERO VIDEO (Google Drive)
+   HERO VIDEO (HighLevel Media, <video> nativo con comandi in basso)
    ========================================================================== */
 #ab-mobility-checkup .ab-hero-video {
   position: absolute;
@@ -2370,23 +2375,7 @@
   height: 100%;
   border: 0;
   background: #0e1217;
-}
-
-/* Anteprima sopra il player di Drive, che su mobile resta nero qualche secondo dopo il caricamento.
-   Lascia passare i tocchi al player e sparisce quando è pronto (o al primo tocco). */
-#ab-mobility-checkup .ab-hero-video-poster {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  transition: opacity 400ms var(--ab-ease-out);
-}
-
-#ab-mobility-checkup .ab-vsl-ratio.is-ready .ab-hero-video-poster {
-  opacity: 0;
+  object-fit: contain;
 }
 
 /* ==========================================================================
@@ -2512,28 +2501,6 @@
   width: min(90vw, 420px);
   height: min(82vh, 748px);
   border-radius: var(--ab-radius-lg);
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback {
-  text-align: center;
-  padding: 8px 12px;
-  background: #0e1217;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom-left-radius: var(--ab-radius-lg);
-  border-bottom-right-radius: var(--ab-radius-lg);
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback-link {
-  color: #aab4c4;
-  font-size: 13px;
-  text-decoration: underline;
-  display: inline-block;
-  min-height: 36px;
-  line-height: 36px;
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback-link:hover {
-  color: #ffffff;
 }
 
 #ab-mobility-checkup .ab-video-close {

@@ -221,7 +221,7 @@ assert(html.includes('Monica Gavillucci.jpg" alt="Testimonianza di Monica Gavill
 assert(html.includes('width="280" height="350"'), 'Chat cards have accurate 280x350 dimensions (4:5 aspect ratio)');
 
 // Photo cover 3:2 ratio rule
-assert(css.includes('.ab-hero-video {') && /\.ab-hero-video\s*\{[^}]*position:\s*absolute/s.test(css), 'Hero video iframe fills the 16:9 ratio box');
+assert(css.includes('.ab-hero-video {') && /\.ab-hero-video\s*\{[^}]*position:\s*absolute/s.test(css), 'Hero video fills the 16:9 ratio box');
 assert(css.includes('aspect-ratio: 2 / 3;') || css.includes('aspect-ratio: 2/3;'), 'Bio photo has 2:3 aspect ratio');
 assert(css.includes('min-height: 44px;'), 'Footer links have min 44px touch target');
 
@@ -278,19 +278,18 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(count(/class="[^"]*ab-auto-slider/g, src) === 3, `WhatsApp, written and video sliders are all slow auto-scroll sliders in ${label}`);
   assert(count(/class="ab-proof-grid ab-video-grid ab-auto-slider"/g, src) === 1, `Videos have their own slider in ${label}`);
   assert(!/Video testimonianza \d/.test(src), `No "Video testimonianza N" labels in ${label}`);
-  assert(src.includes('drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview'), `Hero shows the Drive video in ${label}`);
+  assert(/<video class="ab-hero-video" src="https:\/\/assets\.cdn\.filesafe\.space\/[^"]+" poster="[^"]+" controls playsinline/.test(src), `Hero uses a native <video> from HighLevel Media with poster and controls in ${label}`);
   assert(!/class="ab-vsl-poster-img"/.test(src), `Hero photo replaced by video in ${label}`);
   assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
   assert(count(/class="ab-mark"/g, src) === 3, `Headline + two pricing sentences highlighted in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
   assert(!src.includes('ab-hero-video-fallback'), `Hero has no "Non vedi il video?" fallback link in ${label}`);
-  assert(src.includes('class="ab-hero-video-poster"'), `Hero shows a poster while the Drive player loads in ${label}`);
 }
 assert(/\.ab-mark\s*\{[^}]*#ffe14d/s.test(css), 'Pricing sentences are underlined/highlighted in yellow');
 assert(/\.ab-sticky-wa\s*\{[^}]*width:\s*52px;[^}]*height:\s*52px;/s.test(css), 'Sticky WhatsApp button is a 52px square');
 assert(js.includes('function setupAutoScroll') && js.includes('"touchstart", pause') && js.includes('"mouseenter", pause'), 'Auto-scroll pauses on touch and hover');
 assert(js.includes('prefers-reduced-motion') && js.includes('function setupVideoModal'), 'Auto-scroll respects reduced motion; video modal is registered');
-assert(js.includes('ab-video-modal-fallback'), 'Video modal fallback link registered in JS');
+assert(!js.includes('Non parte il video'), 'Video modal has no "Non parte il video?" fallback link');
 assert(js.includes('isModalOpen') && js.includes('ab-pause') && js.includes('ab-resume'), 'Auto-scroll pauses during video modal display and resumes after closure');
 assert(js.includes('preventScroll: true'), 'Modal close safely restores focus with preventScroll: true without viewport jumps');
 assert(!js.includes('card.getBoundingClientRect().left - sliderLeft'), 'Eliminated layout thrashing and forced reflows from slider dots update loop');

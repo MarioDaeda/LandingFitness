@@ -41,16 +41,15 @@ function expect(actual) {
 console.log('=== ADVERSARIAL VERIFICATION SUITE ===\n');
 
 // --- R1: HERO VIDEO ---
-test('R1.1 Hero iframe preview URL present in index and ghl', () => {
-  const url = 'https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview';
+test('R1.1 Hero video served from HighLevel Media in index and ghl', () => {
+  const url = 'https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abf80322c503e697d4d8f85.mov';
   expect(html).toContain(url);
   expect(ghlHtml).toContain(url);
 });
 
-test('R1.2 Hero direct fallback link present in index and ghl', () => {
-  const url = 'https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/view';
-  expect(html).toContain(url);
-  expect(ghlHtml).toContain(url);
+test('R1.2 Hero has no Drive iframe anymore', () => {
+  const drive = 'drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview';
+  expect(html.includes(drive) || ghlHtml.includes(drive)).toBe(false);
 });
 
 test('R1.3 Hero aspect ratio 16:9 container configured with padding-bottom: 56.25%', () => {

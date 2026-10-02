@@ -377,7 +377,8 @@
    Mobile-first: Pre-headline -> Headline -> Subtitle -> VSL -> Actions
    ========================================================================== */
 #ab-mobility-checkup .ab-hero {
-  padding-top: var(--ab-space-12);
+  /* Su mobile attaccato al countdown, così il video entra nella prima schermata */
+  padding-top: var(--ab-space-3);
   padding-bottom: var(--ab-space-16);
 }
 
@@ -2041,6 +2042,10 @@
 
 /* Desktop (min-width: 992px) */
 @media (min-width: 992px) {
+  #ab-mobility-checkup .ab-hero {
+    padding-top: var(--ab-space-12);
+  }
+
   #ab-mobility-checkup .ab-hero__grid {
     display: grid;
     grid-template-columns: 55% 45%;
@@ -2368,7 +2373,7 @@
 }
 
 /* ==========================================================================
-   HERO VIDEO (Google Drive)
+   HERO VIDEO (HighLevel Media, <video> nativo con comandi in basso)
    ========================================================================== */
 #ab-mobility-checkup .ab-hero-video {
   position: absolute;
@@ -2377,23 +2382,7 @@
   height: 100%;
   border: 0;
   background: #0e1217;
-}
-
-/* Anteprima sopra il player di Drive, che su mobile resta nero qualche secondo dopo il caricamento.
-   Lascia passare i tocchi al player e sparisce quando è pronto (o al primo tocco). */
-#ab-mobility-checkup .ab-hero-video-poster {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  transition: opacity 400ms var(--ab-ease-out);
-}
-
-#ab-mobility-checkup .ab-vsl-ratio.is-ready .ab-hero-video-poster {
-  opacity: 0;
+  object-fit: contain;
 }
 
 /* ==========================================================================
@@ -2519,28 +2508,6 @@
   width: min(90vw, 420px);
   height: min(82vh, 748px);
   border-radius: var(--ab-radius-lg);
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback {
-  text-align: center;
-  padding: 8px 12px;
-  background: #0e1217;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom-left-radius: var(--ab-radius-lg);
-  border-bottom-right-radius: var(--ab-radius-lg);
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback-link {
-  color: #aab4c4;
-  font-size: 13px;
-  text-decoration: underline;
-  display: inline-block;
-  min-height: 36px;
-  line-height: 36px;
-}
-
-#ab-mobility-checkup .ab-video-modal-fallback-link:hover {
-  color: #ffffff;
 }
 
 #ab-mobility-checkup .ab-video-close {
@@ -2738,8 +2705,7 @@
           <div class="ab-hero__media">
             <div class="ab-vsl-card ab-hero-video-card">
               <div class="ab-vsl-ratio">
-                <img class="ab-hero-video-poster" src="https://drive.google.com/thumbnail?id=1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw&amp;sz=w1280" onerror="this.hidden=true" alt="" aria-hidden="true" width="1280" height="720" fetchpriority="high">
-                <iframe class="ab-hero-video" onload="this.classList.add('is-loaded')" src="https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview" title="Video di presentazione del Check-up di Mobilità — Andrea Bolzan" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <video class="ab-hero-video" src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abf80322c503e697d4d8f85.mov" poster="https://drive.google.com/thumbnail?id=1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw&amp;sz=w1280" controls playsinline preload="metadata" aria-label="Video di presentazione del Check-up di Mobilità — Andrea Bolzan"></video>
               </div>
             </div>
           </div>
@@ -3960,7 +3926,6 @@
     // 3b. Reveal allo scroll con stagger e slider swipe
     setupScrollReveal(root);
     setupVideoModal(root);
-    setupHeroVideoPoster(root);
     setupChatSlider(root);
     setupProofSlider(root);
     setupImageFade(root);
@@ -4228,31 +4193,6 @@
    * Immagini lazy: fade-in quando arrivano (placeholder colorato nel CSS).
    * Solo per le immagini non ancora caricate; error/load sbloccano sempre la visibilita'.
    */
-  /**
-   * Hero video: nasconde l'anteprima quando il player di Drive ha avuto il tempo di prepararsi
-   * (l'evento load arriva prima che il player sia visibile) o appena l'utente tocca il video.
-   */
-  function setupHeroVideoPoster(root) {
-    const iframe = root.querySelector(".ab-hero-video");
-    if (!iframe || !root.querySelector(".ab-hero-video-poster")) return;
-    const box = iframe.parentElement;
-    const PLAYER_READY_DELAY = 2500;
-    let revealed = false;
-    function reveal() {
-      if (revealed) return;
-      revealed = true;
-      box.classList.add("is-ready");
-    }
-    function afterLoad() { window.setTimeout(reveal, PLAYER_READY_DELAY); }
-    if (iframe.classList.contains("is-loaded")) afterLoad();
-    else iframe.addEventListener("load", afterLoad, { once: true });
-    // Il tocco sull'iframe sposta il focus fuori dalla pagina
-    window.addEventListener("blur", function () {
-      if (document.activeElement === iframe) reveal();
-    });
-    window.setTimeout(reveal, 10000);
-  }
-
   function setupImageFade(root) {
     root.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
       if (img.complete) return;
@@ -4594,19 +4534,8 @@
       iframe.allow = "autoplay; fullscreen";
       iframe.setAttribute("allowfullscreen", "");
 
-      const fallback = document.createElement("div");
-      fallback.className = "ab-video-modal-fallback";
-      const fallbackLink = document.createElement("a");
-      fallbackLink.href = "https://drive.google.com/file/d/" + videoId + "/view";
-      fallbackLink.target = "_blank";
-      fallbackLink.rel = "noopener noreferrer";
-      fallbackLink.className = "ab-video-modal-fallback-link";
-      fallbackLink.textContent = "Non parte il video? Aprilo direttamente su Google Drive";
-      fallback.appendChild(fallbackLink);
-
       frame.innerHTML = "";
       frame.appendChild(iframe);
-      frame.appendChild(fallback);
 
       root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
         s.dispatchEvent(new CustomEvent("ab-pause"));
