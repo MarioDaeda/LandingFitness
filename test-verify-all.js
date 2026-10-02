@@ -36,18 +36,33 @@ assert(h1InGhl.length === 1, `highlevel-paste.html has exactly 1 H1 (found ${h1I
 console.log('\n=== 3. CTA Links Verification ===');
 const checkoutRegex = /<a\s+[^>]*?data-checkout-link[^>]*?>/gi;
 const waRegex = /<a\s+[^>]*?data-whatsapp-link[^>]*?>/gi;
-const allCheckout = ghlHtml.match(checkoutRegex) || [];
-const allWa = ghlHtml.match(waRegex) || [];
-assert(allCheckout.length === 10, `Found all 10 checkout links (found ${allCheckout.length})`);
-allCheckout.forEach((l, i) => {
-  assert(l.includes('href="#CHECKOUT_URL"'), `Checkout link ${i + 1} has href="#CHECKOUT_URL"`);
+const allCheckoutGhl = ghlHtml.match(checkoutRegex) || [];
+const allWaGhl = ghlHtml.match(waRegex) || [];
+const allCheckoutIdx = html.match(checkoutRegex) || [];
+const allWaIdx = html.match(waRegex) || [];
+
+assert(allCheckoutGhl.length === 10, `Found all 10 checkout links in highlevel-paste.html (found ${allCheckoutGhl.length})`);
+assert(allCheckoutIdx.length === 10, `Found all 10 checkout links in index.html (found ${allCheckoutIdx.length})`);
+
+allCheckoutGhl.forEach((l, i) => {
+  assert(l.includes('href="#CHECKOUT_URL"'), `Checkout link ${i + 1} in GHL has href="#CHECKOUT_URL"`);
+});
+allCheckoutIdx.forEach((l, i) => {
+  assert(l.includes('href="#CHECKOUT_URL"'), `Checkout link ${i + 1} in index.html has href="#CHECKOUT_URL"`);
 });
 
-assert(allWa.length === 4, `Found all 4 WhatsApp links (found ${allWa.length})`);
-allWa.forEach((l, i) => {
-  assert(l.includes('href="#WHATSAPP_URL"'), `WhatsApp link ${i + 1} has href="#WHATSAPP_URL"`);
-  assert(l.includes('target="_blank"'), `WhatsApp link ${i + 1} has target="_blank"`);
-  assert(l.includes('rel="noopener noreferrer"'), `WhatsApp link ${i + 1} has rel="noopener noreferrer"`);
+assert(allWaGhl.length === 4, `Found all 4 WhatsApp links in highlevel-paste.html (found ${allWaGhl.length})`);
+assert(allWaIdx.length === 4, `Found all 4 WhatsApp links in index.html (found ${allWaIdx.length})`);
+
+allWaGhl.forEach((l, i) => {
+  assert(l.includes('href="#WHATSAPP_URL"'), `WhatsApp link ${i + 1} in GHL has href="#WHATSAPP_URL"`);
+  assert(l.includes('target="_blank"'), `WhatsApp link ${i + 1} in GHL has target="_blank"`);
+  assert(l.includes('rel="noopener noreferrer"'), `WhatsApp link ${i + 1} in GHL has rel="noopener noreferrer"`);
+});
+allWaIdx.forEach((l, i) => {
+  assert(l.includes('href="#WHATSAPP_URL"'), `WhatsApp link ${i + 1} in index.html has href="#WHATSAPP_URL"`);
+  assert(l.includes('target="_blank"'), `WhatsApp link ${i + 1} in index.html has target="_blank"`);
+  assert(l.includes('rel="noopener noreferrer"'), `WhatsApp link ${i + 1} in index.html has rel="noopener noreferrer"`);
 });
 
 console.log('\n=== 4. Unscoped CSS Selectors Check ===');
@@ -145,18 +160,70 @@ console.log('\n=== 9. WCAG AA Contrast Tokens Check ===');
 assert(css.includes('--ab-color-accent: #A3552F;'), 'Accent color set to #A3552F (contrast >= 4.5:1)');
 assert(css.includes('#A3B1AB'), 'Footer disclaimer color set to #A3B1AB (contrast >= 4.5:1)');
 
-console.log('\n=== 10. Script IIFE & Re-render Robustness Check ===');
+console.log('\n=== 10. Script IIFE, Tracking & Query Params Forwarding Check ===');
 assert(js.includes('(function () {') || js.includes('(function() {'), 'script.js encapsulates code in an IIFE');
 assert(!/^const AB_CONFIG/m.test(js), 'AB_CONFIG is not declared in global scope outside IIFE');
 
-console.log('\n=== 11. Accessibility, CLS & Hero Photographic Cover Check ===');
-assert(html.includes('role="region"') && html.includes('ab-chat-slider'), 'Chat slider has role="region" for accessibility');
-assert(!html.includes('ab-vsl-play-btn'), 'Fake play button removed from Hero cover');
-assert(!html.includes('Alternativa testuale:'), 'Unnecessary "Alternativa testuale:" removed from Hero cover');
-assert(!html.includes('aria-label="Video di presentazione del Check-up di Mobilità"'), 'Fake player aria-label removed from Hero cover');
-assert(!html.includes('eliminazione dolori cronici'), 'Luca Timpani alt text updated to avoid medical over-claim');
+// Functional testing of appendQueryParams
+const { appendQueryParams } = require('./script.js');
+assert(typeof appendQueryParams === 'function', 'appendQueryParams is exported and callable');
+assert(appendQueryParams('#CHECKOUT_URL') === '#CHECKOUT_URL', 'appendQueryParams preserves hash anchors untouched');
+assert(appendQueryParams('#WHATSAPP_URL') === '#WHATSAPP_URL', 'appendQueryParams preserves WhatsApp hash anchors untouched');
+
+// Mock window.location for query parameter forwarding test
+const origWindow = global.window;
+global.window = {
+  location: {
+    search: '?utm_source=meta_ad&utm_campaign=winter_promo&fbclid=test12345',
+    href: 'https://andrea-bolzan.com/mobility-checkup'
+  }
+};
+const checkoutForwarded = appendQueryParams('https://buy.stripe.com/test_checkout');
+assert(checkoutForwarded.includes('utm_source=meta_ad'), 'appendQueryParams forwards utm_source');
+assert(checkoutForwarded.includes('utm_campaign=winter_promo'), 'appendQueryParams forwards utm_campaign');
+assert(checkoutForwarded.includes('fbclid=test12345'), 'appendQueryParams forwards fbclid');
+
+const waForwarded = appendQueryParams('https://wa.me/393400000000?text=Ciao%20Andrea');
+assert(waForwarded.includes('text=Ciao'), 'appendQueryParams preserves existing text parameter on WhatsApp URL');
+assert(waForwarded.includes('utm_source=meta_ad'), 'appendQueryParams appends tracking to WhatsApp URL');
+global.window = origWindow;
+
+console.log('\n=== 11. Heading Scoped Resets (GHL Theme Isolation) Check ===');
+assert(/#ab-mobility-checkup \.ab-title-h1\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H1 has scoped text-transform none and letter-spacing normal');
+assert(/#ab-mobility-checkup \.ab-title-h2\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H2 has scoped text-transform none and letter-spacing normal');
+assert(/#ab-mobility-checkup \.ab-title-h3\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H3 has scoped text-transform none and letter-spacing normal');
+assert(/#ab-mobility-checkup \.ab-bridge__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'Bridge title has scoped heading resets');
+assert(/#ab-mobility-checkup \.ab-why-card__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'Why card title has scoped heading resets');
+
+console.log('\n=== 12. Accessibility, CLS & Media Aspect Ratio Checks ===');
+assert(html.includes('role="region"') && html.includes('ab-chat-slider'), 'Chat slider in index.html has role="region"');
+assert(ghlHtml.includes('role="region"') && ghlHtml.includes('ab-chat-slider'), 'Chat slider in highlevel-paste.html has role="region"');
+assert(!html.includes('ab-vsl-play-btn'), 'Fake play button removed from Hero cover in index.html');
+assert(!ghlHtml.includes('ab-vsl-play-btn'), 'Fake play button removed from Hero cover in highlevel-paste.html');
+assert(!html.includes('Alternativa testuale:'), 'Unnecessary "Alternativa testuale:" removed from Hero cover in index.html');
+assert(!ghlHtml.includes('Alternativa testuale:'), 'Unnecessary "Alternativa testuale:" removed from Hero cover in highlevel-paste.html');
+assert(!html.includes('aria-label="Video di presentazione del Check-up di Mobilità"'), 'Fake player aria-label removed from index.html');
+assert(!ghlHtml.includes('aria-label="Video di presentazione del Check-up di Mobilità"'), 'Fake player aria-label removed from highlevel-paste.html');
+
+// Alt text realistic claims
+assert(!html.includes('eliminazione dolori cronici'), 'Luca Timpani alt text updated in index.html');
+assert(!ghlHtml.includes('eliminazione dolori cronici'), 'Luca Timpani alt text updated in highlevel-paste.html');
+assert(html.includes('alleviando di molto') || html.includes('netta riduzione'), 'Luca Timpani has realistic claim in index.html');
+assert(ghlHtml.includes('alleviando di molto') || ghlHtml.includes('netta riduzione'), 'Luca Timpani has realistic claim in highlevel-paste.html');
+
+// Review dimensions & CLS checks
+assert(!/width=["']600["']\s+height=["']700["']/.test(html), 'No 600x700 generic review dimensions in index.html');
+assert(!/width=["']600["']\s+height=["']700["']/.test(ghlHtml), 'No 600x700 generic review dimensions in highlevel-paste.html');
+assert(html.includes('Monica Gavillucci.jpg" alt="Testimonianza di Monica Gavillucci') && html.includes('width="800" height="493"'), 'Monica Gavillucci has accurate 800x493 dimensions');
+assert(html.includes('width="280" height="350"'), 'Chat cards have accurate 280x350 dimensions (4:5 aspect ratio)');
+
+// Photo cover 3:2 ratio rule
+assert(css.includes('.ab-hero-photo-card .ab-vsl-ratio'), 'Hero photo card has dedicated ratio rule');
 assert(css.includes('aspect-ratio: 2 / 3;') || css.includes('aspect-ratio: 2/3;'), 'Bio photo has 2:3 aspect ratio');
 assert(css.includes('min-height: 44px;'), 'Footer links have min 44px touch target');
+
+// Verify all local assets in GHL deliverable are mapped to CDN
+assert(!/src=["']assets\//.test(ghlHtml), 'highlevel-paste.html has zero remaining local asset paths');
 
 console.log('\n========================================');
 if (errors.length > 0) {

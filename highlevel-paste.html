@@ -427,84 +427,10 @@
   background: #17201d;
 }
 
-#ab-mobility-checkup .ab-vsl-ratio--sm {
-  padding-bottom: 56.25%;
-  border-radius: var(--ab-radius-sm);
-  margin: var(--ab-space-3) 0;
+#ab-mobility-checkup .ab-hero-photo-card .ab-vsl-ratio {
+  padding-bottom: 66.625%; /* Ratio 3:2 proporzionato a IMG_7648.jpg (1600x1067) per evitare tagli */
 }
 
-#ab-mobility-checkup .ab-vsl-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ab-space-4);
-  color: #ffffff;
-  text-align: center;
-  background: linear-gradient(145deg, #1b2723, #111a17);
-}
-
-#ab-mobility-checkup .ab-vsl-play-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--ab-color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  margin-bottom: var(--ab-space-3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  transition: transform 200ms ease, background-color 200ms ease;
-}
-
-#ab-mobility-checkup .ab-vsl-play-btn--sm {
-  width: 44px;
-  height: 44px;
-  margin-bottom: var(--ab-space-2);
-}
-
-#ab-mobility-checkup .ab-vsl-play-btn svg {
-  width: 24px;
-  height: 24px;
-  margin-left: 3px;
-}
-
-#ab-mobility-checkup .ab-vsl-play-btn--sm svg {
-  width: 18px;
-  height: 18px;
-}
-
-#ab-mobility-checkup .ab-vsl-label {
-  font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 4px;
-}
-
-#ab-mobility-checkup .ab-vsl-label-sm {
-  font-size: 13px;
-  font-weight: 600;
-  color: #ece8dc;
-}
-
-#ab-mobility-checkup .ab-vsl-caption {
-  font-size: 13px;
-  color: #a4b0ab;
-}
-
-#ab-mobility-checkup .ab-vsl-alt-text {
-  font-size: 12px;
-  color: var(--ab-color-muted);
-  padding: 10px 16px;
-  margin: 0;
-  background: var(--ab-color-surface);
-  border-top: 1px solid var(--ab-color-line);
-}
 
 /* ==========================================================================
    2. QUELLO CHE IL CHECK-UP MOSTRA
@@ -812,6 +738,8 @@
 #ab-mobility-checkup .ab-bridge__title {
   font-family: var(--ab-font-serif);
   font-size: clamp(28px, 4vw, 42px);
+  text-transform: none;
+  letter-spacing: normal;
   color: #ffffff;
   margin-top: 0;
   margin-bottom: var(--ab-space-4);
@@ -1322,6 +1250,8 @@
 #ab-mobility-checkup .ab-why-card__title {
   font-size: 17px;
   font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-2);
@@ -2052,6 +1982,7 @@
   width: 100%;
   height: 140px;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--ab-radius-md);
   display: block;
   transition: transform 0.25s ease;
@@ -2128,12 +2059,6 @@
   align-items: center;
 }
 
-#ab-mobility-checkup .ab-vsl-play-btn,
-#ab-mobility-checkup .ab-vsl-label,
-#ab-mobility-checkup .ab-vsl-caption {
-  position: relative;
-  z-index: 2;
-}
 
 /* ==========================================================================
    PREFERS REDUCED MOTION
@@ -2339,7 +2264,7 @@
           <div class="ab-chat-slider" role="region" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
             
             <div class="ab-chat-card">
-              <img src="https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800" alt="Feedback WhatsApp: non avevo una mobilità logica, ieri non avevo più dolore fastidioso alle anche e ginocchia" class="ab-chat-img" loading="lazy" width="280" height="360">
+              <img src="https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800" alt="Feedback WhatsApp: non avevo una mobilità logica, ieri non avevo più dolore fastidioso alle anche e ginocchia" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
                 <span>Cliente Check-up</span>
                 <span>WhatsApp</span>
@@ -2347,7 +2272,7 @@
             </div>
 
             <div class="ab-chat-card">
-              <img src="https://lh3.googleusercontent.com/d/1b_xRngPbai3CBXk8Hvnyq40F9fuSC9hB=s800" alt="Feedback WhatsApp: percorso a distanza con Andrea Bolzan" class="ab-chat-img" loading="lazy" width="280" height="360">
+              <img src="https://lh3.googleusercontent.com/d/1b_xRngPbai3CBXk8Hvnyq40F9fuSC9hB=s800" alt="Feedback WhatsApp: percorso a distanza con Andrea Bolzan" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
                 <span>Cliente a distanza</span>
                 <span>WhatsApp</span>
@@ -2355,7 +2280,7 @@
             </div>
 
             <div class="ab-chat-card">
-              <img src="https://lh3.googleusercontent.com/d/1B8fa8g5Y1LHViDIv9RLlZV0FbA7uUi4y=s800" alt="Feedback WhatsApp: sensazioni di apertura e mobilità articolare" class="ab-chat-img" loading="lazy" width="280" height="360">
+              <img src="https://lh3.googleusercontent.com/d/1B8fa8g5Y1LHViDIv9RLlZV0FbA7uUi4y=s800" alt="Feedback WhatsApp: sensazioni di apertura e mobilità articolare" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
                 <span>Appassionato montagna</span>
                 <span>WhatsApp</span>
@@ -2363,7 +2288,7 @@
             </div>
 
             <div class="ab-chat-card">
-              <img src="https://lh3.googleusercontent.com/d/1QVOfAQ_mo41tQyEjk_4Pq7ywsLHh_fxq=s800" alt="Feedback WhatsApp: progressi evidenti e movimento fluido" class="ab-chat-img" loading="lazy" width="280" height="360">
+              <img src="https://lh3.googleusercontent.com/d/1QVOfAQ_mo41tQyEjk_4Pq7ywsLHh_fxq=s800" alt="Feedback WhatsApp: progressi evidenti e movimento fluido" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
                 <span>Cliente over 40</span>
                 <span>WhatsApp</span>
@@ -3255,7 +3180,8 @@
   };
 
   // Supporta eventuale override esterno via window.AB_CONFIG senza inquinare lo scope globale
-  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, window.AB_CONFIG || {});
+  const externalConfig = typeof window !== "undefined" && window.AB_CONFIG ? window.AB_CONFIG : {};
+  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, externalConfig);
 
   let initialized = false;
 
@@ -3313,8 +3239,12 @@
   function setupLinks(root) {
     const checkoutLinks = root.querySelectorAll("[data-checkout-link]");
     checkoutLinks.forEach(function (link) {
-      if (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "") {
-        link.setAttribute("href", appendQueryParams(AB_CONFIG.checkoutUrl));
+      const currentHref = link.getAttribute("href");
+      const targetBase = (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "#CHECKOUT_URL")
+        ? AB_CONFIG.checkoutUrl
+        : (currentHref && currentHref !== "#CHECKOUT_URL" ? currentHref : AB_CONFIG.checkoutUrl);
+      if (targetBase && targetBase !== "") {
+        link.setAttribute("href", appendQueryParams(targetBase));
       }
     });
 
@@ -3322,8 +3252,12 @@
     whatsappLinks.forEach(function (link) {
       link.setAttribute("target", "_blank");
       link.setAttribute("rel", "noopener noreferrer");
-      if (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "") {
-        link.setAttribute("href", appendQueryParams(AB_CONFIG.whatsappUrl));
+      const currentHref = link.getAttribute("href");
+      const targetBase = (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "#WHATSAPP_URL")
+        ? AB_CONFIG.whatsappUrl
+        : (currentHref && currentHref !== "#WHATSAPP_URL" ? currentHref : AB_CONFIG.whatsappUrl);
+      if (targetBase && targetBase !== "") {
+        link.setAttribute("href", appendQueryParams(targetBase));
       }
     });
 
@@ -3550,13 +3484,19 @@
     }
   }
 
-  // Hydration GHL e Fallback DOMContentLoaded per preview locale
-  document.addEventListener("hydrationDone", initABPage, { once: true });
+  if (typeof document !== "undefined") {
+    // Hydration GHL e Fallback DOMContentLoaded per preview locale
+    document.addEventListener("hydrationDone", initABPage, { once: true });
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initABPage, { once: true });
-  } else {
-    initABPage();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initABPage, { once: true });
+    } else {
+      initABPage();
+    }
+  }
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { appendQueryParams, setupLinks };
   }
 })();
 </script>

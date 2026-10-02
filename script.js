@@ -19,7 +19,8 @@
   };
 
   // Supporta eventuale override esterno via window.AB_CONFIG senza inquinare lo scope globale
-  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, window.AB_CONFIG || {});
+  const externalConfig = typeof window !== "undefined" && window.AB_CONFIG ? window.AB_CONFIG : {};
+  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, externalConfig);
 
   let initialized = false;
 
@@ -77,8 +78,12 @@
   function setupLinks(root) {
     const checkoutLinks = root.querySelectorAll("[data-checkout-link]");
     checkoutLinks.forEach(function (link) {
-      if (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "") {
-        link.setAttribute("href", appendQueryParams(AB_CONFIG.checkoutUrl));
+      const currentHref = link.getAttribute("href");
+      const targetBase = (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "#CHECKOUT_URL")
+        ? AB_CONFIG.checkoutUrl
+        : (currentHref && currentHref !== "#CHECKOUT_URL" ? currentHref : AB_CONFIG.checkoutUrl);
+      if (targetBase && targetBase !== "") {
+        link.setAttribute("href", appendQueryParams(targetBase));
       }
     });
 
@@ -86,8 +91,12 @@
     whatsappLinks.forEach(function (link) {
       link.setAttribute("target", "_blank");
       link.setAttribute("rel", "noopener noreferrer");
-      if (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "") {
-        link.setAttribute("href", appendQueryParams(AB_CONFIG.whatsappUrl));
+      const currentHref = link.getAttribute("href");
+      const targetBase = (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "#WHATSAPP_URL")
+        ? AB_CONFIG.whatsappUrl
+        : (currentHref && currentHref !== "#WHATSAPP_URL" ? currentHref : AB_CONFIG.whatsappUrl);
+      if (targetBase && targetBase !== "") {
+        link.setAttribute("href", appendQueryParams(targetBase));
       }
     });
 
@@ -314,12 +323,18 @@
     }
   }
 
-  // Hydration GHL e Fallback DOMContentLoaded per preview locale
-  document.addEventListener("hydrationDone", initABPage, { once: true });
+  if (typeof document !== "undefined") {
+    // Hydration GHL e Fallback DOMContentLoaded per preview locale
+    document.addEventListener("hydrationDone", initABPage, { once: true });
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initABPage, { once: true });
-  } else {
-    initABPage();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initABPage, { once: true });
+    } else {
+      initABPage();
+    }
+  }
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { appendQueryParams, setupLinks };
   }
 })();
