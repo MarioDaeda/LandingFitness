@@ -8,7 +8,7 @@
 
 (function () {
   const DEFAULT_CONFIG = {
-    checkoutUrl: "#CHECKOUT_URL",
+    checkoutUrl: "https://andreabolzan.com/acquisto",
     whatsappUrl: "#WHATSAPP_URL",
     deadlineISO: "2026-10-05T23:00:00+02:00", // Scade alle 23:00 di lunedì (5 ottobre 2026)
     promoPrice: "57 €",

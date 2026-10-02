@@ -60,9 +60,10 @@ La pagina è ingegnerizzata per essere inserita all'interno di un blocco **Custo
 5. **Asset & Remapping CDN Automatico (Zero Percorsi Relativi in GHL)**:
    - Nel deliverable GHL non devono esistere percorsi relativi (`src="assets/..."`), poiché sui domini GoHighLevel risulterebbero 404 rotti.
    - `build-ghl.js` riscrive ogni asset locale nel rispettivo URL CDN Google Drive ad alta velocità (`https://lh3.googleusercontent.com/d/FILE_ID=s800` o `=s1200`).
-6. **Preservazione dei Parametri di Tracking (UTM & Ads)**:
+6. **Link di Acquisto Ufficiale & Preservazione dei Parametri di Tracking (UTM & Ads)**:
+   - Tutte le 10 CTA di acquisto (`[data-checkout-link]`) puntano nativamente nell'HTML a `https://andreabolzan.com/acquisto`.
    - La funzione `appendQueryParams()` propaga in modo trasparente tutti i parametri query dell'URL sorgente (`utm_source`, `utm_medium`, `utm_campaign`, `fbclid`, `gclid`, ecc.) a tutte le CTA checkout e WhatsApp.
-   - La funzione rispetta i frammenti hash `#` (non li corrompe se non ancora configurati) e concatena i parametri ai link WhatsApp preservando il parametro `text=...`.
+   - La funzione rispetta i frammenti hash `#` (se presenti) e concatena i parametri ai link WhatsApp preservando il parametro `text=...`.
 7. **Countdown & Scadenza Offerta (Safe Fallback + Data Attiva)**:
    - La barra sticky superiore (`.ab-top-bar`) e il box countdown nell'offerta (`.ab-offer-countdown-box`) sono impostati a livello CSS nativo su `display: none;` per garantire un fallback sicuro (no-JS e anti-flicker).
    - Configurato `AB_CONFIG.deadlineISO: "2026-10-05T23:00:00+02:00"` (scadenza alle 23:00 di lunedì 5 ottobre 2026), attivando automaticamente il conto alla rovescia in formato giorni/ore/minuti/secondi con aggiornamento sincrono ogni secondo.

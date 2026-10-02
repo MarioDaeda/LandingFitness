@@ -138,6 +138,7 @@ Un audit esterno di Claude aveva sollevato rilievi sul codice. È stata eseguita
 | **Sticky CTA nelle FAQ** | "La barra sticky non riappariva dopo la sezione offerta" | **ACCOLTA** | Sostituita la logica booleana con una `Map` di IntersectionObserver su offerta e footer. La sticky CTA scompare sull'offerta e ricompare subito sulle FAQ. |
 | **Slider Dots Accessibili** | "I pallini dello slider non erano cliccabili né accessibili" | **ACCOLTA** | Assegnato `role="button"`, `tabindex="0"`, gestione touch e tastiera con scorrimento fluido. |
 | **Countdown Scadenza Offerta** | "Il timer deve contare alla rovescia fino a lunedì alle 23:00" | **ACCOLTA** | Impostata `deadlineISO: "2026-10-05T23:00:00+02:00"` con supporto fallback dinamico `next-monday-23`. Il conto alla rovescia è attivo nella barra sticky e nel box offerta, con `aria-live="polite"` e contrasti rifiniti. |
+| **URL di Acquisto Ufficiale** | "Al tasto compra collega la pagina di acquisto https://andreabolzan.com/acquisto" | **ACCOLTA** | Configurata `checkoutUrl: "https://andreabolzan.com/acquisto"` in `AB_CONFIG` e aggiornati tutti i 10 link `[data-checkout-link]` nativamente nell'HTML, con preservazione e propagazione dinamica dei parametri query UTM. |
 
 ---
 

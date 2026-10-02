@@ -45,10 +45,10 @@ assert(allCheckoutGhl.length === 10, `Found all 10 checkout links in highlevel-p
 assert(allCheckoutIdx.length === 10, `Found all 10 checkout links in index.html (found ${allCheckoutIdx.length})`);
 
 allCheckoutGhl.forEach((l, i) => {
-  assert(l.includes('href="#CHECKOUT_URL"'), `Checkout link ${i + 1} in GHL has href="#CHECKOUT_URL"`);
+  assert(l.includes('href="https://andreabolzan.com/acquisto"'), `Checkout link ${i + 1} in GHL has href="https://andreabolzan.com/acquisto"`);
 });
 allCheckoutIdx.forEach((l, i) => {
-  assert(l.includes('href="#CHECKOUT_URL"'), `Checkout link ${i + 1} in index.html has href="#CHECKOUT_URL"`);
+  assert(l.includes('href="https://andreabolzan.com/acquisto"'), `Checkout link ${i + 1} in index.html has href="https://andreabolzan.com/acquisto"`);
 });
 
 assert(allWaGhl.length === 4, `Found all 4 WhatsApp links in highlevel-paste.html (found ${allWaGhl.length})`);
