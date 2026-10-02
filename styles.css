@@ -454,17 +454,6 @@
   margin-top: 0;
 }
 
-#ab-mobility-checkup .ab-hero-summary-pill {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ab-color-muted);
-  margin-top: var(--ab-space-2);
-}
-
 #ab-mobility-checkup .ab-vsl-card {
   background: var(--ab-color-surface);
   border: 1px solid var(--ab-color-line);
