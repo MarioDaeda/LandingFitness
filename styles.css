@@ -356,13 +356,18 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* Orario ben visibile: più grande, giallo con testo scuro sulla barra blu */
 #ab-mobility-checkup .ab-countdown-timer {
-  background: rgba(255, 255, 255, 0.16);
-  padding: 2px 8px;
+  background: #ffe14d;
+  color: var(--ab-color-ink);
+  padding: 3px 10px;
   border-radius: var(--ab-radius-sm);
+  font-size: 18px;
+  line-height: 1.3;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
-  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -1661,6 +1666,7 @@
 #ab-mobility-checkup .ab-offer-countdown-box .ab-countdown-timer {
   background: rgba(184, 66, 15, 0.12);
   color: var(--ab-color-accent);
+  font-size: 17px;
 }
 
 #ab-mobility-checkup .ab-pricing-credit-text {

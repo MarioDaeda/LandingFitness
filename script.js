@@ -183,17 +183,12 @@
         return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      // Solo ore totali (niente giorni): "78h 15m 06s"
+      const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      let timeString = "";
-      if (days > 0) {
-        timeString = days + "g " + padZero(hours) + "h " + padZero(minutes) + "m " + padZero(seconds) + "s";
-      } else {
-        timeString = padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds);
-      }
+      const timeString = padZero(hours) + "h " + padZero(minutes) + "m " + padZero(seconds) + "s";
 
       timerDisplays.forEach(function (display) {
         display.textContent = timeString;
