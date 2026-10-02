@@ -34,12 +34,12 @@ La pagina è ingegnerizzata per essere inserita all'interno di un blocco **Custo
 
 | File | Ruolo Architetturale | Regola di Modifica |
 |---|---|---|
-| [`index.html`](file:///c:/Users/MARIO/Downloads/Landing/index.html) | Sorgente HTML semantico standalone. Usa asset locali in `assets/`. | Modificare questo file per variazioni di markup o struttura. |
-| [`styles.css`](file:///c:/Users/MARIO/Downloads/Landing/styles.css) | Foglio di stile isolato con namespace rigoroso `#ab-mobility-checkup`. | Modificare questo file per stili, variabili e animazioni. |
-| [`script.js`](file:///c:/Users/MARIO/Downloads/Landing/script.js) | Logica client-side incapsulata in IIFE (accordion FAQ, slider, sticky CTA, tracking). | Modificare questo file per interazioni e gestione eventi. |
-| [`build-ghl.js`](file:///c:/Users/MARIO/Downloads/Landing/build-ghl.js) | Compilatore Node.js: inietta CSS/JS ed esegue il remapping automatico degli asset verso Google Drive CDN. | Eseguire con `node build-ghl.js` per generare il deliverable finale. |
-| [`highlevel-paste.html`](file:///c:/Users/MARIO/Downloads/Landing/highlevel-paste.html) | **Deliverable Finale per GoHighLevel** (CSS inline + HTML + JS inline). | **NON MODIFICARE A MANO**: generato automaticamente da `build-ghl.js`. |
-| [`test-verify-all.js`](file:///c:/Users/MARIO/Downloads/Landing/test-verify-all.js) | Suite di test automatizzata (oltre 90 asserzioni di conformità). | Eseguire sempre con `node test-verify-all.js` (gate bloccante prima di commit/push). |
+| [`index.html`](index.html) | Sorgente HTML semantico standalone. Usa asset locali in `assets/`. | Modificare questo file per variazioni di markup o struttura. |
+| [`styles.css`](styles.css) | Foglio di stile isolato con namespace rigoroso `#ab-mobility-checkup`. | Modificare questo file per stili, variabili e animazioni. |
+| [`script.js`](script.js) | Logica client-side incapsulata in IIFE (accordion FAQ, slider, sticky CTA, tracking). | Modificare questo file per interazioni e gestione eventi. |
+| [`build-ghl.js`](build-ghl.js) | Compilatore Node.js: inietta CSS/JS ed esegue il remapping automatico degli asset verso Google Drive CDN. | Eseguire con `node build-ghl.js` per generare il deliverable finale. |
+| [`highlevel-paste.html`](highlevel-paste.html) | **Deliverable Finale per GoHighLevel** (CSS inline + HTML + JS inline). | **NON MODIFICARE A MANO**: generato automaticamente da `build-ghl.js`. |
+| [`test-verify-all.js`](test-verify-all.js) | Suite di test automatizzata (oltre 90 asserzioni di conformità). | Eseguire sempre con `node test-verify-all.js` (gate bloccante prima di commit/push). |
 
 ---
 
@@ -77,7 +77,10 @@ La pagina è ingegnerizzata per essere inserita all'interno di un blocco **Custo
    - Rapporto d'aspetto proporzionato a 3:2 (`padding-bottom: 66.625%`).
    - **Nessun finto pulsante play** (no play button SVG sovrapposto ingannevole) e nessun finto `aria-label="Video di presentazione"`: è presentata come copertina visiva editoriale di presentazione.
 2. **Destinazioni di Movimento Reali (Sezione 10)**:
-   - Foto reali di Andrea Bolzan integrate (`IMG_7651.jpg` per l'accosciata/squat, con collegamenti a `IMG_7652.jpg` per handstand e `IMG_7650.jpg` per bridge in `build-ghl.js`).
+   - Utilizzo delle fotografie reali ad alta risoluzione di Andrea Bolzan scaricate da Google Drive:
+     - `IMG_7651.jpg` (1600x1065): Andrea Bolzan in mezza accosciata / pistol squat dinamico su muretto di mattoni con un braccio teso in avanti, integrata come immagine hero della Sezione 10 (`#ab-destinazioni`).
+     - `IMG_7652.jpg`: Andrea Bolzan in verticale / handstand freeze a una mano davanti all'Arco della Pace a Milano, mappata su CDN Google Drive in `build-ghl.js` per la destinazione "La verticale".
+     - `IMG_7650.jpg`: Andrea Bolzan in ponte completo / bridge con sfondo Castello Sforzesco / Parco Sempione, mappata su CDN Google Drive in `build-ghl.js` per la destinazione "Il ponte".
 3. **Ritratto Bio Autentico (Sezione 12)**:
    - Fotografia `IMG_7649.jpg` (verticale sui binari del tram a Milano) con rapporto d'aspetto verticale calibrato a 2:3 (`width="1065" height="1600"`), con `alt` descrittivo ed empatico.
 4. **Casi Studio e Social Proof Veritiera (Sezione 3)**:
