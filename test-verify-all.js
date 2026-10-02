@@ -51,8 +51,8 @@ allCheckoutIdx.forEach((l, i) => {
   assert(l.includes('href="https://andreabolzan.com/acquisto"'), `Checkout link ${i + 1} in index.html has href="https://andreabolzan.com/acquisto"`);
 });
 
-assert(allWaGhl.length === 4, `Found all 4 WhatsApp links in highlevel-paste.html (found ${allWaGhl.length})`);
-assert(allWaIdx.length === 4, `Found all 4 WhatsApp links in index.html (found ${allWaIdx.length})`);
+assert(allWaGhl.length === 5, `Found all 5 WhatsApp links (4 CTA + sticky square) in highlevel-paste.html (found ${allWaGhl.length})`);
+assert(allWaIdx.length === 5, `Found all 5 WhatsApp links (4 CTA + sticky square) in index.html (found ${allWaIdx.length})`);
 
 allWaGhl.forEach((l, i) => {
   assert(l.includes('href="#WHATSAPP_URL"'), `WhatsApp link ${i + 1} in GHL has href="#WHATSAPP_URL"`);
@@ -221,7 +221,7 @@ assert(html.includes('Monica Gavillucci.jpg" alt="Testimonianza di Monica Gavill
 assert(html.includes('width="280" height="350"'), 'Chat cards have accurate 280x350 dimensions (4:5 aspect ratio)');
 
 // Photo cover 3:2 ratio rule
-assert(css.includes('.ab-hero-photo-card .ab-vsl-ratio'), 'Hero photo card has dedicated ratio rule');
+assert(css.includes('.ab-hero-video {') && /\.ab-hero-video\s*\{[^}]*position:\s*absolute/s.test(css), 'Hero video iframe fills the 16:9 ratio box');
 assert(css.includes('aspect-ratio: 2 / 3;') || css.includes('aspect-ratio: 2/3;'), 'Bio photo has 2:3 aspect ratio');
 assert(css.includes('min-height: 44px;'), 'Footer links have min 44px touch target');
 
@@ -267,6 +267,25 @@ assert(css.includes('constant(safe-area-inset-bottom'), 'Sticky CTA bar has cons
 assert(/#ab-mobility-checkup \.ab-sticky-mobile-cta\s*\{[^}]*will-change:\s*transform,\s*opacity;/s.test(css), 'Sticky CTA bar has will-change GPU acceleration');
 assert(js.includes('intersectingMap'), 'Sticky CTA IntersectionObserver tracks element intersection states via Map for FAQ reappearance');
 assert(js.includes('role", "button"') || js.includes("role', 'button'"), 'Slider dots have role="button" for accessibility and interactive navigation');
+
+console.log('\n=== 14. Testimonianze, Feedback, Prezzo, Sticky WhatsApp, Hero Video ===');
+const count = (re, str) => (str.match(re) || []).length;
+for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHtml]]) {
+  assert(count(/<img[^>]*class="ab-review-img"/g, src) === 8, `All 8 review cards present in ${label}`);
+  assert(count(/class="ab-proof-card ab-video-card"/g, src) === 6, `All 6 video testimonials present in ${label}`);
+  assert(count(/<div class="ab-chat-card">/g, src) === 14, `All 14 WhatsApp feedback screenshots present in ${label}`);
+  assert(count(/class="[^"]*ab-auto-slider/g, src) === 2, `Both sliders are slow auto-scroll sliders in ${label}`);
+  assert(src.includes('drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview'), `Hero shows the Drive video in ${label}`);
+  assert(!/class="ab-vsl-poster-img"/.test(src), `Hero photo replaced by video in ${label}`);
+  assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
+  assert(count(/class="ab-mark"/g, src) === 2, `Two highlighted pricing sentences in ${label}`);
+  assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
+}
+assert(/\.ab-mark\s*\{[^}]*#ffe14d/s.test(css), 'Pricing sentences are underlined/highlighted in yellow');
+assert(/\.ab-sticky-wa\s*\{[^}]*width:\s*52px;[^}]*height:\s*52px;/s.test(css), 'Sticky WhatsApp button is a 52px square');
+assert(js.includes('function setupAutoScroll') && js.includes('"touchstart", pause') && js.includes('"mouseenter", pause'), 'Auto-scroll pauses on touch and hover');
+assert(js.includes('prefers-reduced-motion') && js.includes('function setupVideoModal'), 'Auto-scroll respects reduced motion; video modal is registered');
+assert(/@media \(max-width: 767px\)\s*\{\s*#ab-mobility-checkup \.ab-journey-connector-bar\s*\{[^}]*flex-direction:\s*column/s.test(css), 'Punto Zero -> Destinazione bar is vertical on mobile');
 
 console.log('\n========================================');
 if (errors.length > 0) {

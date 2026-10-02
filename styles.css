@@ -455,10 +455,6 @@
   background: #0e1217;
 }
 
-#ab-mobility-checkup .ab-hero-photo-card .ab-vsl-ratio {
-  padding-bottom: 66.625%; /* Ratio 3:2 proporzionato a IMG_7648.jpg (1600x1067) per evitare tagli */
-}
-
 
 /* ==========================================================================
    2. QUELLO CHE IL CHECK-UP MOSTRA
@@ -545,8 +541,11 @@
 
 #ab-mobility-checkup .ab-proof-card {
   flex: 0 0 84%;
-  min-width: 84%;
-  max-width: 84%;
+  min-width: 240px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   background: var(--ab-color-surface);
@@ -675,8 +674,8 @@
 
 #ab-mobility-checkup .ab-chat-card {
   flex: 0 0 84%;
-  min-width: 84%;
-  max-width: 84%;
+  min-width: 240px;
+  max-width: 300px;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   background: var(--ab-color-canvas);
@@ -1979,34 +1978,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #ab-mobility-checkup .ab-proof-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    overflow-x: visible;
-    scroll-snap-type: none;
-    gap: var(--ab-space-6);
-    padding-bottom: 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  #ab-mobility-checkup .ab-proof-card {
-    flex: unset;
-    min-width: unset;
-    max-width: unset;
-    padding: var(--ab-space-6);
-  }
-
-  #ab-mobility-checkup .ab-chat-card {
-    flex: 0 0 280px;
-    min-width: 280px;
-    max-width: 280px;
-  }
-
-  #ab-mobility-checkup .ab-proof-slider-dots {
-    display: none !important;
-  }
-
   #ab-mobility-checkup .ab-problems-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2182,43 +2153,6 @@
   }
 }
 
-#ab-mobility-checkup .ab-vsl-poster-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.96);
-  transition: transform 300ms var(--ab-ease-out), filter 300ms var(--ab-ease-out);
-  z-index: 1;
-}
-
-@media (hover: hover) {
-  #ab-mobility-checkup .ab-vsl-card:hover .ab-vsl-poster-img {
-    filter: brightness(1);
-    transform: scale(1.02);
-  }
-}
-
-#ab-mobility-checkup .ab-hero-photo-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 18px;
-  background: linear-gradient(to top, rgba(12, 26, 69, 0.82) 0%, rgba(12, 26, 69, 0.3) 60%, transparent 100%);
-  color: #ffffff;
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-}
-
-
 /* ==========================================================================
    PREFERS REDUCED MOTION
    ========================================================================== */
@@ -2328,13 +2262,6 @@
   margin-bottom: var(--ab-space-10);
 }
 
-@media (max-width: 767px) {
-  #ab-mobility-checkup.ab-js .ab-proof-card[data-ab-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
 
 #ab-mobility-checkup .ab-slider-dot {
   width: 8px;
@@ -2412,4 +2339,275 @@
 #ab-mobility-checkup .ab-why-card__num,
 #ab-mobility-checkup .ab-formula-sign {
   font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ==========================================================================
+   HERO VIDEO (Google Drive)
+   ========================================================================== */
+#ab-mobility-checkup .ab-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0e1217;
+}
+
+/* ==========================================================================
+   SLIDER A SCORRIMENTO LENTO (testimonianze + feedback)
+   Scroll libero (niente snap): il JS avanza lentamente e si ferma al tocco/hover.
+   ========================================================================== */
+#ab-mobility-checkup .ab-auto-slider {
+  scroll-snap-type: none;
+  scrollbar-width: none;
+}
+
+#ab-mobility-checkup .ab-auto-slider.is-paused {
+  scroll-snap-type: x mandatory;
+}
+
+#ab-mobility-checkup .ab-auto-slider::-webkit-scrollbar {
+  display: none;
+}
+
+#ab-mobility-checkup .ab-proof-wrap {
+  margin-top: 0;
+  margin-bottom: var(--ab-space-10);
+}
+
+#ab-mobility-checkup .ab-proof-wrap .ab-proof-grid {
+  margin-bottom: 0;
+  padding-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-proof-card .ab-review-img {
+  margin-block: auto;
+}
+
+/* Card video testimonianza */
+#ab-mobility-checkup .ab-video-card {
+  flex-basis: 62%;
+  min-width: 200px;
+  max-width: 220px;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--ab-space-3);
+  cursor: pointer;
+}
+
+#ab-mobility-checkup .ab-video-thumb-wrap {
+  position: relative;
+  display: block;
+  border-radius: var(--ab-radius-sm);
+  overflow: hidden;
+  background: #0e1217;
+}
+
+#ab-mobility-checkup .ab-video-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  transition: transform 300ms var(--ab-ease-out), filter 300ms var(--ab-ease-out);
+  filter: brightness(0.85);
+}
+
+#ab-mobility-checkup .ab-video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  background: var(--ab-color-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 200ms var(--ab-ease-out);
+}
+
+#ab-mobility-checkup .ab-video-play svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+}
+
+#ab-mobility-checkup .ab-video-card:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-video-card:active .ab-video-play {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-video-card:hover .ab-video-thumb {
+    transform: scale(1.03);
+    filter: brightness(1);
+  }
+}
+
+/* Modale video */
+#ab-mobility-checkup .ab-video-modal {
+  border: 0;
+  padding: 0;
+  background: #0e1217;
+  border-radius: var(--ab-radius-lg);
+  max-width: 94vw;
+  overflow: visible;
+}
+
+#ab-mobility-checkup .ab-video-modal::backdrop {
+  background: rgba(14, 18, 23, 0.8);
+}
+
+#ab-mobility-checkup .ab-video-frame iframe {
+  display: block;
+  border: 0;
+  width: min(90vw, 420px);
+  height: min(82vh, 748px);
+  border-radius: var(--ab-radius-lg);
+}
+
+#ab-mobility-checkup .ab-video-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--ab-color-primary-dark);
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#ab-mobility-checkup .ab-video-close:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   PREZZO — frasi evidenziate in giallo, una sotto l'altra
+   ========================================================================== */
+#ab-mobility-checkup .ab-pricing-credit-text p {
+  margin: 0 0 var(--ab-space-3);
+  line-height: 1.75;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-pricing-credit-text p:last-child {
+  margin-bottom: 0;
+}
+
+#ab-mobility-checkup .ab-mark {
+  background-image: linear-gradient(transparent 55%, #ffe14d 55%, #ffe14d 92%, transparent 92%);
+  padding: 0 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ==========================================================================
+   STICKY CTA — pulsante WhatsApp quadrato accanto al CTA
+   ========================================================================== */
+#ab-mobility-checkup .ab-sticky-wa {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25d366;
+  color: #0c331a;
+  border-radius: var(--ab-radius-md);
+  box-shadow: var(--ab-shadow-wa);
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms var(--ab-ease-out), background-color 200ms var(--ab-ease-out);
+}
+
+#ab-mobility-checkup .ab-sticky-wa:active {
+  transform: scale(0.95);
+  background-color: #1caa51;
+}
+
+#ab-mobility-checkup .ab-sticky-wa:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-sticky-btn {
+  flex: 1 1 auto;
+  width: auto;
+}
+
+/* ==========================================================================
+   PUNTO ZERO -> DESTINAZIONE: layout verticale su mobile
+   ========================================================================== */
+@media (max-width: 767px) {
+  #ab-mobility-checkup .ab-journey-connector-bar {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: var(--ab-space-5);
+  }
+
+  #ab-mobility-checkup .ab-journey-point {
+    position: relative;
+    padding-left: 28px;
+    z-index: 2;
+  }
+
+  #ab-mobility-checkup .ab-journey-point::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+    border-radius: 50%;
+  }
+
+  #ab-mobility-checkup .ab-journey-point--start::before {
+    background: var(--ab-color-danger);
+  }
+
+  #ab-mobility-checkup .ab-journey-point--end::before {
+    background: var(--ab-color-primary);
+  }
+
+  #ab-mobility-checkup .ab-journey-line-track {
+    flex: none;
+    min-width: 0;
+    min-height: 88px;
+    margin: -14px 0;
+    justify-content: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-journey-line-fill {
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    transform: none;
+    background: linear-gradient(180deg, var(--ab-color-danger) 0%, var(--ab-color-primary) 100%);
+  }
+
+  #ab-mobility-checkup .ab-journey-mid-badge {
+    margin-left: 28px;
+  }
 }
