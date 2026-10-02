@@ -281,7 +281,7 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(src.includes('drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview'), `Hero shows the Drive video in ${label}`);
   assert(!/class="ab-vsl-poster-img"/.test(src), `Hero photo replaced by video in ${label}`);
   assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
-  assert(count(/class="ab-mark"/g, src) === 2, `Two highlighted pricing sentences in ${label}`);
+  assert(count(/class="ab-mark"/g, src) === 3, `Headline + two pricing sentences highlighted in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
   assert(!src.includes('ab-hero-video-fallback'), `Hero has no "Non vedi il video?" fallback link in ${label}`);
   assert(src.includes('class="ab-hero-video-poster"'), `Hero shows a poster while the Drive player loads in ${label}`);

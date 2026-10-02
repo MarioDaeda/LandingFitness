@@ -135,8 +135,8 @@ test('R4.2 WhatsApp button has 52x52px touch box (exceeds Apple HIG 44px/48px mi
   expect(css).toMatch(/#ab-mobility-checkup \.ab-sticky-wa\s*\{[^}]*width:\s*52px;\s*height:\s*52px;/);
 });
 
-test('R4.3 WhatsApp link configured in AB_CONFIG with correct phone number and text', () => {
-  const expectedWa = 'https://wa.me/393407982266?text=Ciao%20Andrea%2C%20vorrei%20informazioni%20sul%20Check-up%20di%20Mobilit%C3%A0';
+test('R4.3 WhatsApp link configured in AB_CONFIG with the business message link', () => {
+  const expectedWa = 'https://api.whatsapp.com/message/3FK3XLUBGYHBJ1';
   expect(js).toContain(expectedWa);
 });
 
