@@ -6,18 +6,21 @@
  * ==========================================================================
  */
 
-const AB_CONFIG = {
-  checkoutUrl: "#CHECKOUT_URL",
-  whatsappUrl: "#WHATSAPP_URL",
-  deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà rigorosamente nascosto.
-  promoPrice: "57 €",
-  regularPrice: "150 €",
-  availableSpots: "X su 6",
-  enableAnimations: true,
-  enableStickyCta: true
-};
-
 (function () {
+  const DEFAULT_CONFIG = {
+    checkoutUrl: "#CHECKOUT_URL",
+    whatsappUrl: "#WHATSAPP_URL",
+    deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà rigorosamente nascosto.
+    promoPrice: "57 €",
+    regularPrice: "150 €",
+    availableSpots: "max 6",
+    enableAnimations: true,
+    enableStickyCta: true
+  };
+
+  // Supporta eventuale override esterno via window.AB_CONFIG senza inquinare lo scope globale
+  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, window.AB_CONFIG || {});
+
   let initialized = false;
 
   function initABPage() {
@@ -45,20 +48,46 @@ const AB_CONFIG = {
   }
 
   /**
-   * Valorizza tutti i link CTA con gli URL di configurazione e aggiorna i placeholder di prezzo/posti
+   * Helper per preservare/inoltrare query parameters (es. parametri UTM o tracciamento)
+   */
+  function appendQueryParams(baseUrl) {
+    if (!baseUrl || baseUrl.startsWith("#")) {
+      return baseUrl;
+    }
+    if (!window.location.search) {
+      return baseUrl;
+    }
+    try {
+      const incomingParams = new URLSearchParams(window.location.search);
+      const targetUrl = new URL(baseUrl, window.location.href);
+      incomingParams.forEach(function (val, key) {
+        if (!targetUrl.searchParams.has(key)) {
+          targetUrl.searchParams.set(key, val);
+        }
+      });
+      return targetUrl.toString();
+    } catch (e) {
+      return baseUrl;
+    }
+  }
+
+  /**
+   * Valorizza tutti i link CTA con gli URL di configurazione e aggiorna i testi di prezzo/posti
    */
   function setupLinks(root) {
     const checkoutLinks = root.querySelectorAll("[data-checkout-link]");
     checkoutLinks.forEach(function (link) {
       if (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "") {
-        link.setAttribute("href", AB_CONFIG.checkoutUrl);
+        link.setAttribute("href", appendQueryParams(AB_CONFIG.checkoutUrl));
       }
     });
 
     const whatsappLinks = root.querySelectorAll("[data-whatsapp-link]");
     whatsappLinks.forEach(function (link) {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
       if (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "") {
-        link.setAttribute("href", AB_CONFIG.whatsappUrl);
+        link.setAttribute("href", appendQueryParams(AB_CONFIG.whatsappUrl));
       }
     });
 

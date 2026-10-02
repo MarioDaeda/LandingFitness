@@ -24,8 +24,8 @@
   --ab-color-primary-hover: #174638;
   --ab-color-primary-dark: #12372c;
   --ab-color-primary-subtle: #e8f0ec;
-  --ab-color-accent: #c96e4b;
-  --ab-color-accent-hover: #b45f3e;
+  --ab-color-accent: #A3552F;
+  --ab-color-accent-hover: #8C4725;
   --ab-color-accent-subtle: #fbf0ea;
   --ab-color-line: rgba(23, 32, 29, 0.12);
   --ab-color-line-dark: rgba(255, 255, 255, 0.14);
@@ -120,7 +120,8 @@
   font-size: clamp(28px, 4.5vw, 46px);
   line-height: 1.18;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-4);
@@ -132,7 +133,8 @@
   font-size: clamp(24px, 3.5vw, 36px);
   line-height: 1.24;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-3);
@@ -144,7 +146,8 @@
   font-size: 20px;
   line-height: 1.35;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-2);
@@ -1813,7 +1816,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  align-items: center;
+  gap: 4px 12px;
   font-size: 12.5px;
   color: #8c9b95;
   padding-top: var(--ab-space-6);
@@ -1822,6 +1826,10 @@
 }
 
 #ab-mobility-checkup .ab-footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
   color: #a4b0ab;
   text-decoration: none;
   transition: color 150ms ease;
@@ -1832,10 +1840,25 @@
   text-decoration: underline;
 }
 
+#ab-mobility-checkup .ab-footer-link--static {
+  color: #8c9b95;
+  cursor: default;
+}
+
+#ab-mobility-checkup .ab-footer-link--static:hover {
+  color: #8c9b95;
+  text-decoration: none;
+}
+
+#ab-mobility-checkup .ab-footer-separator {
+  color: #5f6964;
+  user-select: none;
+}
+
 #ab-mobility-checkup .ab-footer-disclaimer {
   font-size: 11.5px;
   line-height: 1.5;
-  color: #7a8882;
+  color: #A3B1AB;
   text-align: center;
   max-width: 720px;
   margin: 0 auto;
@@ -2040,8 +2063,9 @@
 
 #ab-mobility-checkup .ab-bio-img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--ab-radius-lg);
   display: block;
   box-shadow: var(--ab-shadow-md);
@@ -2078,14 +2102,30 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.68);
+  filter: brightness(0.96);
   transition: transform 0.3s ease, filter 0.3s ease;
   z-index: 1;
 }
 
-#ab-mobility-checkup .ab-vsl-placeholder:hover .ab-vsl-poster-img {
-  filter: brightness(0.78);
+#ab-mobility-checkup .ab-vsl-card:hover .ab-vsl-poster-img {
+  filter: brightness(1);
   transform: scale(1.02);
+}
+
+#ab-mobility-checkup .ab-hero-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 18px;
+  background: linear-gradient(to top, rgba(18, 55, 44, 0.82) 0%, rgba(18, 55, 44, 0.3) 60%, transparent 100%);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  z-index: 2;
+  display: flex;
+  align-items: center;
 }
 
 #ab-mobility-checkup .ab-vsl-play-btn,
@@ -2144,7 +2184,7 @@
 
               <div class="ab-hero__whatsapp-block">
                 <p class="ab-hero__whatsapp-query">Hai qualche dubbio o domanda? Scrivimi su WhatsApp.</p>
-                <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+                <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link target="_blank" rel="noopener noreferrer">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                   Scrivimi su WhatsApp
                 </a>
@@ -2160,19 +2200,15 @@
             </div>
           </div>
 
-          <!-- Video VSL Hero -->
+          <!-- Copertina Fotografica Hero -->
           <div class="ab-hero__media">
-            <div class="ab-vsl-card">
+            <div class="ab-vsl-card ab-hero-photo-card">
               <div class="ab-vsl-ratio">
-                <div class="ab-vsl-placeholder" role="region" aria-label="Video di presentazione del Check-up di Mobilità" title="Video di presentazione del Check-up di Mobilità - Andrea Bolzan">
-                  <img src="https://lh3.googleusercontent.com/d/1Xagbv25DzeoQerhQGOcRR1oJpaxkYzup=s1200" alt="Andrea Bolzan in verticale a una mano all'aperto" class="ab-vsl-poster-img" loading="eager" fetchpriority="high" width="800" height="450">
-                  <div class="ab-vsl-play-btn" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  </div>
-                  <div class="ab-vsl-label">Video di Presentazione — Check-up di Mobilità</div>
+                <img src="https://lh3.googleusercontent.com/d/1Xagbv25DzeoQerhQGOcRR1oJpaxkYzup=s1200" alt="Andrea Bolzan in verticale a una mano all'aperto su prato verde" class="ab-vsl-poster-img" loading="eager" fetchpriority="high" width="800" height="533">
+                <div class="ab-hero-photo-caption">
+                  <span>Andrea Bolzan — Insegnante di Movimento e Mobilità</span>
                 </div>
               </div>
-              <p class="ab-vsl-alt-text">Alternativa testuale: Andrea Bolzan illustra gli obiettivi del Check-up di Mobilità, l'osservazione nei due incontri online e la costruzione della Mappa del Movimento.</p>
             </div>
           </div>
 
@@ -2256,7 +2292,7 @@
               <span class="ab-proof-name">Lucia Orlando, 65 anni</span>
               <span class="ab-proof-tag">Pensionata · Prima & Dopo</span>
             </div>
-            <img src="https://lh3.googleusercontent.com/d/1ocuUX0qi9Jc_F-pi2c67_E7HxVrZUhOf=s800" alt="Testimonianza reale di Lucia Orlando, 65 anni, pensionata sul percorso con Andrea Bolzan" class="ab-review-img" loading="lazy" width="600" height="700">
+            <img src="https://lh3.googleusercontent.com/d/1ocuUX0qi9Jc_F-pi2c67_E7HxVrZUhOf=s800" alt="Testimonianza reale di Lucia Orlando, 65 anni, pensionata sul percorso con Andrea Bolzan" class="ab-review-img" loading="lazy" width="629" height="800">
           </article>
 
           <!-- Andrea Ferrari -->
@@ -2265,7 +2301,7 @@
               <span class="ab-proof-name">Andrea Ferrari, 38 anni</span>
               <span class="ab-proof-tag">Managing Director · Schiena & Forza</span>
             </div>
-            <img src="https://lh3.googleusercontent.com/d/1jcKX8X36HhDDB2Y97budf4U7RVzPM5oC=s800" alt="Testimonianza di Andrea Ferrari, 38 anni: recupero infortunio schiena e nuova forma fisica" class="ab-review-img" loading="lazy" width="600" height="700">
+            <img src="https://lh3.googleusercontent.com/d/1jcKX8X36HhDDB2Y97budf4U7RVzPM5oC=s800" alt="Testimonianza di Andrea Ferrari, 38 anni: recupero infortunio schiena e nuova forma fisica" class="ab-review-img" loading="lazy" width="755" height="800">
           </article>
 
           <!-- Michele Vicari -->
@@ -2274,7 +2310,7 @@
               <span class="ab-proof-name">Michele Vicari, 43 anni</span>
               <span class="ab-proof-tag">Direttore Creativo · La Verticale</span>
             </div>
-            <img src="https://lh3.googleusercontent.com/d/1GvOJHW68oK2J8UuLnD-WUnry6Y_oyO6K=s800" alt="Testimonianza di Michele Vicari, 43 anni: sblocco della verticale e acro-danza dopo anni di yoga" class="ab-review-img" loading="lazy" width="600" height="700">
+            <img src="https://lh3.googleusercontent.com/d/1GvOJHW68oK2J8UuLnD-WUnry6Y_oyO6K=s800" alt="Testimonianza di Michele Vicari, 43 anni: sblocco della verticale e acro-danza dopo anni di yoga" class="ab-review-img" loading="lazy" width="791" height="800">
           </article>
 
           <!-- Luca Timpani -->
@@ -2283,7 +2319,7 @@
               <span class="ab-proof-name">Luca Timpani, 38 anni</span>
               <span class="ab-proof-tag">Commerciale · Mobilità 360°</span>
             </div>
-            <img src="https://lh3.googleusercontent.com/d/1wcFBWAbxx0SwJ_HuzdhuC_OpyIdb_12p=s800" alt="Testimonianza di Luca Timpani, 38 anni: mobilità del corpo ed eliminazione dolori cronici" class="ab-review-img" loading="lazy" width="600" height="700">
+            <img src="https://lh3.googleusercontent.com/d/1wcFBWAbxx0SwJ_HuzdhuC_OpyIdb_12p=s800" alt="Testimonianza di Luca Timpani, 38 anni: mobilità del corpo, netta riduzione delle rigidità alleviando di molto i fastidi" class="ab-review-img" loading="lazy" width="800" height="633">
           </article>
 
           <!-- Monica Gavillucci -->
@@ -2292,7 +2328,7 @@
               <span class="ab-proof-name">Monica Gavillucci, 52 anni</span>
               <span class="ab-proof-tag">Personal Trainer · Empatia & Metodo</span>
             </div>
-            <img src="https://lh3.googleusercontent.com/d/1ZF4URLsENQtTVO-2J4zaueNGlqHVUXO-=s800" alt="Testimonianza di Monica Gavillucci, 52 anni, Personal Trainer: empatia e comprensione delle difficoltà" class="ab-review-img" loading="lazy" width="600" height="700">
+            <img src="https://lh3.googleusercontent.com/d/1ZF4URLsENQtTVO-2J4zaueNGlqHVUXO-=s800" alt="Testimonianza di Monica Gavillucci, 52 anni, Personal Trainer: empatia e comprensione delle difficoltà" class="ab-review-img" loading="lazy" width="800" height="493">
           </article>
 
         </div>
@@ -2300,7 +2336,7 @@
         <!-- Slider Screenshot Chat WhatsApp -->
         <div class="ab-chat-slider-wrap">
           <h3 class="ab-title-h3 ab-chat-slider-title">Screenshot delle conversazioni dirette su WhatsApp</h3>
-          <div class="ab-chat-slider" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
+          <div class="ab-chat-slider" role="region" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
             
             <div class="ab-chat-card">
               <img src="https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800" alt="Feedback WhatsApp: non avevo una mobilità logica, ieri non avevo più dolore fastidioso alle anche e ginocchia" class="ab-chat-img" loading="lazy" width="280" height="360">
@@ -2608,7 +2644,7 @@
               <div class="ab-map-doc-preview-body">
                 <div class="ab-map-doc-section-box">
                   <div class="ab-map-doc-sec-tag">Destinazione</div>
-                  <div class="ab-map-doc-sec-text">[ASSET: Anteprima di 2–3 pagine della Mappa del Movimento]</div>
+                  <div class="ab-map-doc-sec-text">Traguardo concordato, motivazione profonda e direzione di movimento personalizzata.</div>
                 </div>
                 <div class="ab-map-doc-section-box">
                   <div class="ab-map-doc-sec-tag">Punto Zero & Priorità</div>
@@ -2691,9 +2727,7 @@
         <div class="ab-destinations-grid">
           
           <div class="ab-destination-card">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Foto / Video Verticale]</span>
-            </div>
+            <img src="https://lh3.googleusercontent.com/d/1ilx4y0i0kNj7LfHllFx6aMVWS-l7xIc0=s1200" alt="Andrea Bolzan esegue una verticale a una mano davanti all'Arco della Pace a Milano" class="ab-dest-img" loading="lazy" width="800" height="533">
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="18" r="2"></circle><line x1="12" y1="16" x2="12" y2="8"></line><line x1="8" y1="5" x2="16" y2="5"></line></svg>
             </div>
@@ -2704,9 +2738,6 @@
           </div>
 
           <div class="ab-destination-card">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Foto / Video Pike]</span>
-            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"></path><path d="m7 19 5-14 5 14"></path></svg>
             </div>
@@ -2718,9 +2749,7 @@
           </div>
 
           <div class="ab-destination-card">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Foto / Video Accosciata]</span>
-            </div>
+            <img src="https://lh3.googleusercontent.com/d/1eRM85m9_xPp1lTT2uyPiWnCRfwwZObrh=s1200" alt="Andrea Bolzan in accosciata profonda dinamica e controllo del movimento" class="ab-dest-img" loading="lazy" width="800" height="533">
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v7"></path><path d="M9 11h6"></path><path d="m8 15 4 5 4-5"></path></svg>
             </div>
@@ -2731,9 +2760,6 @@
           </div>
 
           <div class="ab-destination-card">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Foto / Video Trekking]</span>
-            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
             </div>
@@ -2744,9 +2770,6 @@
           </div>
 
           <div class="ab-destination-card">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Foto / Video Arrampicata]</span>
-            </div>
             <div class="ab-dest-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </div>
@@ -2757,9 +2780,6 @@
           </div>
 
           <div class="ab-destination-card ab-destination-card--custom">
-            <div class="ab-dest-media-placeholder">
-              <span class="ab-dest-media-tag">[ASSET: Il tuo movimento]</span>
-            </div>
             <div class="ab-dest-icon ab-dest-icon--custom" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
             </div>
@@ -3021,7 +3041,7 @@
             </p>
 
             <div class="ab-offer-badge-row">
-              <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong class="ab-tabular" data-spots-available>X su 6</strong></span>
+              <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong class="ab-tabular" data-spots-available>max 6</strong></span>
               <span class="ab-badge-meta ab-badge-credit">Credito 150 € incluso</span>
             </div>
 
@@ -3031,7 +3051,7 @@
 
             <div class="ab-offer-whatsapp-area">
               <p class="ab-offer-whatsapp-query">Hai qualche domanda o dubbio? Scrivimi su WhatsApp.</p>
-              <a class="ab-cta ab-cta--whatsapp ab-cta--full" href="#WHATSAPP_URL" data-whatsapp-link>
+              <a class="ab-cta ab-cta--whatsapp ab-cta--full" href="#WHATSAPP_URL" data-whatsapp-link target="_blank" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 Scrivimi su WhatsApp
               </a>
@@ -3146,7 +3166,7 @@
 
           <div class="ab-faq-whatsapp-block">
             <p class="ab-faq-whatsapp-query">Hai ancora qualche dubbio? Scrivimi su WhatsApp: ti rispondo personalmente.</p>
-            <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+            <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
               Scrivimi su WhatsApp
             </a>
@@ -3170,7 +3190,7 @@
             
             <div class="ab-footer-whatsapp-box">
               <p class="ab-footer-whatsapp-text">Hai ancora qualche dubbio? Scrivimi su WhatsApp: ti rispondo personalmente.</p>
-              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link>
+              <a class="ab-cta ab-cta--whatsapp" href="#WHATSAPP_URL" data-whatsapp-link target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 Scrivimi su WhatsApp
               </a>
@@ -3178,15 +3198,15 @@
           </div>
         </div>
 
-        <!-- Note Legali & Dati Fiscali (Placeholder espliciti) -->
+        <!-- Note Legali & Dati Fiscali -->
         <div class="ab-footer-links">
-          <span class="ab-footer-link">[DATI FISCALI — P.IVA / Ragione Sociale da inserire]</span>
-          <span aria-hidden="true">·</span>
-          <a href="#" class="ab-footer-link">[PRIVACY POLICY]</a>
-          <span aria-hidden="true">·</span>
-          <a href="#" class="ab-footer-link">[TERMINI E CONDIZIONI]</a>
-          <span aria-hidden="true">·</span>
-          <a href="#" class="ab-footer-link">[COOKIE POLICY]</a>
+          <span class="ab-footer-link ab-footer-link--static">Andrea Bolzan · P.IVA in corso di definizione</span>
+          <span class="ab-footer-separator" aria-hidden="true">·</span>
+          <a href="#privacy" class="ab-footer-link">Privacy Policy</a>
+          <span class="ab-footer-separator" aria-hidden="true">·</span>
+          <a href="#termini" class="ab-footer-link">Termini e Condizioni</a>
+          <span class="ab-footer-separator" aria-hidden="true">·</span>
+          <a href="#cookie" class="ab-footer-link">Cookie Policy</a>
         </div>
 
         <div class="ab-footer-disclaimer">
@@ -3222,18 +3242,21 @@
  * ==========================================================================
  */
 
-const AB_CONFIG = {
-  checkoutUrl: "#CHECKOUT_URL",
-  whatsappUrl: "#WHATSAPP_URL",
-  deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà rigorosamente nascosto.
-  promoPrice: "57 €",
-  regularPrice: "150 €",
-  availableSpots: "X su 6",
-  enableAnimations: true,
-  enableStickyCta: true
-};
-
 (function () {
+  const DEFAULT_CONFIG = {
+    checkoutUrl: "#CHECKOUT_URL",
+    whatsappUrl: "#WHATSAPP_URL",
+    deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà rigorosamente nascosto.
+    promoPrice: "57 €",
+    regularPrice: "150 €",
+    availableSpots: "max 6",
+    enableAnimations: true,
+    enableStickyCta: true
+  };
+
+  // Supporta eventuale override esterno via window.AB_CONFIG senza inquinare lo scope globale
+  const AB_CONFIG = Object.assign({}, DEFAULT_CONFIG, window.AB_CONFIG || {});
+
   let initialized = false;
 
   function initABPage() {
@@ -3261,20 +3284,46 @@ const AB_CONFIG = {
   }
 
   /**
-   * Valorizza tutti i link CTA con gli URL di configurazione e aggiorna i placeholder di prezzo/posti
+   * Helper per preservare/inoltrare query parameters (es. parametri UTM o tracciamento)
+   */
+  function appendQueryParams(baseUrl) {
+    if (!baseUrl || baseUrl.startsWith("#")) {
+      return baseUrl;
+    }
+    if (!window.location.search) {
+      return baseUrl;
+    }
+    try {
+      const incomingParams = new URLSearchParams(window.location.search);
+      const targetUrl = new URL(baseUrl, window.location.href);
+      incomingParams.forEach(function (val, key) {
+        if (!targetUrl.searchParams.has(key)) {
+          targetUrl.searchParams.set(key, val);
+        }
+      });
+      return targetUrl.toString();
+    } catch (e) {
+      return baseUrl;
+    }
+  }
+
+  /**
+   * Valorizza tutti i link CTA con gli URL di configurazione e aggiorna i testi di prezzo/posti
    */
   function setupLinks(root) {
     const checkoutLinks = root.querySelectorAll("[data-checkout-link]");
     checkoutLinks.forEach(function (link) {
       if (AB_CONFIG.checkoutUrl && AB_CONFIG.checkoutUrl !== "") {
-        link.setAttribute("href", AB_CONFIG.checkoutUrl);
+        link.setAttribute("href", appendQueryParams(AB_CONFIG.checkoutUrl));
       }
     });
 
     const whatsappLinks = root.querySelectorAll("[data-whatsapp-link]");
     whatsappLinks.forEach(function (link) {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
       if (AB_CONFIG.whatsappUrl && AB_CONFIG.whatsappUrl !== "") {
-        link.setAttribute("href", AB_CONFIG.whatsappUrl);
+        link.setAttribute("href", appendQueryParams(AB_CONFIG.whatsappUrl));
       }
     });
 
