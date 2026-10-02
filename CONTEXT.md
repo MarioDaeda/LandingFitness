@@ -63,8 +63,10 @@ La pagina è ingegnerizzata per essere inserita all'interno di un blocco **Custo
 6. **Preservazione dei Parametri di Tracking (UTM & Ads)**:
    - La funzione `appendQueryParams()` propaga in modo trasparente tutti i parametri query dell'URL sorgente (`utm_source`, `utm_medium`, `utm_campaign`, `fbclid`, `gclid`, ecc.) a tutte le CTA checkout e WhatsApp.
    - La funzione rispetta i frammenti hash `#` (non li corrompe se non ancora configurati) e concatena i parametri ai link WhatsApp preservando il parametro `text=...`.
-7. **Safe Fallback Countdown**:
-   - La barra sticky superiore e il box countdown nell'offerta sono impostati a livello CSS nativo su `display: none;`. Vengono mostrati via JavaScript solo se `AB_CONFIG.deadlineISO` è configurata con una data valida e futura. Se vuota, non viene mostrato alcuno spazio vuoto né timer a zero.
+7. **Countdown & Scadenza Offerta (Safe Fallback + Data Attiva)**:
+   - La barra sticky superiore (`.ab-top-bar`) e il box countdown nell'offerta (`.ab-offer-countdown-box`) sono impostati a livello CSS nativo su `display: none;` per garantire un fallback sicuro (no-JS e anti-flicker).
+   - Configurato `AB_CONFIG.deadlineISO: "2026-10-05T23:00:00+02:00"` (scadenza alle 23:00 di lunedì 5 ottobre 2026), attivando automaticamente il conto alla rovescia in formato giorni/ore/minuti/secondi con aggiornamento sincrono ogni secondo.
+   - `setupCountdown()` supporta sia stringhe ISO standard che il token dinamico `"next-monday-23"` / `"next-monday"`. Alla scadenza, gli elementi si nascondono automaticamente senza mostrare zeri o layout rotti.
 8. **Pulizia Totale del Contenuto (Zero Placeholder Residui)**:
    - Nessun placeholder residuo consentito: zero `[ASSET: ...]`, zero `[DATI FISCALI]`, zero `[PRIVACY]`, zero `[TERMINI]`, zero `[COOKIE]`, zero `"X su 6"`.
 

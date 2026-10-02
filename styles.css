@@ -340,6 +340,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
   transition: opacity 250ms var(--ab-ease-out), transform 250ms var(--ab-ease-out);
 }
@@ -1636,6 +1637,11 @@
 
 #ab-mobility-checkup .ab-offer-countdown-box.ab-countdown--active {
   display: flex;
+}
+
+#ab-mobility-checkup .ab-offer-countdown-box .ab-countdown-timer {
+  background: rgba(184, 66, 15, 0.12);
+  color: var(--ab-color-accent);
 }
 
 #ab-mobility-checkup .ab-pricing-credit-text {

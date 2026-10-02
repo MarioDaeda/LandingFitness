@@ -146,6 +146,9 @@ assert(topBarDisplayNone, 'Top bar is hidden by default in CSS');
 const offerCountdownDisplayNone = /#ab-mobility-checkup\s+\.ab-offer-countdown-box\s*\{[\s\S]*?display:\s*none;/i.test(css);
 assert(offerCountdownDisplayNone, 'Offer countdown box is hidden by default in CSS');
 
+assert(js.includes('2026-10-05T23:00:00+02:00'), 'deadlineISO is configured for Monday 23:00 in script.js');
+assert(ghlHtml.includes('2026-10-05T23:00:00+02:00'), 'deadlineISO is configured for Monday 23:00 in highlevel-paste.html');
+
 console.log('\n=== 8. Residual Placeholders & Copy Cleanliness Check ===');
 assert(!/\[ASSET/i.test(html) && !/\[ASSET/i.test(ghlHtml), 'No [ASSET: ...] placeholders remaining in HTML');
 assert(!/\[DATI FISCALI/i.test(html) && !/\[DATI FISCALI/i.test(ghlHtml), 'No [DATI FISCALI...] placeholder remaining in HTML');

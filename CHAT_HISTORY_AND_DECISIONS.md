@@ -137,10 +137,11 @@ Un audit esterno di Claude aveva sollevato rilievi sul codice. È stata eseguita
 | **Altezza Touch e Safe-Area** | "I bottoni mobile rischiano di sovrapporsi alla barra home di iPhone" | **ACCOLTA** | Implementata safe-area con fallback `constant()` + `env()`, e altezza touch target aumentata a 52px. |
 | **Sticky CTA nelle FAQ** | "La barra sticky non riappariva dopo la sezione offerta" | **ACCOLTA** | Sostituita la logica booleana con una `Map` di IntersectionObserver su offerta e footer. La sticky CTA scompare sull'offerta e ricompare subito sulle FAQ. |
 | **Slider Dots Accessibili** | "I pallini dello slider non erano cliccabili né accessibili" | **ACCOLTA** | Assegnato `role="button"`, `tabindex="0"`, gestione touch e tastiera con scorrimento fluido. |
+| **Countdown Scadenza Offerta** | "Il timer deve contare alla rovescia fino a lunedì alle 23:00" | **ACCOLTA** | Impostata `deadlineISO: "2026-10-05T23:00:00+02:00"` con supporto fallback dinamico `next-monday-23`. Il conto alla rovescia è attivo nella barra sticky e nel box offerta, con `aria-live="polite"` e contrasti rifiniti. |
 
 ---
 
 ## 5. Stato Attuale e Garanzie di Qualità
 
-- **Automated Test Suite**: **Tutti i 90+ test superati (0 errori)**.
-- **GoHighLevel Ready**: Il file `highlevel-paste.html` è autonomo, include CDN ad alta velocità, non soffre di collisioni di variabili globali e garantisce perfetto isolamento stilistico.
+- **Automated Test Suite**: **Tutti i 92 test superati (0 errori)**.
+- **GoHighLevel Ready**: Il file `highlevel-paste.html` è autonomo, include CDN ad alta velocità, countdown attivo alla rovescia, non soffre di collisioni di variabili globali e garantisce perfetto isolamento stilistico.

@@ -10,7 +10,7 @@
   const DEFAULT_CONFIG = {
     checkoutUrl: "#CHECKOUT_URL",
     whatsappUrl: "#WHATSAPP_URL",
-    deadlineISO: "", // Lasciare vuoto se non c'è una data precisa. Il timer rimarrà rigorosamente nascosto.
+    deadlineISO: "2026-10-05T23:00:00+02:00", // Scade alle 23:00 di lunedì (5 ottobre 2026)
     promoPrice: "57 €",
     regularPrice: "150 €",
     availableSpots: "max 6",
@@ -136,11 +136,23 @@
     const topBar = root.querySelector("[data-countdown-top-bar]");
     const offerCountdownBox = root.querySelector("[data-countdown-offer-box]");
 
-    if (!AB_CONFIG.deadlineISO || AB_CONFIG.deadlineISO.trim() === "") {
+    const rawDeadline = AB_CONFIG.deadlineISO;
+    if (!rawDeadline || typeof rawDeadline !== "string" || rawDeadline.trim() === "") {
       return;
     }
 
-    const targetDate = new Date(AB_CONFIG.deadlineISO).getTime();
+    let targetDate;
+    if (rawDeadline === "next-monday-23" || rawDeadline === "next-monday") {
+      const now = new Date();
+      const nextMon = new Date(now);
+      const daysUntilMonday = ((1 + 7 - now.getDay()) % 7) || 7;
+      nextMon.setDate(now.getDate() + daysUntilMonday);
+      nextMon.setHours(23, 0, 0, 0);
+      targetDate = nextMon.getTime();
+    } else {
+      targetDate = new Date(rawDeadline).getTime();
+    }
+
     if (isNaN(targetDate)) {
       return;
     }
