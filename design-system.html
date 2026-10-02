@@ -7,25 +7,25 @@
   <style>
     /* Scope wrapper variables */
     #ab-mobility-checkup, .ab-ds-wrapper {
-      --ab-color-canvas: #f4f1e9;
-      --ab-color-surface: #fffdf8;
-      --ab-color-surface-hover: #f9f6ee;
-      --ab-color-ink: #17201d;
-      --ab-color-muted: #5f6964;
-      --ab-color-primary: #1f5848;
-      --ab-color-primary-hover: #174638;
-      --ab-color-primary-subtle: #e8f0ec;
-      --ab-color-accent: #c96e4b;
-      --ab-color-accent-hover: #b45f3e;
-      --ab-color-accent-subtle: #fbf0ea;
-      --ab-color-line: rgba(23, 32, 29, 0.14);
+      --ab-color-canvas: #f3f4f6;
+      --ab-color-surface: #ffffff;
+      --ab-color-surface-hover: #f8f9fb;
+      --ab-color-ink: #0e1217;
+      --ab-color-muted: #566170;
+      --ab-color-primary: #1d3fb8;
+      --ab-color-primary-hover: #16308f;
+      --ab-color-primary-subtle: #e9edfa;
+      --ab-color-accent: #b8420f;
+      --ab-color-accent-hover: #9a350b;
+      --ab-color-accent-subtle: #fbece4;
+      --ab-color-line: rgba(14, 18, 23, 0.14);
       --ab-color-line-dark: rgba(255, 255, 255, 0.15);
-      --ab-color-success: #287558;
-      --ab-color-danger: #a74436;
-      --ab-color-danger-subtle: #faecea;
+      --ab-color-success: #1a7f4b;
+      --ab-color-danger: #b42318;
+      --ab-color-danger-subtle: #fbeceb;
       
       --ab-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --ab-font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", serif;
+      --ab-font-serif: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
       --ab-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
       --ab-space-1: 4px;
@@ -39,15 +39,16 @@
       --ab-space-24: 96px;
 
       --ab-radius-sm: 4px;
-      --ab-radius-md: 8px;
-      --ab-radius-lg: 14px;
-      --ab-radius-xl: 20px;
+      --ab-radius-md: 6px;
+      --ab-radius-lg: 10px;
+      --ab-radius-xl: 14px;
       --ab-radius-full: 9999px;
 
-      --ab-shadow-sm: 0 1px 3px rgba(23, 32, 29, 0.06);
-      --ab-shadow-md: 0 4px 12px rgba(23, 32, 29, 0.08);
-      --ab-shadow-lg: 0 10px 28px rgba(23, 32, 29, 0.1);
+      --ab-shadow-sm: 0 1px 3px rgba(14, 18, 23, 0.06);
+      --ab-shadow-md: 0 4px 12px rgba(14, 18, 23, 0.08);
+      --ab-shadow-lg: 0 10px 28px rgba(14, 18, 23, 0.1);
 
+      --ab-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
       --ab-transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
       --ab-transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
       --ab-transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -60,43 +61,43 @@
     body {
       margin: 0;
       padding: 32px 16px;
-      background-color: #e5e2da;
+      background-color: #e7e9ee;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #17201d;
+      color: #0e1217;
     }
 
     .ab-ds-container {
       max-width: 1040px;
       margin: 0 auto;
-      background: #f4f1e9;
+      background: #f3f4f6;
       border-radius: 16px;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
       overflow: hidden;
-      border: 1px solid rgba(23, 32, 29, 0.12);
+      border: 1px solid rgba(14, 18, 23, 0.12);
     }
 
     .ab-ds-header {
-      background: #17201d;
-      color: #fffdf8;
+      background: #0e1217;
+      color: #ffffff;
       padding: 40px 32px;
     }
 
     .ab-ds-header h1 {
       margin: 0 0 8px;
       font-size: 32px;
-      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
       letter-spacing: -0.02em;
     }
 
     .ab-ds-header p {
       margin: 0;
-      color: #9ea8a3;
+      color: #aab4c4;
       font-size: 16px;
     }
 
     .ab-ds-section {
       padding: 40px 32px;
-      border-bottom: 1px solid rgba(23, 32, 29, 0.1);
+      border-bottom: 1px solid rgba(14, 18, 23, 0.1);
     }
 
     .ab-ds-section:last-child {
@@ -109,7 +110,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin: 0 0 24px;
-      color: #1f5848;
+      color: #1d3fb8;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -123,9 +124,9 @@
     }
 
     .ab-swatch {
-      background: #fffdf8;
+      background: #ffffff;
       border-radius: 8px;
-      border: 1px solid rgba(23, 32, 29, 0.1);
+      border: 1px solid rgba(14, 18, 23, 0.1);
       overflow: hidden;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
@@ -148,14 +149,14 @@
     .ab-swatch__hex {
       font-family: ui-monospace, monospace;
       font-size: 12px;
-      color: #5f6964;
+      color: #566170;
     }
 
     /* Typography Showcase */
     .ab-type-row {
       margin-bottom: 20px;
       padding-bottom: 16px;
-      border-bottom: 1px dashed rgba(23, 32, 29, 0.1);
+      border-bottom: 1px dashed rgba(14, 18, 23, 0.1);
     }
 
     .ab-type-row:last-child {
@@ -165,31 +166,31 @@
     .ab-type-meta {
       font-family: ui-monospace, monospace;
       font-size: 11px;
-      color: #5f6964;
+      color: #566170;
       text-transform: uppercase;
       margin-bottom: 4px;
     }
 
     .ab-h1 {
-      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
       font-size: 38px;
       line-height: 1.15;
       font-weight: 700;
       letter-spacing: -0.025em;
       margin: 0;
       text-wrap: balance;
-      color: #17201d;
+      color: #0e1217;
     }
 
     .ab-h2 {
-      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
       font-size: 28px;
       line-height: 1.25;
       font-weight: 600;
       letter-spacing: -0.02em;
       margin: 0;
       text-wrap: balance;
-      color: #17201d;
+      color: #0e1217;
     }
 
     .ab-h3 {
@@ -199,14 +200,14 @@
       font-weight: 700;
       letter-spacing: -0.01em;
       margin: 0;
-      color: #17201d;
+      color: #0e1217;
     }
 
     .ab-body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 16px;
       line-height: 1.6;
-      color: #17201d;
+      color: #0e1217;
       text-wrap: pretty;
       margin: 0;
     }
@@ -219,7 +220,7 @@
     .ab-body--small {
       font-size: 14px;
       line-height: 1.5;
-      color: #5f6964;
+      color: #566170;
     }
 
     /* Buttons & CTAs */
@@ -248,31 +249,31 @@
       cursor: pointer;
       text-align: center;
       text-wrap: balance;
-      transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+      transition: background-color 200ms var(--ab-ease-out), transform 150ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out);
       box-sizing: border-box;
     }
 
     .ab-cta:focus-visible {
-      outline: 3px solid #1f5848;
+      outline: 3px solid #1d3fb8;
       outline-offset: 3px;
     }
 
     .ab-cta--primary {
-      background-color: #1f5848;
+      background-color: #1d3fb8;
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(31, 88, 72, 0.25);
+      box-shadow: 0 4px 14px rgba(29, 63, 184, 0.25);
     }
 
     .ab-cta--primary:hover {
-      background-color: #174638;
+      background-color: #16308f;
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(31, 88, 72, 0.32);
+      box-shadow: 0 6px 18px rgba(29, 63, 184, 0.32);
     }
 
     .ab-cta--primary:active {
-      background-color: #11362b;
+      background-color: #0c1a45;
       transform: translateY(1px);
-      box-shadow: 0 2px 8px rgba(31, 88, 72, 0.2);
+      box-shadow: 0 2px 8px rgba(29, 63, 184, 0.2);
     }
 
     .ab-cta--whatsapp {
@@ -293,18 +294,18 @@
 
     .ab-cta--outline {
       background: transparent;
-      border-color: #1f5848;
-      color: #1f5848;
+      border-color: #1d3fb8;
+      color: #1d3fb8;
     }
 
     .ab-cta--outline:hover {
-      background: #e8f0ec;
+      background: #e9edfa;
     }
 
     .ab-cta--disabled,
     .ab-cta[disabled] {
-      background-color: #d8dad6;
-      color: #8c9390;
+      background-color: #d9dce2;
+      color: #7a8493;
       border-color: transparent;
       cursor: not-allowed;
       box-shadow: none;
@@ -326,39 +327,39 @@
     }
 
     .ab-badge--primary {
-      background: #e8f0ec;
-      color: #1f5848;
-      border: 1px solid rgba(31, 88, 72, 0.2);
+      background: #e9edfa;
+      color: #1d3fb8;
+      border: 1px solid rgba(29, 63, 184, 0.2);
     }
 
     .ab-badge--accent {
-      background: #fbf0ea;
-      color: #c96e4b;
-      border: 1px solid rgba(201, 110, 75, 0.2);
+      background: #fbece4;
+      color: #b8420f;
+      border: 1px solid rgba(184, 66, 15, 0.2);
     }
 
     .ab-badge--dark {
-      background: #17201d;
-      color: #fffdf8;
+      background: #0e1217;
+      color: #ffffff;
     }
 
     /* Blockquote */
     .ab-quote {
       position: relative;
-      background: #fffdf8;
-      border-left: 4px solid #1f5848;
+      background: #ffffff;
+      border-left: 4px solid #1d3fb8;
       border-radius: 0 8px 8px 0;
       padding: 20px 24px;
       margin: 16px 0;
-      box-shadow: 0 2px 8px rgba(23, 32, 29, 0.04);
+      box-shadow: 0 2px 8px rgba(14, 18, 23, 0.04);
     }
 
     .ab-quote p {
-      font-family: "Iowan Old Style", "Apple Garamond", Baskerville, serif;
+      font-family: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
       font-size: 18px;
       font-style: italic;
       line-height: 1.5;
-      color: #17201d;
+      color: #0e1217;
       margin: 0 0 10px;
     }
 
@@ -366,33 +367,33 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 13px;
       font-weight: 600;
-      color: #5f6964;
+      color: #566170;
     }
 
     /* FAQ Details/Summary Component */
     .ab-faq-item {
-      background: #fffdf8;
-      border: 1px solid rgba(23, 32, 29, 0.12);
+      background: #ffffff;
+      border: 1px solid rgba(14, 18, 23, 0.12);
       border-radius: 8px;
       margin-bottom: 12px;
       overflow: hidden;
-      transition: border-color 200ms ease, box-shadow 200ms ease;
+      transition: border-color 200ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out);
     }
 
     .ab-faq-item:hover {
-      border-color: rgba(31, 88, 72, 0.35);
+      border-color: rgba(29, 63, 184, 0.35);
     }
 
     .ab-faq-item[open] {
-      border-color: #1f5848;
-      box-shadow: 0 4px 14px rgba(31, 88, 72, 0.08);
+      border-color: #1d3fb8;
+      box-shadow: 0 4px 14px rgba(29, 63, 184, 0.08);
     }
 
     .ab-faq-summary {
       padding: 18px 24px;
       font-weight: 600;
       font-size: 16px;
-      color: #17201d;
+      color: #0e1217;
       cursor: pointer;
       list-style: none;
       display: flex;
@@ -406,15 +407,15 @@
     }
 
     .ab-faq-summary:focus-visible {
-      outline: 2px solid #1f5848;
+      outline: 2px solid #1d3fb8;
       outline-offset: -2px;
     }
 
     .ab-faq-icon {
       width: 18px;
       height: 18px;
-      transition: transform 250ms ease;
-      color: #1f5848;
+      transition: transform 250ms var(--ab-ease-out);
+      color: #1d3fb8;
       flex-shrink: 0;
     }
 
@@ -426,8 +427,8 @@
       padding: 0 24px 20px;
       font-size: 15px;
       line-height: 1.6;
-      color: #404a45;
-      border-top: 1px solid rgba(23, 32, 29, 0.06);
+      color: #38414b;
+      border-top: 1px solid rgba(14, 18, 23, 0.06);
       padding-top: 14px;
     }
 
@@ -440,8 +441,8 @@
     }
 
     .ab-step-card {
-      background: #fffdf8;
-      border: 1px solid rgba(23, 32, 29, 0.1);
+      background: #ffffff;
+      border: 1px solid rgba(14, 18, 23, 0.1);
       border-radius: 10px;
       padding: 20px;
       position: relative;
@@ -451,7 +452,7 @@
       width: 32px;
       height: 32px;
       border-radius: 9999px;
-      background: #1f5848;
+      background: #1d3fb8;
       color: #ffffff;
       display: flex;
       align-items: center;
@@ -463,11 +464,11 @@
 
     /* Mappa Mockup Component */
     .ab-map-mockup {
-      background: #fffdf8;
-      border: 1px solid rgba(23, 32, 29, 0.15);
+      background: #ffffff;
+      border: 1px solid rgba(14, 18, 23, 0.15);
       border-radius: 12px;
       padding: 24px;
-      box-shadow: 0 8px 24px rgba(23, 32, 29, 0.07);
+      box-shadow: 0 8px 24px rgba(14, 18, 23, 0.07);
       position: relative;
     }
 
@@ -479,15 +480,15 @@
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 0.08em;
-      color: #c96e4b;
-      background: #fbf0ea;
+      color: #b8420f;
+      background: #fbece4;
       padding: 4px 10px;
       border-radius: 4px;
-      border: 1px solid rgba(201, 110, 75, 0.25);
+      border: 1px solid rgba(184, 66, 15, 0.25);
     }
 
     .ab-map-header {
-      border-bottom: 2px solid #17201d;
+      border-bottom: 2px solid #0e1217;
       padding-bottom: 12px;
       margin-bottom: 16px;
     }
@@ -501,14 +502,14 @@
 
     .ab-map-cell {
       padding: 10px;
-      background: #f4f1e9;
+      background: #f3f4f6;
       border-radius: 6px;
-      border-left: 3px solid #1f5848;
+      border-left: 3px solid #1d3fb8;
     }
 
     .ab-map-cell strong {
       display: block;
-      color: #1f5848;
+      color: #1d3fb8;
       margin-bottom: 4px;
       font-size: 12px;
       text-transform: uppercase;
@@ -538,66 +539,66 @@
       <div class="ab-ds-title">1. Tavolozza Cromatica</div>
       <div class="ab-palette-grid">
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #f4f1e9;"></div>
+          <div class="ab-swatch__color" style="background-color: #f3f4f6;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Canvas</div>
-            <div class="ab-swatch__hex">#f4f1e9</div>
+            <div class="ab-swatch__hex">#f3f4f6</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #fffdf8; border-bottom: 1px solid #eee;"></div>
+          <div class="ab-swatch__color" style="background-color: #ffffff; border-bottom: 1px solid #eee;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Surface</div>
-            <div class="ab-swatch__hex">#fffdf8</div>
+            <div class="ab-swatch__hex">#ffffff</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #17201d;"></div>
+          <div class="ab-swatch__color" style="background-color: #0e1217;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Ink (Testo Primario)</div>
-            <div class="ab-swatch__hex">#17201d</div>
+            <div class="ab-swatch__hex">#0e1217</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #5f6964;"></div>
+          <div class="ab-swatch__color" style="background-color: #566170;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Muted (Testo Secondario)</div>
-            <div class="ab-swatch__hex">#5f6964</div>
+            <div class="ab-swatch__hex">#566170</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #1f5848;"></div>
+          <div class="ab-swatch__color" style="background-color: #1d3fb8;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Primary Forest Green</div>
-            <div class="ab-swatch__hex">#1f5848</div>
+            <div class="ab-swatch__hex">#1d3fb8</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #174638;"></div>
+          <div class="ab-swatch__color" style="background-color: #16308f;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Primary Hover</div>
-            <div class="ab-swatch__hex">#174638</div>
+            <div class="ab-swatch__hex">#16308f</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #c96e4b;"></div>
+          <div class="ab-swatch__color" style="background-color: #b8420f;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Accent Terracotta</div>
-            <div class="ab-swatch__hex">#c96e4b</div>
+            <div class="ab-swatch__hex">#b8420f</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #287558;"></div>
+          <div class="ab-swatch__color" style="background-color: #1a7f4b;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Success</div>
-            <div class="ab-swatch__hex">#287558</div>
+            <div class="ab-swatch__hex">#1a7f4b</div>
           </div>
         </div>
         <div class="ab-swatch">
-          <div class="ab-swatch__color" style="background-color: #a74436;"></div>
+          <div class="ab-swatch__color" style="background-color: #b42318;"></div>
           <div class="ab-swatch__info">
             <div class="ab-swatch__name">Danger / Warning</div>
-            <div class="ab-swatch__hex">#a74436</div>
+            <div class="ab-swatch__hex">#b42318</div>
           </div>
         </div>
       </div>
@@ -633,8 +634,8 @@
       <div class="ab-type-row">
         <div class="ab-type-meta">Prezzi & Tabular Nums — 150 € -> 57 €</div>
         <div style="font-variant-numeric: tabular-nums; font-weight: 700; font-size: 26px;">
-          <span style="text-decoration: line-through; color: #a74436; margin-right: 12px; font-weight: 400;">150 €</span>
-          <span style="color: #1f5848;">57 €</span>
+          <span style="text-decoration: line-through; color: #b42318; margin-right: 12px; font-weight: 400;">150 €</span>
+          <span style="color: #1d3fb8;">57 €</span>
         </div>
       </div>
     </div>
@@ -648,7 +649,7 @@
         <a class="ab-cta ab-cta--outline" href="#CHECKOUT_URL">Approfondisci l'offerta</a>
         <button class="ab-cta ab-cta--disabled" disabled>Offerta Scaduta</button>
       </div>
-      <div style="font-size: 13px; color: #5f6964;">
+      <div style="font-size: 13px; color: #566170;">
         Target touch minimo garantito: 48px di altezza. Stati :hover, :active e :focus-visible testati.
       </div>
     </div>
@@ -697,8 +698,8 @@
           <div class="ab-map-mockup">
             <div class="ab-map-badge">Esempio di Mappa</div>
             <div class="ab-map-header">
-              <strong style="font-size: 15px; color: #17201d; font-family: serif;">Mappa del Movimento — Andrea Bolzan</strong>
-              <div style="font-size: 12px; color: #5f6964;">Documento personale di analisi e direzione</div>
+              <strong style="font-size: 15px; color: #0e1217; font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif;">Mappa del Movimento — Andrea Bolzan</strong>
+              <div style="font-size: 12px; color: #566170;">Documento personale di analisi e direzione</div>
             </div>
             <div class="ab-map-grid">
               <div class="ab-map-cell">
@@ -726,8 +727,8 @@
     <!-- 6. ACCESSIBILITA' & MOTION -->
     <div class="ab-ds-section">
       <div class="ab-ds-title">6. Linee Guida di Accessibilità e Motion</div>
-      <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.7; color: #404a45;">
-        <li>Contrasto testo corpo (#17201d su #f4f1e9): <strong>13.5:1</strong> (Conforme AAA).</li>
+      <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.7; color: #38414b;">
+        <li>Contrasto testo corpo (#0e1217 su #f3f4f6): <strong>17.1:1</strong> (Conforme AAA).</li>
         <li>Tasti e link conformi WCAG 2.1 AA (minimo 44×44px di hit-target).</li>
         <li>Nessuna proprietà <code>transition: all</code>. Transizioni esplicite su <code>transform</code>, <code>opacity</code>, <code>background-color</code>.</li>
         <li>Completo supporto alle preferenze di movimento ridotto: <code>@media (prefers-reduced-motion: reduce)</code>.</li>
