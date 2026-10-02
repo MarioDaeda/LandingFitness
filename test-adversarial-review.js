@@ -128,8 +128,9 @@ test('R3.3 .ab-mark has high-contrast yellow highlight gradient (#ffe14d)', () =
 
 // --- R4: STICKY MOBILE CTA & SQUARE WHATSAPP BUTTON ---
 test('R4.1 Sticky mobile CTA contains square WhatsApp button to the left of main CTA', () => {
-  expect(html).toMatch(/<aside class="ab-sticky-mobile-cta"[^>]*>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"/);
-  expect(ghlHtml).toMatch(/<aside class="ab-sticky-mobile-cta"[^>]*>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"/);
+  const sticky = /<aside class="ab-sticky-mobile-cta"[^>]*>\s*<div class="ab-sticky-info">[\s\S]*?<\/div>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"[^>]*>\s*Prenota ora\s*<\/a>/;
+  expect(html).toMatch(sticky);
+  expect(ghlHtml).toMatch(sticky);
 });
 
 test('R4.2 WhatsApp button has 52x52px touch box (exceeds Apple HIG 44px/48px min)', () => {

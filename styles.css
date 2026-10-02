@@ -1954,16 +1954,21 @@
   transition: transform 420ms cubic-bezier(0.34, 1.35, 0.64, 1), opacity 220ms var(--ab-ease-out);
 }
 
+/* Sinistra: nome + prezzo; destra: WhatsApp + Prenota ora */
 #ab-mobility-checkup .ab-sticky-info {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 #ab-mobility-checkup .ab-sticky-label {
   font-size: 11.5px;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--ab-color-muted);
+  white-space: nowrap;
 }
 
 #ab-mobility-checkup .ab-sticky-price {
@@ -2585,7 +2590,7 @@
 }
 
 #ab-mobility-checkup .ab-sticky-btn {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   width: auto;
 }
 
