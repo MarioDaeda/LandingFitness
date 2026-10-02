@@ -68,12 +68,13 @@
   background-color: var(--ab-color-canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* clip (non hidden): il wrapper non diventa un contenitore di scroll che intercetta la rotella */
   overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  overscroll-behavior-y: none;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -2353,33 +2354,6 @@
   background: #0e1217;
 }
 
-#ab-mobility-checkup .ab-hero-video-fallback {
-  padding: 8px 12px;
-  background: var(--ab-color-surface);
-  border-top: 1px solid var(--ab-color-line);
-  text-align: center;
-}
-
-#ab-mobility-checkup .ab-hero-video-fallback-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ab-color-ink-muted);
-  text-decoration: none;
-  min-height: 36px;
-  padding: 2px 8px;
-  border-radius: var(--ab-radius-sm);
-  transition: color 150ms var(--ab-ease-out);
-}
-
-#ab-mobility-checkup .ab-hero-video-fallback-link:hover {
-  color: var(--ab-color-primary);
-  text-decoration: underline;
-}
-
 /* ==========================================================================
    SLIDER A SCORRIMENTO LENTO (testimonianze + feedback)
    Scroll libero (niente snap): il JS avanza lentamente e si ferma al tocco/hover.
@@ -2400,6 +2374,10 @@
 #ab-mobility-checkup .ab-proof-wrap {
   margin-top: 0;
   margin-bottom: var(--ab-space-10);
+}
+
+#ab-mobility-checkup .ab-proof-wrap:last-child {
+  margin-bottom: 0;
 }
 
 #ab-mobility-checkup .ab-proof-wrap .ab-proof-grid {

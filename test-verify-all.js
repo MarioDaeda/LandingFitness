@@ -259,7 +259,8 @@ assert(/#ab-mobility-checkup \.ab-proof-grid\s*\{[^}]*-webkit-overflow-scrolling
 
 // 5. Dynamic viewport units & overscroll behavior
 assert(/#ab-mobility-checkup\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100dvh;/s.test(css), 'Dynamic viewport units (100dvh with 100vh fallback) are configured');
-assert(/#ab-mobility-checkup\s*\{[^}]*overscroll-behavior-y:\s*none;/s.test(css), 'overscroll-behavior-y: none is configured to prevent accidental bounce');
+assert(!/#ab-mobility-checkup\s*\{[^}]*overscroll-behavior-y:\s*none;/s.test(css), 'Wrapper has no overscroll-behavior-y: none (it blocks mouse-wheel scroll chaining to the page)');
+assert(/#ab-mobility-checkup\s*\{[^}]*overflow-x:\s*clip;/s.test(css), 'Wrapper uses overflow-x: clip so it does not become a scroll container');
 assert(css.includes('overscroll-behavior-x: contain;'), 'overscroll-behavior-x: contain is configured on sliders');
 
 // 6. Mobile Performance & Interaction Resilience
@@ -274,18 +275,18 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(count(/<img[^>]*class="ab-review-img"/g, src) === 8, `All 8 review cards present in ${label}`);
   assert(count(/class="ab-proof-card ab-video-card"/g, src) === 6, `All 6 video testimonials present in ${label}`);
   assert(count(/<div class="ab-chat-card">/g, src) === 14, `All 14 WhatsApp feedback screenshots present in ${label}`);
-  assert(count(/class="[^"]*ab-auto-slider/g, src) === 2, `Both sliders are slow auto-scroll sliders in ${label}`);
+  assert(count(/class="[^"]*ab-auto-slider/g, src) === 3, `WhatsApp, written and video sliders are all slow auto-scroll sliders in ${label}`);
+  assert(count(/class="ab-proof-grid ab-video-grid ab-auto-slider"/g, src) === 1, `Videos have their own slider in ${label}`);
+  assert(!/Video testimonianza \d/.test(src), `No "Video testimonianza N" labels in ${label}`);
   assert(src.includes('drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview'), `Hero shows the Drive video in ${label}`);
   assert(!/class="ab-vsl-poster-img"/.test(src), `Hero photo replaced by video in ${label}`);
   assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
   assert(count(/class="ab-mark"/g, src) === 2, `Two highlighted pricing sentences in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
-  assert(src.includes('https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/view'), `Hero shows direct fallback link in ${label}`);
-  assert(src.includes('class="ab-hero-video-fallback-link"'), `Hero fallback link class present in ${label}`);
+  assert(!src.includes('ab-hero-video-fallback'), `Hero has no "Non vedi il video?" fallback link in ${label}`);
 }
 assert(/\.ab-mark\s*\{[^}]*#ffe14d/s.test(css), 'Pricing sentences are underlined/highlighted in yellow');
 assert(/\.ab-sticky-wa\s*\{[^}]*width:\s*52px;[^}]*height:\s*52px;/s.test(css), 'Sticky WhatsApp button is a 52px square');
-assert(css.includes('.ab-hero-video-fallback-link'), 'Hero fallback link styles present in CSS');
 assert(js.includes('function setupAutoScroll') && js.includes('"touchstart", pause') && js.includes('"mouseenter", pause'), 'Auto-scroll pauses on touch and hover');
 assert(js.includes('prefers-reduced-motion') && js.includes('function setupVideoModal'), 'Auto-scroll respects reduced motion; video modal is registered');
 assert(js.includes('ab-video-modal-fallback'), 'Video modal fallback link registered in JS');

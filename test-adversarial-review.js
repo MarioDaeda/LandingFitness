@@ -58,10 +58,6 @@ test('R1.3 Hero aspect ratio 16:9 container configured with padding-bottom: 56.2
   expect(css).toMatch(/#ab-mobility-checkup \.ab-hero-video\s*\{[^}]*position:\s*absolute;\s*inset:\s*0;/);
 });
 
-test('R1.4 Hero fallback link styled with scoped CSS and touch target >= 36px', () => {
-  expect(css).toMatch(/#ab-mobility-checkup \.ab-hero-video-fallback-link\s*\{[^}]*min-height:\s*36px;/);
-});
-
 // --- R2: TESTIMONIALS, VIDEOS, AUTO-SLIDER & SMART-SNAP ---
 test('R2.1 All 14 WhatsApp chat cards have 4:5 aspect ratio (280x350) and lazy loading in index.html', () => {
   for (let i = 1; i <= 14; i++) {

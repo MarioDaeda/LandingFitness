@@ -687,11 +687,12 @@
   }
 
   /**
-   * Slider recensioni e prove sociali: peek-ahead swipe con fade e pallini su mobile.
+   * Slider testimonianze scritte e video clienti: peek-ahead swipe con fade e pallini su mobile.
    */
   function setupProofSlider(root) {
-    const slider = root.querySelector(".ab-proof-grid");
-    setupSliderDotsAndFade(slider, ".ab-proof-card", "ab-slider-dots ab-proof-slider-dots", "--ab-proof-fade-l", "--ab-proof-fade-r");
+    root.querySelectorAll(".ab-proof-grid").forEach(function (slider) {
+      setupSliderDotsAndFade(slider, ".ab-proof-card", "ab-slider-dots ab-proof-slider-dots", "--ab-proof-fade-l", "--ab-proof-fade-r");
+    });
   }
 
   /**
