@@ -411,6 +411,24 @@
   order: 3;
 }
 
+#ab-mobility-checkup .ab-hero .ab-subtitle strong {
+  color: var(--ab-color-ink);
+}
+
+/* Cosa ricevi: staccato dal sottotitolo (su mobile sotto il video) */
+#ab-mobility-checkup .ab-hero-highlight {
+  order: 5;
+  margin: 0 0 var(--ab-space-6);
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.55;
+  padding: var(--ab-space-3) var(--ab-space-4);
+  border-left: 3px solid var(--ab-color-success);
+  border-radius: 0 var(--ab-radius-sm) var(--ab-radius-sm) 0;
+  background: rgba(26, 127, 75, 0.08);
+  color: var(--ab-color-ink);
+  font-weight: 600;
+}
+
 #ab-mobility-checkup .ab-hero__media {
   order: 4;
   width: 100%;
@@ -419,7 +437,7 @@
 }
 
 #ab-mobility-checkup .ab-hero__actions {
-  order: 5;
+  order: 6;
   display: flex;
   flex-direction: column;
   gap: var(--ab-space-3);
@@ -2038,6 +2056,7 @@
   #ab-mobility-checkup .ab-preheadline,
   #ab-mobility-checkup .ab-hero .ab-title-h1,
   #ab-mobility-checkup .ab-hero .ab-subtitle,
+  #ab-mobility-checkup .ab-hero-highlight,
   #ab-mobility-checkup .ab-hero__media,
   #ab-mobility-checkup .ab-hero__actions {
     order: unset;
@@ -2681,12 +2700,14 @@
             <span class="ab-preheadline">Per chi ha più di 30 anni e si sente più rigido di quanto vorrebbe.</span>
             
             <h1 class="ab-title-h1">
-              Sblocca cosa ti impedisce di muoverti come vorresti e inizia a migliorare davvero con il Check-up di Mobilità
+              Sblocca cosa ti impedisce di muoverti come vorresti e inizia a migliorare davvero con il <span class="ab-mark">Check-up di Mobilità</span>
             </h1>
 
             <p class="ab-subtitle">
-              Dalla verticale all'accosciata, dal pike al trekking o all'arrampicata: in due appuntamenti online analizziamo mobilità, forza e controllo. Ricevi la tua Mappa del Movimento, le priorità su cui lavorare e i primi esercizi personalizzati da fare subito.
+              Dalla <strong>verticale</strong> all'<strong>accosciata</strong>, dal <strong>pike</strong> al <strong>trekking</strong> o all'<strong>arrampicata</strong>: in due appuntamenti online analizziamo mobilità, forza e controllo.
             </p>
+
+            <p class="ab-hero-highlight">Ricevi la tua Mappa del Movimento, le priorità su cui lavorare e i primi esercizi personalizzati da fare subito.</p>
 
             <div class="ab-hero__actions">
               <div class="ab-cta-group">
@@ -2717,7 +2738,7 @@
           <div class="ab-hero__media">
             <div class="ab-vsl-card ab-hero-video-card">
               <div class="ab-vsl-ratio">
-                <img class="ab-hero-video-poster" src="https://drive.google.com/thumbnail?id=1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw&amp;sz=w1280" alt="" aria-hidden="true" width="1280" height="720" fetchpriority="high">
+                <img class="ab-hero-video-poster" src="https://drive.google.com/thumbnail?id=1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw&amp;sz=w1280" onerror="this.hidden=true" alt="" aria-hidden="true" width="1280" height="720" fetchpriority="high">
                 <iframe class="ab-hero-video" onload="this.classList.add('is-loaded')" src="https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview" title="Video di presentazione del Check-up di Mobilità — Andrea Bolzan" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>

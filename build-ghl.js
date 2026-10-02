@@ -54,6 +54,9 @@ const CDN_MAP = {
   'assets/social-proof/reviews/Dario Parodi.jpg': 'https://lh3.googleusercontent.com/d/1GyJVrJvDfnts0Vyb-pR_hi0xGxMahcqj=s800',
   'assets/social-proof/reviews/Katia Lagona.jpg': 'https://lh3.googleusercontent.com/d/149Ya-clHOsi-B6nmw2Kv7kUq-jXHHyzP=s800',
 
+  // Anteprima del video hero (mostrata finché il player di Drive non è pronto)
+  'assets/hero-video-poster.jpg': 'https://drive.google.com/thumbnail?id=1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw&sz=w1280',
+
   // Video testimonianze: anteprime dai file Drive (cartella Testimonianze)
   'assets/social-proof/videos/video-1-thumb.jpg': 'https://drive.google.com/thumbnail?id=1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu&sz=w640',
   'assets/social-proof/videos/video-2-thumb.jpg': 'https://drive.google.com/thumbnail?id=1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ&sz=w640',

@@ -404,6 +404,24 @@
   order: 3;
 }
 
+#ab-mobility-checkup .ab-hero .ab-subtitle strong {
+  color: var(--ab-color-ink);
+}
+
+/* Cosa ricevi: staccato dal sottotitolo (su mobile sotto il video) */
+#ab-mobility-checkup .ab-hero-highlight {
+  order: 5;
+  margin: 0 0 var(--ab-space-6);
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.55;
+  padding: var(--ab-space-3) var(--ab-space-4);
+  border-left: 3px solid var(--ab-color-success);
+  border-radius: 0 var(--ab-radius-sm) var(--ab-radius-sm) 0;
+  background: rgba(26, 127, 75, 0.08);
+  color: var(--ab-color-ink);
+  font-weight: 600;
+}
+
 #ab-mobility-checkup .ab-hero__media {
   order: 4;
   width: 100%;
@@ -412,7 +430,7 @@
 }
 
 #ab-mobility-checkup .ab-hero__actions {
-  order: 5;
+  order: 6;
   display: flex;
   flex-direction: column;
   gap: var(--ab-space-3);
@@ -2031,6 +2049,7 @@
   #ab-mobility-checkup .ab-preheadline,
   #ab-mobility-checkup .ab-hero .ab-title-h1,
   #ab-mobility-checkup .ab-hero .ab-subtitle,
+  #ab-mobility-checkup .ab-hero-highlight,
   #ab-mobility-checkup .ab-hero__media,
   #ab-mobility-checkup .ab-hero__actions {
     order: unset;
