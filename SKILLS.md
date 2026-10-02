@@ -47,6 +47,16 @@
 - **Ruolo nel Progetto**:
   - Predisposto per progressive enhancement: se la libreria è presente viene orchestrata un'animazione complessa; se assente, il sito degrada elegantemente a CSS nativo garantendo perfetta leggibilità e performance.
 
+### 1.5 Mobile-First CRO & Touch Interaction Repositories
+- **[Vaul](https://github.com/emilkowalski/vaul)** (*Emil Kowalski*):
+  - Componente bottom-sheet/drawer per mobile web con gestione fisica delle gesture di trascinamento e snap point, ideale per carrelli rapidi, selezione SKU e approfondimenti senza abbandonare il funnel.
+- **[Embla Carousel](https://github.com/davidjerleke/embla-carousel)** (*David Jerleke*):
+  - Carosello touch-first ultraleggero (~7KB) a 60/120fps senza dipendenze, riferimento per la gestione dell'inerzia dello scroll orizzontale su recensioni e chat screenshot.
+- **[Utopia Core](https://github.com/trys/utopia-core)** (*Utopia.fyi*):
+  - Calcolo matematico di tipografia e spaziature fluide responsive tramite `clamp()`, che elimina i salti rigidi tra breakpoint.
+- **Thumb-Zone Engineering & Touch Targets**:
+  - Implementazione dei principi di Steven Hoober (75% uso a una mano con pollice): collocazione delle CTA primarie nel 35% inferiore dello schermo, touch targets $\ge 44 \times 44\text{px}$ (Apple HIG) e $\ge 48 \times 48\text{dp}$ (Google Material 3), rimozione del delay touch di 300ms via `touch-action: manipulation` e supporto della safe-area iOS (`env(safe-area-inset-bottom)`).
+
 ---
 
 ## 2. Metodologie di Ingegneria & QA (mattpocock-skills)
