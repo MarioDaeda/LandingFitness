@@ -259,6 +259,12 @@ assert(/#ab-mobility-checkup\s*\{[^}]*min-height:\s*100vh;[^}]*min-height:\s*100
 assert(/#ab-mobility-checkup\s*\{[^}]*overscroll-behavior-y:\s*none;/s.test(css), 'overscroll-behavior-y: none is configured to prevent accidental bounce');
 assert(css.includes('overscroll-behavior-x: contain;'), 'overscroll-behavior-x: contain is configured on sliders');
 
+// 6. Mobile Performance & Interaction Resilience
+assert(css.includes('constant(safe-area-inset-bottom'), 'Sticky CTA bar has constant() fallback for safe-area-inset-bottom');
+assert(/#ab-mobility-checkup \.ab-sticky-mobile-cta\s*\{[^}]*will-change:\s*transform,\s*opacity;/s.test(css), 'Sticky CTA bar has will-change GPU acceleration');
+assert(js.includes('intersectingMap'), 'Sticky CTA IntersectionObserver tracks element intersection states via Map for FAQ reappearance');
+assert(js.includes('role", "button"') || js.includes("role', 'button'"), 'Slider dots have role="button" for accessibility and interactive navigation');
+
 console.log('\n========================================');
 if (errors.length > 0) {
   console.error(`🚨 TOTAL FAILURES: ${errors.length}`);

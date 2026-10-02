@@ -198,7 +198,7 @@
    */
   function setupStickyCta(root) {
     const stickyBar = root.querySelector(".ab-sticky-mobile-cta");
-    const heroTarget = root.querySelector("[data-hero-cta]") || root.querySelector(".ab-hero");
+    const heroTarget = root.querySelector(".ab-hero") || root.querySelector("[data-hero-cta]");
     const offerCard = root.querySelector(".ab-pricing-card") || root.querySelector(".ab-offer-box") || root.querySelector("#ab-sezione-offerta");
     const footer = root.querySelector("#ab-footer") || root.querySelector(".ab-footer");
 
@@ -224,22 +224,26 @@
             updateStickyVisibility();
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0 }
       );
       heroObserver.observe(heroTarget);
 
       // Osserva l'ingresso e la visualizzazione della card offerta o del footer
       const hideElements = [offerCard, footer].filter(Boolean);
+      const intersectingMap = new Map();
       const hideObserver = new IntersectionObserver(
-        function () {
-          const anyIntersecting = hideElements.some(function (el) {
-            const rect = el.getBoundingClientRect();
-            return rect.top < window.innerHeight && rect.bottom > 0;
+        function (entries) {
+          entries.forEach(function (entry) {
+            intersectingMap.set(entry.target, entry.isIntersecting);
+          });
+          let anyIntersecting = false;
+          intersectingMap.forEach(function (isIntersecting) {
+            if (isIntersecting) anyIntersecting = true;
           });
           hideAreaActive = anyIntersecting;
           updateStickyVisibility();
         },
-        { threshold: 0.05 }
+        { threshold: 0 }
       );
 
       hideElements.forEach(function (el) {
@@ -309,7 +313,7 @@
   }
 
   /**
-   * Helper per slider touch con scroll-snap nativo CSS: fade ai bordi + pallini di posizione.
+   * Helper per slider touch con scroll-snap nativo CSS: fade ai bordi + pallini di posizione e tap navigazione.
    */
   function setupSliderDotsAndFade(slider, cardSelector, dotsClass, fadeLVar, fadeRVar) {
     if (!slider) return;
@@ -319,9 +323,21 @@
     const dots = document.createElement("div");
     dots.className = dotsClass;
     dots.setAttribute("aria-hidden", "true");
-    const dotEls = cards.map(function () {
+    const dotEls = cards.map(function (card, i) {
       const d = document.createElement("span");
       d.className = "ab-slider-dot";
+      d.setAttribute("role", "button");
+      d.setAttribute("tabindex", "0");
+      d.setAttribute("aria-label", "Vai alla slide " + (i + 1));
+      d.addEventListener("click", function () {
+        card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      });
+      d.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+        }
+      });
       dots.appendChild(d);
       return d;
     });
@@ -337,8 +353,9 @@
 
       let active = 0;
       let best = Infinity;
+      const sliderLeft = slider.getBoundingClientRect().left;
       cards.forEach(function (card, i) {
-        const dist = Math.abs(card.offsetLeft - slider.offsetLeft - x);
+        const dist = Math.abs(card.getBoundingClientRect().left - sliderLeft);
         if (dist < best) { best = dist; active = i; }
       });
       if (max > 0 && x >= max - 24) active = cards.length - 1;
@@ -349,6 +366,11 @@
     }
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    slider.querySelectorAll("img").forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener("load", onScroll, { once: true });
+      }
+    });
     update();
   }
 
