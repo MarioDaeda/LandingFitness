@@ -423,9 +423,9 @@
   font-size: clamp(16px, 2vw, 18px);
   line-height: 1.55;
   padding: var(--ab-space-3) var(--ab-space-4);
-  border-left: 3px solid var(--ab-color-success);
-  border-radius: 0 var(--ab-radius-sm) var(--ab-radius-sm) 0;
-  background: rgba(26, 127, 75, 0.08);
+  border: 2px solid #f5c518;
+  border-radius: var(--ab-radius-sm);
+  background: rgba(255, 225, 77, 0.16);
   color: var(--ab-color-ink);
   font-weight: 600;
 }
@@ -2502,11 +2502,14 @@
   background: rgba(14, 18, 23, 0.8);
 }
 
-#ab-mobility-checkup .ab-video-frame iframe {
+/* Video verticali 9:16: larghezza limitata dall'altezza disponibile, comandi nativi in basso */
+#ab-mobility-checkup .ab-video-frame video {
   display: block;
-  border: 0;
-  width: min(90vw, 420px);
-  height: min(82vh, 748px);
+  width: min(90vw, 420px, calc(82vh * 9 / 16));
+  aspect-ratio: 9 / 16;
+  height: auto;
+  background: #0e1217;
+  object-fit: contain;
   border-radius: var(--ab-radius-lg);
 }
 
@@ -2978,37 +2981,37 @@
           <h3 class="ab-title-h3 ab-chat-slider-title">Video dei clienti</h3>
           <div class="ab-proof-grid ab-video-grid ab-auto-slider" role="region" tabindex="0" aria-label="Slider video dei clienti">
 
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu/view" target="_blank" rel="noopener noreferrer" data-video-id="1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu" aria-label="Guarda il video del cliente 1">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc1527bca8cd20c32e971.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc1527bca8cd20c32e971.mp4" aria-label="Guarda il video del cliente 1">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu&sz=w640" alt="Anteprima del video del cliente 1" class="ab-video-thumb" loading="lazy" width="360" height="636">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
             </span>
           </a>
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ/view" target="_blank" rel="noopener noreferrer" data-video-id="1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ" aria-label="Guarda il video del cliente 2">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152f30b488137b274bc.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152f30b488137b274bc.mp4" aria-label="Guarda il video del cliente 2">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ&sz=w640" alt="Anteprima del video del cliente 2" class="ab-video-thumb" loading="lazy" width="360" height="640">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
             </span>
           </a>
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp/view" target="_blank" rel="noopener noreferrer" data-video-id="18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp" aria-label="Guarda il video del cliente 3">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152f30b488137b274bb.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152f30b488137b274bb.mp4" aria-label="Guarda il video del cliente 3">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp&sz=w640" alt="Anteprima del video del cliente 3" class="ab-video-thumb" loading="lazy" width="360" height="640">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
             </span>
           </a>
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn/view" target="_blank" rel="noopener noreferrer" data-video-id="1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn" aria-label="Guarda il video del cliente 4">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152849322987418fb84.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc152849322987418fb84.mp4" aria-label="Guarda il video del cliente 4">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn&sz=w640" alt="Anteprima del video del cliente 4" class="ab-video-thumb" loading="lazy" width="356" height="640">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
             </span>
           </a>
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx/view" target="_blank" rel="noopener noreferrer" data-video-id="1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx" aria-label="Guarda il video del cliente 5">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc15202569bee7caf9d3f.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc15202569bee7caf9d3f.mp4" aria-label="Guarda il video del cliente 5">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx&sz=w640" alt="Anteprima del video del cliente 5" class="ab-video-thumb" loading="lazy" width="360" height="636">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
             </span>
           </a>
-          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l/view" target="_blank" rel="noopener noreferrer" data-video-id="1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l" aria-label="Guarda il video del cliente 6">
+          <a class="ab-proof-card ab-video-card" href="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc15202569bee7caf9d35.mp4" target="_blank" rel="noopener noreferrer" data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/6abfc15202569bee7caf9d35.mp4" aria-label="Guarda il video del cliente 6">
             <span class="ab-video-thumb-wrap">
               <img src="https://drive.google.com/thumbnail?id=1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l&sz=w640" alt="Anteprima del video del cliente 6" class="ab-video-thumb" loading="lazy" width="360" height="640">
               <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
@@ -4484,12 +4487,12 @@
   }
 
   /**
-   * Video testimonianze: apre il player di Google Drive in una finestra modale accessibile.
+   * Video testimonianze: apre il video (HighLevel Media) nel player nativo, in una finestra modale accessibile.
    * Senza JS (o senza <dialog>) il link apre il video in una nuova scheda.
    */
   function setupVideoModal(root) {
     if (typeof HTMLDialogElement === "undefined") return;
-    if (!root.querySelector("[data-video-id]")) return;
+    if (!root.querySelector("[data-video-src]")) return;
 
     const dialog = document.createElement("dialog");
     dialog.className = "ab-video-modal";
@@ -4501,9 +4504,13 @@
 
     function close() {
       if (dialog.open) dialog.close();
+      cleanup();
     }
 
-    dialog.addEventListener("close", function () {
+    // Ferma e rimuove il video; chiamata sia da close() sia dall'evento "close" (Esc), una volta sola
+    function cleanup() {
+      if (!frame.firstChild) return;
+      frame.querySelectorAll("video").forEach(function (v) { v.pause(); });
       frame.innerHTML = "";
       if (opener && opener.focus) {
         try {
@@ -4515,7 +4522,8 @@
       root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
         s.dispatchEvent(new CustomEvent("ab-resume"));
       });
-    });
+    }
+    dialog.addEventListener("close", cleanup);
     dialog.addEventListener("cancel", function () {
       close();
     });
@@ -4523,19 +4531,25 @@
     dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
 
     root.addEventListener("click", function (e) {
-      const link = e.target.closest ? e.target.closest("[data-video-id]") : null;
+      const link = e.target.closest ? e.target.closest("[data-video-src]") : null;
       if (!link) return;
       e.preventDefault();
       opener = link;
-      const videoId = link.getAttribute("data-video-id");
-      const iframe = document.createElement("iframe");
-      iframe.src = "https://drive.google.com/file/d/" + videoId + "/preview";
-      iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
-      iframe.allow = "autoplay; fullscreen";
-      iframe.setAttribute("allowfullscreen", "");
+      const video = document.createElement("video");
+      video.src = link.getAttribute("data-video-src");
+      const thumb = link.querySelector("img");
+      if (thumb) video.poster = thumb.currentSrc || thumb.src;
+      video.controls = true;
+      video.playsInline = true;
+      video.autoplay = true;
+      video.preload = "auto";
+      video.setAttribute("aria-label", link.getAttribute("aria-label") || "Video testimonianza");
 
       frame.innerHTML = "";
-      frame.appendChild(iframe);
+      frame.appendChild(video);
+
+      // Un solo video alla volta: ferma il video di presentazione se sta andando
+      root.querySelectorAll(".ab-hero-video").forEach(function (v) { if (v.pause) v.pause(); });
 
       root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
         s.dispatchEvent(new CustomEvent("ab-pause"));

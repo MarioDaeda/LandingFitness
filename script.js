@@ -606,12 +606,12 @@
   }
 
   /**
-   * Video testimonianze: apre il player di Google Drive in una finestra modale accessibile.
+   * Video testimonianze: apre il video (HighLevel Media) nel player nativo, in una finestra modale accessibile.
    * Senza JS (o senza <dialog>) il link apre il video in una nuova scheda.
    */
   function setupVideoModal(root) {
     if (typeof HTMLDialogElement === "undefined") return;
-    if (!root.querySelector("[data-video-id]")) return;
+    if (!root.querySelector("[data-video-src]")) return;
 
     const dialog = document.createElement("dialog");
     dialog.className = "ab-video-modal";
@@ -623,9 +623,13 @@
 
     function close() {
       if (dialog.open) dialog.close();
+      cleanup();
     }
 
-    dialog.addEventListener("close", function () {
+    // Ferma e rimuove il video; chiamata sia da close() sia dall'evento "close" (Esc), una volta sola
+    function cleanup() {
+      if (!frame.firstChild) return;
+      frame.querySelectorAll("video").forEach(function (v) { v.pause(); });
       frame.innerHTML = "";
       if (opener && opener.focus) {
         try {
@@ -637,7 +641,8 @@
       root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
         s.dispatchEvent(new CustomEvent("ab-resume"));
       });
-    });
+    }
+    dialog.addEventListener("close", cleanup);
     dialog.addEventListener("cancel", function () {
       close();
     });
@@ -645,19 +650,25 @@
     dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
 
     root.addEventListener("click", function (e) {
-      const link = e.target.closest ? e.target.closest("[data-video-id]") : null;
+      const link = e.target.closest ? e.target.closest("[data-video-src]") : null;
       if (!link) return;
       e.preventDefault();
       opener = link;
-      const videoId = link.getAttribute("data-video-id");
-      const iframe = document.createElement("iframe");
-      iframe.src = "https://drive.google.com/file/d/" + videoId + "/preview";
-      iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
-      iframe.allow = "autoplay; fullscreen";
-      iframe.setAttribute("allowfullscreen", "");
+      const video = document.createElement("video");
+      video.src = link.getAttribute("data-video-src");
+      const thumb = link.querySelector("img");
+      if (thumb) video.poster = thumb.currentSrc || thumb.src;
+      video.controls = true;
+      video.playsInline = true;
+      video.autoplay = true;
+      video.preload = "auto";
+      video.setAttribute("aria-label", link.getAttribute("aria-label") || "Video testimonianza");
 
       frame.innerHTML = "";
-      frame.appendChild(iframe);
+      frame.appendChild(video);
+
+      // Un solo video alla volta: ferma il video di presentazione se sta andando
+      root.querySelectorAll(".ab-hero-video").forEach(function (v) { if (v.pause) v.pause(); });
 
       root.querySelectorAll(".ab-auto-slider").forEach(function (s) {
         s.dispatchEvent(new CustomEvent("ab-pause"));

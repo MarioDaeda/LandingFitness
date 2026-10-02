@@ -416,9 +416,9 @@
   font-size: clamp(16px, 2vw, 18px);
   line-height: 1.55;
   padding: var(--ab-space-3) var(--ab-space-4);
-  border-left: 3px solid var(--ab-color-success);
-  border-radius: 0 var(--ab-radius-sm) var(--ab-radius-sm) 0;
-  background: rgba(26, 127, 75, 0.08);
+  border: 2px solid #f5c518;
+  border-radius: var(--ab-radius-sm);
+  background: rgba(255, 225, 77, 0.16);
   color: var(--ab-color-ink);
   font-weight: 600;
 }
@@ -2495,11 +2495,14 @@
   background: rgba(14, 18, 23, 0.8);
 }
 
-#ab-mobility-checkup .ab-video-frame iframe {
+/* Video verticali 9:16: larghezza limitata dall'altezza disponibile, comandi nativi in basso */
+#ab-mobility-checkup .ab-video-frame video {
   display: block;
-  border: 0;
-  width: min(90vw, 420px);
-  height: min(82vh, 748px);
+  width: min(90vw, 420px, calc(82vh * 9 / 16));
+  aspect-ratio: 9 / 16;
+  height: auto;
+  background: #0e1217;
+  object-fit: contain;
   border-radius: var(--ab-radius-lg);
 }
 

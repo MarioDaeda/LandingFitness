@@ -66,19 +66,21 @@ test('R2.1 All 14 WhatsApp chat cards have 4:5 aspect ratio (280x350) and lazy l
   }
 });
 
-test('R2.2 All 6 video testimonials have modal data-video-id and Drive preview IDs', () => {
-  const videoIds = [
-    '1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu',
-    '1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ',
-    '18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp',
-    '1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn',
-    '1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx',
-    '1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l'
+test('R2.2 All 6 video testimonials open HighLevel Media files in the native player', () => {
+  const files = [
+    '6abfc1527bca8cd20c32e971.mp4',
+    '6abfc152f30b488137b274bc.mp4',
+    '6abfc152f30b488137b274bb.mp4',
+    '6abfc152849322987418fb84.mp4',
+    '6abfc15202569bee7caf9d3f.mp4',
+    '6abfc15202569bee7caf9d35.mp4'
   ];
-  videoIds.forEach((id) => {
-    expect(html).toContain(`data-video-id="${id}"`);
-    expect(ghlHtml).toContain(`data-video-id="${id}"`);
+  files.forEach((file) => {
+    const src = `data-video-src="https://assets.cdn.filesafe.space/uOhWHC9irUCvD2i2XIg7/media/${file}"`;
+    expect(html).toContain(src);
+    expect(ghlHtml).toContain(src);
   });
+  expect(js).toContain('document.createElement("video")');
 });
 
 test('R2.3 Auto-slider Smart-Snap: is-paused class enables x mandatory snapping', () => {
