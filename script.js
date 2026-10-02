@@ -42,6 +42,9 @@
       setupStickyCta(root);
     }
 
+    // 3b. Reveal allo scroll con stagger
+    setupScrollReveal(root);
+
     // 4. Inizializzazione controllata GSAP (se presente ed abilitato)
     if (AB_CONFIG.enableAnimations) {
       setupGsapAnimations(root);
@@ -237,6 +240,51 @@
         endObserver.observe(el);
       });
     }
+  }
+
+
+  /**
+   * Reveal allo scroll con stagger: opacity + translateY via IntersectionObserver.
+   * Esclude l'hero (above the fold) e, se GSAP/ScrollTrigger è presente, gli elementi che anima già lui.
+   * Senza IntersectionObserver o con reduced-motion non nasconde nulla.
+   */
+  function setupScrollReveal(root) {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const gsapOwned = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+    const groups = [
+      ".ab-section:not(.ab-hero) .ab-eyebrow, .ab-section:not(.ab-hero) .ab-title-h2, .ab-section:not(.ab-hero) .ab-subtitle",
+      ".ab-reveal-item, .ab-proof-card, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
+      ".ab-why-card, .ab-destination-item, .ab-dest-feature, .ab-bio-photo-card, .ab-metric-item, .ab-qualify-card",
+      ".ab-objection-card, .ab-offer-item, .ab-faq-item, .ab-method-formula, .ab-info-callout, .ab-quote-ugolini"
+    ];
+    if (!gsapOwned) groups.push(".ab-step-card", ".ab-map-mockup-wrapper", ".ab-map-q-item", ".ab-offer-box");
+
+    const targets = Array.prototype.slice.call(root.querySelectorAll(groups.join(",")));
+    if (targets.length === 0) return;
+
+    // Indice di stagger per fratelli consecutivi dello stesso contenitore (max 5 passi)
+    const counters = new Map();
+    targets.forEach(function (el) {
+      const parent = el.parentElement;
+      const n = counters.get(parent) || 0;
+      counters.set(parent, n + 1);
+      el.style.setProperty("--ab-i", String(Math.min(n, 5)));
+      el.setAttribute("data-ab-reveal", "");
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("ab-in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    root.classList.add("ab-js");
+    targets.forEach(function (el) { observer.observe(el); });
   }
 
   /**

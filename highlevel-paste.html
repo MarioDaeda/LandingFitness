@@ -56,9 +56,9 @@
   --ab-radius-xl: 14px;
   --ab-radius-full: 9999px;
 
-  --ab-shadow-sm: 0 1px 2px rgba(14, 18, 23, 0.06);
-  --ab-shadow-md: 0 2px 8px rgba(14, 18, 23, 0.08);
-  --ab-shadow-lg: 0 8px 24px rgba(14, 18, 23, 0.10);
+  --ab-shadow-sm: 0 1px 1px rgba(14, 18, 23, 0.04), 0 1px 3px rgba(14, 18, 23, 0.06);
+  --ab-shadow-md: 0 1px 2px rgba(14, 18, 23, 0.05), 0 4px 12px rgba(14, 18, 23, 0.08);
+  --ab-shadow-lg: 0 2px 4px rgba(14, 18, 23, 0.05), 0 12px 32px rgba(14, 18, 23, 0.10);
   --ab-shadow-btn: 0 2px 6px rgba(29, 63, 184, 0.28);
   --ab-shadow-wa: 0 4px 12px rgba(37, 211, 102, 0.25);
 
@@ -241,7 +241,7 @@
   cursor: pointer;
   text-align: center;
   text-wrap: balance;
-  transition: background-color 200ms var(--ab-ease-out), transform 150ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out), color 200ms var(--ab-ease-out);
+  transition: background-color 200ms var(--ab-ease-out), transform 160ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out), color 200ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-cta:focus-visible {
@@ -258,14 +258,14 @@
 @media (hover: hover) {
   #ab-mobility-checkup .ab-cta--primary:hover {
     background-color: var(--ab-color-primary-hover);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(29, 63, 184, 0.34);
   }
 }
 
 #ab-mobility-checkup .ab-cta--primary:active {
   background-color: var(--ab-color-primary-dark);
-  transform: translateY(1px);
+  transform: scale(0.97);
   box-shadow: 0 2px 6px rgba(29, 63, 184, 0.22);
 }
 
@@ -279,7 +279,7 @@
   #ab-mobility-checkup .ab-cta--inverted:hover {
     background-color: #f7f9f8;
     color: var(--ab-color-primary);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
 }
@@ -294,14 +294,14 @@
 @media (hover: hover) {
   #ab-mobility-checkup .ab-cta--whatsapp:hover {
     background-color: #20bd5a;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
   }
 }
 
 #ab-mobility-checkup .ab-cta--whatsapp:active {
   background-color: #1caa51;
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 #ab-mobility-checkup .ab-cta--full {
@@ -2056,8 +2056,7 @@
   aspect-ratio: 2 / 3;
   object-position: 50% 20%;
   object-fit: cover;
-  object-position: center;
-  border-radius: var(--ab-radius-lg);
+  border-radius: calc(var(--ab-radius-lg) - 1px); /* raggio concentrico: card esterna - bordo 1px */
   display: block;
   box-shadow: var(--ab-shadow-md);
 }
@@ -2082,7 +2081,7 @@
 
 @media (hover: hover) {
   #ab-mobility-checkup .ab-proof-card:hover .ab-review-img {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--ab-shadow-md);
   }
 }
@@ -2166,6 +2165,55 @@
 #ab-mobility-checkup .ab-review-img {
   outline: 1px solid rgba(14, 18, 23, 0.10);
   outline-offset: -1px;
+}
+
+#ab-mobility-checkup .ab-cta:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+
+/* ==========================================================================
+   MOTION — Reveal allo scroll (progressive enhancement, attivo solo con JS)
+   Easing ease-out, 500ms, stagger 70ms. Senza JS o con reduced-motion tutto resta visibile.
+   ========================================================================== */
+#ab-mobility-checkup.ab-js [data-ab-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms var(--ab-ease-out), transform 500ms var(--ab-ease-out);
+  transition-delay: calc(var(--ab-i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+
+#ab-mobility-checkup.ab-js [data-ab-reveal].ab-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* ==========================================================================
+   FAQ — apertura fluida dell'altezza (Chrome/Edge/Safari recenti; altrove apertura immediata)
+   ========================================================================== */
+@supports (selector(::details-content)) {
+  #ab-mobility-checkup .ab-faq-item {
+    interpolate-size: allow-keywords;
+  }
+
+  #ab-mobility-checkup .ab-faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 300ms var(--ab-ease-out), content-visibility 300ms allow-discrete;
+  }
+
+  #ab-mobility-checkup .ab-faq-item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ab-mobility-checkup [data-ab-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 
@@ -3294,6 +3342,9 @@
       setupStickyCta(root);
     }
 
+    // 3b. Reveal allo scroll con stagger
+    setupScrollReveal(root);
+
     // 4. Inizializzazione controllata GSAP (se presente ed abilitato)
     if (AB_CONFIG.enableAnimations) {
       setupGsapAnimations(root);
@@ -3489,6 +3540,51 @@
         endObserver.observe(el);
       });
     }
+  }
+
+
+  /**
+   * Reveal allo scroll con stagger: opacity + translateY via IntersectionObserver.
+   * Esclude l'hero (above the fold) e, se GSAP/ScrollTrigger è presente, gli elementi che anima già lui.
+   * Senza IntersectionObserver o con reduced-motion non nasconde nulla.
+   */
+  function setupScrollReveal(root) {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const gsapOwned = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+    const groups = [
+      ".ab-section:not(.ab-hero) .ab-eyebrow, .ab-section:not(.ab-hero) .ab-title-h2, .ab-section:not(.ab-hero) .ab-subtitle",
+      ".ab-reveal-item, .ab-proof-card, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
+      ".ab-why-card, .ab-destination-item, .ab-dest-feature, .ab-bio-photo-card, .ab-metric-item, .ab-qualify-card",
+      ".ab-objection-card, .ab-offer-item, .ab-faq-item, .ab-method-formula, .ab-info-callout, .ab-quote-ugolini"
+    ];
+    if (!gsapOwned) groups.push(".ab-step-card", ".ab-map-mockup-wrapper", ".ab-map-q-item", ".ab-offer-box");
+
+    const targets = Array.prototype.slice.call(root.querySelectorAll(groups.join(",")));
+    if (targets.length === 0) return;
+
+    // Indice di stagger per fratelli consecutivi dello stesso contenitore (max 5 passi)
+    const counters = new Map();
+    targets.forEach(function (el) {
+      const parent = el.parentElement;
+      const n = counters.get(parent) || 0;
+      counters.set(parent, n + 1);
+      el.style.setProperty("--ab-i", String(Math.min(n, 5)));
+      el.setAttribute("data-ab-reveal", "");
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("ab-in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    root.classList.add("ab-js");
+    targets.forEach(function (el) { observer.observe(el); });
   }
 
   /**

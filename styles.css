@@ -49,9 +49,9 @@
   --ab-radius-xl: 14px;
   --ab-radius-full: 9999px;
 
-  --ab-shadow-sm: 0 1px 2px rgba(14, 18, 23, 0.06);
-  --ab-shadow-md: 0 2px 8px rgba(14, 18, 23, 0.08);
-  --ab-shadow-lg: 0 8px 24px rgba(14, 18, 23, 0.10);
+  --ab-shadow-sm: 0 1px 1px rgba(14, 18, 23, 0.04), 0 1px 3px rgba(14, 18, 23, 0.06);
+  --ab-shadow-md: 0 1px 2px rgba(14, 18, 23, 0.05), 0 4px 12px rgba(14, 18, 23, 0.08);
+  --ab-shadow-lg: 0 2px 4px rgba(14, 18, 23, 0.05), 0 12px 32px rgba(14, 18, 23, 0.10);
   --ab-shadow-btn: 0 2px 6px rgba(29, 63, 184, 0.28);
   --ab-shadow-wa: 0 4px 12px rgba(37, 211, 102, 0.25);
 
@@ -234,7 +234,7 @@
   cursor: pointer;
   text-align: center;
   text-wrap: balance;
-  transition: background-color 200ms var(--ab-ease-out), transform 150ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out), color 200ms var(--ab-ease-out);
+  transition: background-color 200ms var(--ab-ease-out), transform 160ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out), color 200ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-cta:focus-visible {
@@ -251,14 +251,14 @@
 @media (hover: hover) {
   #ab-mobility-checkup .ab-cta--primary:hover {
     background-color: var(--ab-color-primary-hover);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(29, 63, 184, 0.34);
   }
 }
 
 #ab-mobility-checkup .ab-cta--primary:active {
   background-color: var(--ab-color-primary-dark);
-  transform: translateY(1px);
+  transform: scale(0.97);
   box-shadow: 0 2px 6px rgba(29, 63, 184, 0.22);
 }
 
@@ -272,7 +272,7 @@
   #ab-mobility-checkup .ab-cta--inverted:hover {
     background-color: #f7f9f8;
     color: var(--ab-color-primary);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
 }
@@ -287,14 +287,14 @@
 @media (hover: hover) {
   #ab-mobility-checkup .ab-cta--whatsapp:hover {
     background-color: #20bd5a;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
   }
 }
 
 #ab-mobility-checkup .ab-cta--whatsapp:active {
   background-color: #1caa51;
-  transform: translateY(1px);
+  transform: scale(0.97);
 }
 
 #ab-mobility-checkup .ab-cta--full {
@@ -2049,8 +2049,7 @@
   aspect-ratio: 2 / 3;
   object-position: 50% 20%;
   object-fit: cover;
-  object-position: center;
-  border-radius: var(--ab-radius-lg);
+  border-radius: calc(var(--ab-radius-lg) - 1px); /* raggio concentrico: card esterna - bordo 1px */
   display: block;
   box-shadow: var(--ab-shadow-md);
 }
@@ -2075,7 +2074,7 @@
 
 @media (hover: hover) {
   #ab-mobility-checkup .ab-proof-card:hover .ab-review-img {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--ab-shadow-md);
   }
 }
@@ -2159,4 +2158,53 @@
 #ab-mobility-checkup .ab-review-img {
   outline: 1px solid rgba(14, 18, 23, 0.10);
   outline-offset: -1px;
+}
+
+#ab-mobility-checkup .ab-cta:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+
+/* ==========================================================================
+   MOTION — Reveal allo scroll (progressive enhancement, attivo solo con JS)
+   Easing ease-out, 500ms, stagger 70ms. Senza JS o con reduced-motion tutto resta visibile.
+   ========================================================================== */
+#ab-mobility-checkup.ab-js [data-ab-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms var(--ab-ease-out), transform 500ms var(--ab-ease-out);
+  transition-delay: calc(var(--ab-i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+
+#ab-mobility-checkup.ab-js [data-ab-reveal].ab-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* ==========================================================================
+   FAQ — apertura fluida dell'altezza (Chrome/Edge/Safari recenti; altrove apertura immediata)
+   ========================================================================== */
+@supports (selector(::details-content)) {
+  #ab-mobility-checkup .ab-faq-item {
+    interpolate-size: allow-keywords;
+  }
+
+  #ab-mobility-checkup .ab-faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 300ms var(--ab-ease-out), content-visibility 300ms allow-discrete;
+  }
+
+  #ab-mobility-checkup .ab-faq-item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ab-mobility-checkup [data-ab-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
