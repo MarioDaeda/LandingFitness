@@ -47,6 +47,7 @@
 
     // 3b. Reveal allo scroll con stagger e slider swipe
     setupScrollReveal(root);
+    setupVideoModal(root);
     setupChatSlider(root);
     setupProofSlider(root);
     setupImageFade(root);
@@ -265,7 +266,7 @@
     const gsapOwned = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
     const groups = [
       ".ab-section:not(.ab-hero) .ab-eyebrow, .ab-section:not(.ab-hero) .ab-title-h2, .ab-section:not(.ab-hero) .ab-subtitle",
-      ".ab-reveal-item, .ab-proof-card, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
+      ".ab-reveal-item, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
       ".ab-why-card, .ab-destination-item, .ab-dest-feature, .ab-bio-photo-card, .ab-metric-item, .ab-qualify-card",
       ".ab-objection-card, .ab-offer-item, .ab-faq-item, .ab-method-formula, .ab-info-callout, .ab-quote-ugolini"
     ];
@@ -319,6 +320,7 @@
     if (!slider) return;
     const cards = Array.prototype.slice.call(slider.querySelectorAll(cardSelector));
     if (cards.length < 2) return;
+    const total = cards.length;
 
     const dots = document.createElement("div");
     dots.className = dotsClass;
@@ -348,17 +350,19 @@
       ticking = false;
       const max = slider.scrollWidth - slider.clientWidth;
       const x = slider.scrollLeft;
-      if (fadeLVar) slider.style.setProperty(fadeLVar, x > 4 ? "36px" : "0px");
-      if (fadeRVar) slider.style.setProperty(fadeRVar, x < max - 24 ? "36px" : "0px");
+      const looping = slider.classList.contains("ab-autoscrolling");
+      if (fadeLVar) slider.style.setProperty(fadeLVar, looping || x > 4 ? "36px" : "0px");
+      if (fadeRVar) slider.style.setProperty(fadeRVar, looping || x < max - 24 ? "36px" : "0px");
 
       let active = 0;
       let best = Infinity;
       const sliderLeft = slider.getBoundingClientRect().left;
-      cards.forEach(function (card, i) {
+      const all = slider.querySelectorAll(cardSelector);
+      Array.prototype.forEach.call(all, function (card, i) {
         const dist = Math.abs(card.getBoundingClientRect().left - sliderLeft);
-        if (dist < best) { best = dist; active = i; }
+        if (dist < best) { best = dist; active = i % total; }
       });
-      if (max > 0 && x >= max - 24) active = cards.length - 1;
+      if (!looping && max > 0 && x >= max - 24) active = total - 1;
       dotEls.forEach(function (d, i) { d.classList.toggle("is-active", i === active); });
     }
     function onScroll() {
@@ -366,12 +370,149 @@
     }
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    setupAutoScroll(slider, cards);
     slider.querySelectorAll("img").forEach(function (img) {
       if (!img.complete) {
         img.addEventListener("load", onScroll, { once: true });
       }
     });
     update();
+  }
+
+
+  /**
+   * Scorrimento lento e continuo (loop infinito con card clonate).
+   * Si ferma con hover del mouse, tocco/dito appoggiato, focus da tastiera o scroll manuale,
+   * e riparte 2,5 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
+   */
+  function setupAutoScroll(slider, originals) {
+    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const clones = originals.map(function (card) {
+      const clone = card.cloneNode(true);
+      clone.classList.add("ab-clone");
+      clone.setAttribute("aria-hidden", "true");
+      clone.setAttribute("tabindex", "-1");
+      clone.querySelectorAll("a, button, [tabindex]").forEach(function (el) { el.setAttribute("tabindex", "-1"); });
+      clone.querySelectorAll("img").forEach(function (img) { img.setAttribute("alt", ""); });
+      slider.appendChild(clone);
+      return clone;
+    });
+    slider.classList.add("ab-autoscrolling");
+
+    const SPEED = 24; // px al secondo
+    const RESUME_DELAY = 2500;
+    let pos = slider.scrollLeft;
+    let paused = false;
+    let inView = false;
+    let rafId = 0;
+    let last = 0;
+    let resumeTimer = 0;
+
+    function loopWidth() {
+      return clones[0].offsetLeft - originals[0].offsetLeft;
+    }
+
+    function tick(ts) {
+      rafId = 0;
+      if (!inView || document.hidden) { last = 0; return; }
+      if (!last) last = ts;
+      const dt = Math.min(ts - last, 64);
+      last = ts;
+      if (!paused) {
+        if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
+        pos += (SPEED * dt) / 1000;
+        const lw = loopWidth();
+        if (lw > 0 && pos >= lw) pos -= lw;
+        slider.scrollLeft = pos;
+      }
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (!rafId && inView && !document.hidden) { last = 0; rafId = window.requestAnimationFrame(tick); }
+    }
+
+    function pause() {
+      paused = true;
+      window.clearTimeout(resumeTimer);
+    }
+
+    function resumeLater(delay) {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(function () {
+        pos = slider.scrollLeft;
+        paused = false;
+      }, delay);
+    }
+
+    // Mouse: ferma al passaggio, riparte all'uscita
+    slider.addEventListener("mouseenter", pause);
+    slider.addEventListener("mouseleave", function () { resumeLater(300); });
+    // Touch: ferma appena il dito si appoggia, riparte dopo il rilascio
+    slider.addEventListener("touchstart", pause, { passive: true });
+    slider.addEventListener("touchend", function () { resumeLater(RESUME_DELAY); }, { passive: true });
+    slider.addEventListener("touchcancel", function () { resumeLater(RESUME_DELAY); }, { passive: true });
+    // Rotella/trackpad orizzontale e tastiera
+    slider.addEventListener("wheel", function () { pause(); resumeLater(RESUME_DELAY); }, { passive: true });
+    slider.addEventListener("focusin", pause);
+    slider.addEventListener("focusout", function () { resumeLater(RESUME_DELAY); });
+
+    document.addEventListener("visibilitychange", start);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (inView) start();
+      }, { threshold: 0.1 }).observe(slider);
+    } else {
+      inView = true;
+      start();
+    }
+  }
+
+  /**
+   * Video testimonianze: apre il player di Google Drive in una finestra modale accessibile.
+   * Senza JS (o senza <dialog>) il link apre il video in una nuova scheda.
+   */
+  function setupVideoModal(root) {
+    if (typeof HTMLDialogElement === "undefined") return;
+    if (!root.querySelector("[data-video-id]")) return;
+
+    const dialog = document.createElement("dialog");
+    dialog.className = "ab-video-modal";
+    dialog.setAttribute("aria-label", "Video testimonianza");
+    dialog.innerHTML = '<button type="button" class="ab-video-close" aria-label="Chiudi video">\u00d7</button><div class="ab-video-frame"></div>';
+    root.appendChild(dialog);
+    const frame = dialog.querySelector(".ab-video-frame");
+    let opener = null;
+
+    function close() {
+      if (dialog.open) dialog.close();
+    }
+
+    dialog.addEventListener("close", function () {
+      frame.innerHTML = "";
+      if (opener && opener.focus) opener.focus();
+    });
+    dialog.querySelector(".ab-video-close").addEventListener("click", close);
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
+
+    root.addEventListener("click", function (e) {
+      const link = e.target.closest ? e.target.closest("[data-video-id]") : null;
+      if (!link) return;
+      e.preventDefault();
+      opener = link;
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://drive.google.com/file/d/" + link.getAttribute("data-video-id") + "/preview";
+      iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
+      iframe.allow = "autoplay; fullscreen";
+      iframe.setAttribute("allowfullscreen", "");
+      frame.innerHTML = "";
+      frame.appendChild(iframe);
+      dialog.showModal();
+    });
   }
 
   /**

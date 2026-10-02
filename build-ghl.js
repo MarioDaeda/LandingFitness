@@ -54,6 +54,14 @@ const CDN_MAP = {
   'assets/social-proof/reviews/Dario Parodi.jpg': 'https://lh3.googleusercontent.com/d/1GyJVrJvDfnts0Vyb-pR_hi0xGxMahcqj=s800',
   'assets/social-proof/reviews/Katia Lagona.jpg': 'https://lh3.googleusercontent.com/d/149Ya-clHOsi-B6nmw2Kv7kUq-jXHHyzP=s800',
 
+  // Video testimonianze: anteprime dai file Drive (cartella Testimonianze)
+  'assets/social-proof/videos/video-1-thumb.jpg': 'https://drive.google.com/thumbnail?id=1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu&sz=w640',
+  'assets/social-proof/videos/video-2-thumb.jpg': 'https://drive.google.com/thumbnail?id=1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ&sz=w640',
+  'assets/social-proof/videos/video-3-thumb.jpg': 'https://drive.google.com/thumbnail?id=18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp&sz=w640',
+  'assets/social-proof/videos/video-4-thumb.jpg': 'https://drive.google.com/thumbnail?id=1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn&sz=w640',
+  'assets/social-proof/videos/video-5-thumb.jpg': 'https://drive.google.com/thumbnail?id=1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx&sz=w640',
+  'assets/social-proof/videos/video-6-thumb.jpg': 'https://drive.google.com/thumbnail?id=1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l&sz=w640',
+
   // Social Proof Chats (Folder: screen - 1jHGrmlWsk1uf4CNwgQTm6N4j1neHyQ-p)
   'assets/social-proof/chats/chat-1.png': 'https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800',
   'assets/social-proof/chats/chat-2.png': 'https://lh3.googleusercontent.com/d/1b_xRngPbai3CBXk8Hvnyq40F9fuSC9hB=s800',

@@ -461,10 +461,6 @@
   background: #0e1217;
 }
 
-#ab-mobility-checkup .ab-hero-photo-card .ab-vsl-ratio {
-  padding-bottom: 66.625%; /* Ratio 3:2 proporzionato a IMG_7648.jpg (1600x1067) per evitare tagli */
-}
-
 
 /* ==========================================================================
    2. QUELLO CHE IL CHECK-UP MOSTRA
@@ -551,8 +547,11 @@
 
 #ab-mobility-checkup .ab-proof-card {
   flex: 0 0 84%;
-  min-width: 84%;
-  max-width: 84%;
+  min-width: 240px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ab-space-3);
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   background: var(--ab-color-surface);
@@ -681,8 +680,8 @@
 
 #ab-mobility-checkup .ab-chat-card {
   flex: 0 0 84%;
-  min-width: 84%;
-  max-width: 84%;
+  min-width: 240px;
+  max-width: 300px;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   background: var(--ab-color-canvas);
@@ -1980,34 +1979,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #ab-mobility-checkup .ab-proof-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    overflow-x: visible;
-    scroll-snap-type: none;
-    gap: var(--ab-space-6);
-    padding-bottom: 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  #ab-mobility-checkup .ab-proof-card {
-    flex: unset;
-    min-width: unset;
-    max-width: unset;
-    padding: var(--ab-space-6);
-  }
-
-  #ab-mobility-checkup .ab-chat-card {
-    flex: 0 0 280px;
-    min-width: 280px;
-    max-width: 280px;
-  }
-
-  #ab-mobility-checkup .ab-proof-slider-dots {
-    display: none !important;
-  }
-
   #ab-mobility-checkup .ab-problems-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2183,43 +2154,6 @@
   }
 }
 
-#ab-mobility-checkup .ab-vsl-poster-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.96);
-  transition: transform 300ms var(--ab-ease-out), filter 300ms var(--ab-ease-out);
-  z-index: 1;
-}
-
-@media (hover: hover) {
-  #ab-mobility-checkup .ab-vsl-card:hover .ab-vsl-poster-img {
-    filter: brightness(1);
-    transform: scale(1.02);
-  }
-}
-
-#ab-mobility-checkup .ab-hero-photo-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px 18px;
-  background: linear-gradient(to top, rgba(12, 26, 69, 0.82) 0%, rgba(12, 26, 69, 0.3) 60%, transparent 100%);
-  color: #ffffff;
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-}
-
-
 /* ==========================================================================
    PREFERS REDUCED MOTION
    ========================================================================== */
@@ -2329,13 +2263,6 @@
   margin-bottom: var(--ab-space-10);
 }
 
-@media (max-width: 767px) {
-  #ab-mobility-checkup.ab-js .ab-proof-card[data-ab-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
 
 #ab-mobility-checkup .ab-slider-dot {
   width: 8px;
@@ -2414,6 +2341,273 @@
 #ab-mobility-checkup .ab-formula-sign {
   font-variant-numeric: tabular-nums lining-nums;
 }
+
+/* ==========================================================================
+   HERO VIDEO (Google Drive)
+   ========================================================================== */
+#ab-mobility-checkup .ab-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0e1217;
+}
+
+/* ==========================================================================
+   SLIDER A SCORRIMENTO LENTO (testimonianze + feedback)
+   Scroll libero (niente snap): il JS avanza lentamente e si ferma al tocco/hover.
+   ========================================================================== */
+#ab-mobility-checkup .ab-auto-slider {
+  scroll-snap-type: none;
+  scrollbar-width: none;
+}
+
+#ab-mobility-checkup .ab-auto-slider::-webkit-scrollbar {
+  display: none;
+}
+
+#ab-mobility-checkup .ab-proof-wrap {
+  margin-top: 0;
+  margin-bottom: var(--ab-space-10);
+}
+
+#ab-mobility-checkup .ab-proof-wrap .ab-proof-grid {
+  margin-bottom: 0;
+  padding-bottom: var(--ab-space-3);
+}
+
+#ab-mobility-checkup .ab-proof-card .ab-review-img {
+  margin-block: auto;
+}
+
+/* Card video testimonianza */
+#ab-mobility-checkup .ab-video-card {
+  flex-basis: 62%;
+  min-width: 200px;
+  max-width: 220px;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--ab-space-3);
+  cursor: pointer;
+}
+
+#ab-mobility-checkup .ab-video-thumb-wrap {
+  position: relative;
+  display: block;
+  border-radius: var(--ab-radius-sm);
+  overflow: hidden;
+  background: #0e1217;
+}
+
+#ab-mobility-checkup .ab-video-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  transition: transform 300ms var(--ab-ease-out), filter 300ms var(--ab-ease-out);
+  filter: brightness(0.85);
+}
+
+#ab-mobility-checkup .ab-video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  background: var(--ab-color-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 200ms var(--ab-ease-out);
+}
+
+#ab-mobility-checkup .ab-video-play svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+}
+
+#ab-mobility-checkup .ab-video-card:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-video-card:active .ab-video-play {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-video-card:hover .ab-video-thumb {
+    transform: scale(1.03);
+    filter: brightness(1);
+  }
+}
+
+/* Modale video */
+#ab-mobility-checkup .ab-video-modal {
+  border: 0;
+  padding: 0;
+  background: #0e1217;
+  border-radius: var(--ab-radius-lg);
+  max-width: 94vw;
+  overflow: visible;
+}
+
+#ab-mobility-checkup .ab-video-modal::backdrop {
+  background: rgba(14, 18, 23, 0.8);
+}
+
+#ab-mobility-checkup .ab-video-frame iframe {
+  display: block;
+  border: 0;
+  width: min(90vw, 420px);
+  height: min(82vh, 748px);
+  border-radius: var(--ab-radius-lg);
+}
+
+#ab-mobility-checkup .ab-video-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--ab-color-primary-dark);
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#ab-mobility-checkup .ab-video-close:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   PREZZO — frasi evidenziate in giallo, una sotto l'altra
+   ========================================================================== */
+#ab-mobility-checkup .ab-pricing-credit-text p {
+  margin: 0 0 var(--ab-space-3);
+  line-height: 1.75;
+  font-weight: 600;
+  color: var(--ab-color-ink);
+}
+
+#ab-mobility-checkup .ab-pricing-credit-text p:last-child {
+  margin-bottom: 0;
+}
+
+#ab-mobility-checkup .ab-mark {
+  background-image: linear-gradient(transparent 55%, #ffe14d 55%, #ffe14d 92%, transparent 92%);
+  padding: 0 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ==========================================================================
+   STICKY CTA — pulsante WhatsApp quadrato accanto al CTA
+   ========================================================================== */
+#ab-mobility-checkup .ab-sticky-wa {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25d366;
+  color: #0c331a;
+  border-radius: var(--ab-radius-md);
+  box-shadow: var(--ab-shadow-wa);
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms var(--ab-ease-out), background-color 200ms var(--ab-ease-out);
+}
+
+#ab-mobility-checkup .ab-sticky-wa:active {
+  transform: scale(0.95);
+  background-color: #1caa51;
+}
+
+#ab-mobility-checkup .ab-sticky-wa:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-sticky-btn {
+  flex: 1 1 auto;
+  width: auto;
+}
+
+/* ==========================================================================
+   PUNTO ZERO -> DESTINAZIONE: layout verticale su mobile
+   ========================================================================== */
+@media (max-width: 767px) {
+  #ab-mobility-checkup .ab-journey-connector-bar {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: var(--ab-space-5);
+  }
+
+  #ab-mobility-checkup .ab-journey-point {
+    position: relative;
+    padding-left: 28px;
+    z-index: 2;
+  }
+
+  #ab-mobility-checkup .ab-journey-point::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+    border-radius: 50%;
+  }
+
+  #ab-mobility-checkup .ab-journey-point--start::before {
+    background: var(--ab-color-danger);
+  }
+
+  #ab-mobility-checkup .ab-journey-point--end::before {
+    background: var(--ab-color-primary);
+  }
+
+  #ab-mobility-checkup .ab-journey-line-track {
+    flex: none;
+    min-width: 0;
+    min-height: 88px;
+    margin: -14px 0;
+    justify-content: flex-start;
+  }
+
+  #ab-mobility-checkup .ab-journey-line-fill {
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    transform: none;
+    background: linear-gradient(180deg, var(--ab-color-danger) 0%, var(--ab-color-primary) 100%);
+  }
+
+  #ab-mobility-checkup .ab-journey-mid-badge {
+    margin-left: 28px;
+  }
+}
 </style>
 
 <div id="ab-mobility-checkup">
@@ -2466,14 +2660,11 @@
             </div>
           </div>
 
-          <!-- Copertina Fotografica Hero -->
+          <!-- Video Hero (Google Drive) -->
           <div class="ab-hero__media">
-            <div class="ab-vsl-card ab-hero-photo-card">
+            <div class="ab-vsl-card ab-hero-video-card">
               <div class="ab-vsl-ratio">
-                <img src="https://lh3.googleusercontent.com/d/1Xagbv25DzeoQerhQGOcRR1oJpaxkYzup=s1200" alt="Andrea Bolzan in verticale a una mano all'aperto su prato verde" class="ab-vsl-poster-img" loading="eager" fetchpriority="high" width="800" height="533">
-                <div class="ab-hero-photo-caption">
-                  <span>Andrea Bolzan — Insegnante di Movimento e Mobilità</span>
-                </div>
+                <iframe class="ab-hero-video" src="https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview" title="Video di presentazione del Check-up di Mobilità — Andrea Bolzan" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>
@@ -2550,9 +2741,11 @@
         <h2 class="ab-title-h2">Cosa dicono alcune delle oltre 400 persone che ho seguito</h2>
         <p class="ab-subtitle">Esperienze e riscontri da percorsi reali di lavoro sul movimento.</p>
 
-        <div class="ab-proof-grid">
-          
-          <!-- Lucia -->
+        <!-- Slider Testimonianze (8 recensioni + 6 video, scorrimento lento) -->
+        <div class="ab-chat-slider-wrap ab-proof-wrap">
+          <h3 class="ab-title-h3 ab-chat-slider-title">Testimonianze e video dei clienti</h3>
+          <div class="ab-proof-grid ab-auto-slider" role="region" tabindex="0" aria-label="Slider testimonianze e video dei clienti">
+
           <article class="ab-proof-card ab-proof-card--featured">
             <div class="ab-proof-header">
               <span class="ab-proof-name">Lucia Orlando, 65 anni</span>
@@ -2561,7 +2754,6 @@
             <img src="https://lh3.googleusercontent.com/d/1ocuUX0qi9Jc_F-pi2c67_E7HxVrZUhOf=s800" alt="Testimonianza reale di Lucia Orlando, 65 anni, pensionata sul percorso con Andrea Bolzan" class="ab-review-img" loading="lazy" width="629" height="800">
           </article>
 
-          <!-- Andrea Ferrari -->
           <article class="ab-proof-card">
             <div class="ab-proof-header">
               <span class="ab-proof-name">Andrea Ferrari, 38 anni</span>
@@ -2570,7 +2762,6 @@
             <img src="https://lh3.googleusercontent.com/d/1jcKX8X36HhDDB2Y97budf4U7RVzPM5oC=s800" alt="Testimonianza di Andrea Ferrari, 38 anni: recupero infortunio schiena e nuova forma fisica" class="ab-review-img" loading="lazy" width="755" height="800">
           </article>
 
-          <!-- Michele Vicari -->
           <article class="ab-proof-card">
             <div class="ab-proof-header">
               <span class="ab-proof-name">Michele Vicari, 43 anni</span>
@@ -2579,7 +2770,6 @@
             <img src="https://lh3.googleusercontent.com/d/1GvOJHW68oK2J8UuLnD-WUnry6Y_oyO6K=s800" alt="Testimonianza di Michele Vicari, 43 anni: sblocco della verticale e acro-danza dopo anni di yoga" class="ab-review-img" loading="lazy" width="791" height="800">
           </article>
 
-          <!-- Luca Timpani -->
           <article class="ab-proof-card">
             <div class="ab-proof-header">
               <span class="ab-proof-name">Luca Timpani, 38 anni</span>
@@ -2588,7 +2778,6 @@
             <img src="https://lh3.googleusercontent.com/d/1wcFBWAbxx0SwJ_HuzdhuC_OpyIdb_12p=s800" alt="Testimonianza di Luca Timpani, 38 anni: mobilità del corpo, netta riduzione delle rigidità alleviando di molto i fastidi" class="ab-review-img" loading="lazy" width="800" height="633">
           </article>
 
-          <!-- Monica Gavillucci -->
           <article class="ab-proof-card">
             <div class="ab-proof-header">
               <span class="ab-proof-name">Monica Gavillucci, 52 anni</span>
@@ -2597,13 +2786,80 @@
             <img src="https://lh3.googleusercontent.com/d/1ZF4URLsENQtTVO-2J4zaueNGlqHVUXO-=s800" alt="Testimonianza di Monica Gavillucci, 52 anni, Personal Trainer: empatia e comprensione delle difficoltà" class="ab-review-img" loading="lazy" width="800" height="493">
           </article>
 
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Luca Ugolini, 34 anni</span>
+              <span class="ab-proof-tag">Impiegato · Nuova visione</span>
+            </div>
+            <img src="https://lh3.googleusercontent.com/d/1iwZaeWmIMqAmDAtmH7_Ll1KAdtVxU2df=s800" alt="Testimonianza di Luca Ugolini, 34 anni, impiegato: una nuova visione dell'allenamento oltre la sola forza" class="ab-review-img" loading="lazy" width="800" height="634">
+          </article>
+
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Dario Parodi, 35 anni</span>
+              <span class="ab-proof-tag">Operations Director · A distanza</span>
+            </div>
+            <img src="https://lh3.googleusercontent.com/d/1GyJVrJvDfnts0Vyb-pR_hi0xGxMahcqj=s800" alt="Testimonianza di Dario Parodi, 35 anni, Operations Director: percorso a distanza con Andrea Bolzan" class="ab-review-img" loading="lazy" width="776" height="800">
+          </article>
+
+          <article class="ab-proof-card">
+            <div class="ab-proof-header">
+              <span class="ab-proof-name">Katia Lagona, 56 anni</span>
+              <span class="ab-proof-tag">Impiegata · Lavoro a 360°</span>
+            </div>
+            <img src="https://lh3.googleusercontent.com/d/149Ya-clHOsi-B6nmw2Kv7kUq-jXHHyzP=s800" alt="Testimonianza di Katia Lagona, 56 anni, impiegata: lavoro sul corpo a 360 gradi" class="ab-review-img" loading="lazy" width="800" height="488">
+          </article>
+
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu/view" target="_blank" rel="noopener noreferrer" data-video-id="1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu" aria-label="Guarda la video testimonianza 1">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=1B86jpAQdueYDEC6k_z3trq_gBdQT5CJu&sz=w640" alt="Anteprima della video testimonianza 1" class="ab-video-thumb" loading="lazy" width="360" height="636">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 1</span><span>Guarda</span></span>
+          </a>
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ/view" target="_blank" rel="noopener noreferrer" data-video-id="1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ" aria-label="Guarda la video testimonianza 2">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=1ny4_iebo_z0kETrKlOzpFEcmrzkzQAGJ&sz=w640" alt="Anteprima della video testimonianza 2" class="ab-video-thumb" loading="lazy" width="360" height="640">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 2</span><span>Guarda</span></span>
+          </a>
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp/view" target="_blank" rel="noopener noreferrer" data-video-id="18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp" aria-label="Guarda la video testimonianza 3">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=18BwI9imqQ7xUr8pNMh22ifTeY8Phqeqp&sz=w640" alt="Anteprima della video testimonianza 3" class="ab-video-thumb" loading="lazy" width="360" height="640">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 3</span><span>Guarda</span></span>
+          </a>
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn/view" target="_blank" rel="noopener noreferrer" data-video-id="1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn" aria-label="Guarda la video testimonianza 4">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=1EM8D8JaJ8pwYGOCiU5un8l9PawnjGrKn&sz=w640" alt="Anteprima della video testimonianza 4" class="ab-video-thumb" loading="lazy" width="356" height="640">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 4</span><span>Guarda</span></span>
+          </a>
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx/view" target="_blank" rel="noopener noreferrer" data-video-id="1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx" aria-label="Guarda la video testimonianza 5">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=1WS1MJorPInZS5KKGa6dTKzfFvev9XMRx&sz=w640" alt="Anteprima della video testimonianza 5" class="ab-video-thumb" loading="lazy" width="360" height="636">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 5</span><span>Guarda</span></span>
+          </a>
+          <a class="ab-proof-card ab-video-card" href="https://drive.google.com/file/d/1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l/view" target="_blank" rel="noopener noreferrer" data-video-id="1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l" aria-label="Guarda la video testimonianza 6">
+            <span class="ab-video-thumb-wrap">
+              <img src="https://drive.google.com/thumbnail?id=1jVlMSxyMnuzRJ5klryHleqjZAcEl4S9l&sz=w640" alt="Anteprima della video testimonianza 6" class="ab-video-thumb" loading="lazy" width="360" height="640">
+              <span class="ab-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+            </span>
+            <span class="ab-chat-meta"><span>Video testimonianza 6</span><span>Guarda</span></span>
+          </a>
+
+          </div>
         </div>
 
-        <!-- Slider Screenshot Chat WhatsApp -->
+        <!-- Slider Screenshot Chat WhatsApp (14 feedback, scorrimento lento) -->
         <div class="ab-chat-slider-wrap">
           <h3 class="ab-title-h3 ab-chat-slider-title">Screenshot delle conversazioni dirette su WhatsApp</h3>
-          <div class="ab-chat-slider" role="region" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
-            
+          <div class="ab-chat-slider ab-auto-slider" role="region" tabindex="0" aria-label="Slider screenshot conversazioni WhatsApp dei clienti">
             <div class="ab-chat-card">
               <img src="https://lh3.googleusercontent.com/d/1KFphfbwlu_8IADoutyOXadJ-zFtEAYIU=s800" alt="Feedback WhatsApp: non avevo una mobilità logica, ieri non avevo più dolore fastidioso alle anche e ginocchia" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
@@ -2632,6 +2888,86 @@
               <img src="https://lh3.googleusercontent.com/d/1QVOfAQ_mo41tQyEjk_4Pq7ywsLHh_fxq=s800" alt="Feedback WhatsApp: progressi evidenti e movimento fluido" class="ab-chat-img" loading="lazy" width="280" height="350">
               <div class="ab-chat-meta">
                 <span>Cliente over 40</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1ugLIIYHhgo0jepzD-KVqEjwnqdd1xwJl=s800" alt="Screenshot WhatsApp con il feedback di un cliente (5)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1qX-cP83WG0k7mk-i05ZymmEyLiuf5VVx=s800" alt="Screenshot WhatsApp con il feedback di un cliente (6)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/14b0typpayeijkwjHFJORcIvexz2WoY4j=s800" alt="Screenshot WhatsApp con il feedback di un cliente (7)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1cwULfmv2gfnjquv9PuqCG1sFkJkJ2Yl4=s800" alt="Screenshot WhatsApp con il feedback di un cliente (8)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/16x_C-HGzJNv4MtTc1usNzQBq32G1CXVu=s800" alt="Screenshot WhatsApp con il feedback di un cliente (9)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1KwzmJrmOSB4wfjoRL1dHdoLx2e5yt2uP=s800" alt="Screenshot WhatsApp con il feedback di un cliente (10)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/136Qu0OM4pX-2uL2AkBuAdgndcdVOcju1=s800" alt="Screenshot WhatsApp con il feedback di un cliente (11)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1dR6YO8iFeYHpBJtcSRL7mJOfQzRz0iD5=s800" alt="Screenshot WhatsApp con il feedback di un cliente (12)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1GyzGZZQT4AkVfSjRzBv6JBMVsx3achWU=s800" alt="Screenshot WhatsApp con il feedback di un cliente (13)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="ab-chat-card">
+              <img src="https://lh3.googleusercontent.com/d/1CS6bnH8dC_2KbIci-ujdEKJkx6NbhvuE=s800" alt="Screenshot WhatsApp con il feedback di un cliente (14)" class="ab-chat-img" loading="lazy" width="280" height="350">
+              <div class="ab-chat-meta">
+                <span>Feedback cliente</span>
                 <span>WhatsApp</span>
               </div>
             </div>
@@ -3299,9 +3635,10 @@
               <span class="ab-countdown-timer" data-countdown-display></span>
             </div>
 
-            <p class="ab-pricing-credit-text">
-              Paghi 57 € qualcosa che ne vale 150. E avrai un credito di 150 € da poter scalare in un percorso con me.
-            </p>
+            <div class="ab-pricing-credit-text">
+              <p><span class="ab-mark">Paghi 57 € qualcosa che ne vale 150.</span></p>
+              <p><span class="ab-mark">E avrai un credito di 150 € da poter scalare in un percorso con me.</span></p>
+            </div>
 
             <div class="ab-offer-badge-row">
               <span class="ab-badge-meta ab-badge-spots">Posti disponibili: <strong class="ab-tabular" data-spots-available>max 6</strong></span>
@@ -3309,7 +3646,7 @@
             </div>
 
             <a class="ab-cta ab-cta--primary ab-cta--full" href="#CHECKOUT_URL" data-checkout-link>
-              Prenota il Check-up al prezzo più basso di sempre
+              Compra ora
             </a>
 
             <div class="ab-offer-whatsapp-area">
@@ -3480,6 +3817,9 @@
 
     <!-- STICKY CTA MOBILE -->
     <aside class="ab-sticky-mobile-cta" aria-label="Blocca il Check-up di Mobilità">
+      <a class="ab-sticky-wa" href="#WHATSAPP_URL" data-whatsapp-link target="_blank" rel="noopener noreferrer" aria-label="Scrivimi su WhatsApp">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      </a>
       <a class="ab-cta ab-cta--primary ab-sticky-btn" href="#CHECKOUT_URL" data-checkout-link>
         Blocca il Check-up · <span class="ab-tabular" data-promo-price>57 €</span>
       </a>
@@ -3542,6 +3882,7 @@
 
     // 3b. Reveal allo scroll con stagger e slider swipe
     setupScrollReveal(root);
+    setupVideoModal(root);
     setupChatSlider(root);
     setupProofSlider(root);
     setupImageFade(root);
@@ -3760,7 +4101,7 @@
     const gsapOwned = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
     const groups = [
       ".ab-section:not(.ab-hero) .ab-eyebrow, .ab-section:not(.ab-hero) .ab-title-h2, .ab-section:not(.ab-hero) .ab-subtitle",
-      ".ab-reveal-item, .ab-proof-card, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
+      ".ab-reveal-item, .ab-chat-slider-wrap, .ab-problem-card, .ab-reassurance-box, .ab-journey-connector-bar",
       ".ab-why-card, .ab-destination-item, .ab-dest-feature, .ab-bio-photo-card, .ab-metric-item, .ab-qualify-card",
       ".ab-objection-card, .ab-offer-item, .ab-faq-item, .ab-method-formula, .ab-info-callout, .ab-quote-ugolini"
     ];
@@ -3814,6 +4155,7 @@
     if (!slider) return;
     const cards = Array.prototype.slice.call(slider.querySelectorAll(cardSelector));
     if (cards.length < 2) return;
+    const total = cards.length;
 
     const dots = document.createElement("div");
     dots.className = dotsClass;
@@ -3843,17 +4185,19 @@
       ticking = false;
       const max = slider.scrollWidth - slider.clientWidth;
       const x = slider.scrollLeft;
-      if (fadeLVar) slider.style.setProperty(fadeLVar, x > 4 ? "36px" : "0px");
-      if (fadeRVar) slider.style.setProperty(fadeRVar, x < max - 24 ? "36px" : "0px");
+      const looping = slider.classList.contains("ab-autoscrolling");
+      if (fadeLVar) slider.style.setProperty(fadeLVar, looping || x > 4 ? "36px" : "0px");
+      if (fadeRVar) slider.style.setProperty(fadeRVar, looping || x < max - 24 ? "36px" : "0px");
 
       let active = 0;
       let best = Infinity;
       const sliderLeft = slider.getBoundingClientRect().left;
-      cards.forEach(function (card, i) {
+      const all = slider.querySelectorAll(cardSelector);
+      Array.prototype.forEach.call(all, function (card, i) {
         const dist = Math.abs(card.getBoundingClientRect().left - sliderLeft);
-        if (dist < best) { best = dist; active = i; }
+        if (dist < best) { best = dist; active = i % total; }
       });
-      if (max > 0 && x >= max - 24) active = cards.length - 1;
+      if (!looping && max > 0 && x >= max - 24) active = total - 1;
       dotEls.forEach(function (d, i) { d.classList.toggle("is-active", i === active); });
     }
     function onScroll() {
@@ -3861,12 +4205,149 @@
     }
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    setupAutoScroll(slider, cards);
     slider.querySelectorAll("img").forEach(function (img) {
       if (!img.complete) {
         img.addEventListener("load", onScroll, { once: true });
       }
     });
     update();
+  }
+
+
+  /**
+   * Scorrimento lento e continuo (loop infinito con card clonate).
+   * Si ferma con hover del mouse, tocco/dito appoggiato, focus da tastiera o scroll manuale,
+   * e riparte 2,5 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
+   */
+  function setupAutoScroll(slider, originals) {
+    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const clones = originals.map(function (card) {
+      const clone = card.cloneNode(true);
+      clone.classList.add("ab-clone");
+      clone.setAttribute("aria-hidden", "true");
+      clone.setAttribute("tabindex", "-1");
+      clone.querySelectorAll("a, button, [tabindex]").forEach(function (el) { el.setAttribute("tabindex", "-1"); });
+      clone.querySelectorAll("img").forEach(function (img) { img.setAttribute("alt", ""); });
+      slider.appendChild(clone);
+      return clone;
+    });
+    slider.classList.add("ab-autoscrolling");
+
+    const SPEED = 24; // px al secondo
+    const RESUME_DELAY = 2500;
+    let pos = slider.scrollLeft;
+    let paused = false;
+    let inView = false;
+    let rafId = 0;
+    let last = 0;
+    let resumeTimer = 0;
+
+    function loopWidth() {
+      return clones[0].offsetLeft - originals[0].offsetLeft;
+    }
+
+    function tick(ts) {
+      rafId = 0;
+      if (!inView || document.hidden) { last = 0; return; }
+      if (!last) last = ts;
+      const dt = Math.min(ts - last, 64);
+      last = ts;
+      if (!paused) {
+        if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
+        pos += (SPEED * dt) / 1000;
+        const lw = loopWidth();
+        if (lw > 0 && pos >= lw) pos -= lw;
+        slider.scrollLeft = pos;
+      }
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (!rafId && inView && !document.hidden) { last = 0; rafId = window.requestAnimationFrame(tick); }
+    }
+
+    function pause() {
+      paused = true;
+      window.clearTimeout(resumeTimer);
+    }
+
+    function resumeLater(delay) {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(function () {
+        pos = slider.scrollLeft;
+        paused = false;
+      }, delay);
+    }
+
+    // Mouse: ferma al passaggio, riparte all'uscita
+    slider.addEventListener("mouseenter", pause);
+    slider.addEventListener("mouseleave", function () { resumeLater(300); });
+    // Touch: ferma appena il dito si appoggia, riparte dopo il rilascio
+    slider.addEventListener("touchstart", pause, { passive: true });
+    slider.addEventListener("touchend", function () { resumeLater(RESUME_DELAY); }, { passive: true });
+    slider.addEventListener("touchcancel", function () { resumeLater(RESUME_DELAY); }, { passive: true });
+    // Rotella/trackpad orizzontale e tastiera
+    slider.addEventListener("wheel", function () { pause(); resumeLater(RESUME_DELAY); }, { passive: true });
+    slider.addEventListener("focusin", pause);
+    slider.addEventListener("focusout", function () { resumeLater(RESUME_DELAY); });
+
+    document.addEventListener("visibilitychange", start);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (inView) start();
+      }, { threshold: 0.1 }).observe(slider);
+    } else {
+      inView = true;
+      start();
+    }
+  }
+
+  /**
+   * Video testimonianze: apre il player di Google Drive in una finestra modale accessibile.
+   * Senza JS (o senza <dialog>) il link apre il video in una nuova scheda.
+   */
+  function setupVideoModal(root) {
+    if (typeof HTMLDialogElement === "undefined") return;
+    if (!root.querySelector("[data-video-id]")) return;
+
+    const dialog = document.createElement("dialog");
+    dialog.className = "ab-video-modal";
+    dialog.setAttribute("aria-label", "Video testimonianza");
+    dialog.innerHTML = '<button type="button" class="ab-video-close" aria-label="Chiudi video">\u00d7</button><div class="ab-video-frame"></div>';
+    root.appendChild(dialog);
+    const frame = dialog.querySelector(".ab-video-frame");
+    let opener = null;
+
+    function close() {
+      if (dialog.open) dialog.close();
+    }
+
+    dialog.addEventListener("close", function () {
+      frame.innerHTML = "";
+      if (opener && opener.focus) opener.focus();
+    });
+    dialog.querySelector(".ab-video-close").addEventListener("click", close);
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
+
+    root.addEventListener("click", function (e) {
+      const link = e.target.closest ? e.target.closest("[data-video-id]") : null;
+      if (!link) return;
+      e.preventDefault();
+      opener = link;
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://drive.google.com/file/d/" + link.getAttribute("data-video-id") + "/preview";
+      iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
+      iframe.allow = "autoplay; fullscreen";
+      iframe.setAttribute("allowfullscreen", "");
+      frame.innerHTML = "";
+      frame.appendChild(iframe);
+      dialog.showModal();
+    });
   }
 
   /**
