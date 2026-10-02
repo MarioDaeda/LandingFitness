@@ -112,9 +112,9 @@ test('R2.7 Slider dots update loop uses cached offsets and does not thrash layou
 });
 
 // --- R3: OFFER SECTION ---
-test('R3.1 Pricing CTA text is exactly "Compra ora" in both files', () => {
-  expect(html).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/);
-  expect(ghlHtml).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/);
+test('R3.1 Pricing CTA text is exactly "Acquista ora" in both files', () => {
+  expect(html).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Acquista ora\s*<\/a>/);
+  expect(ghlHtml).toMatch(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Acquista ora\s*<\/a>/);
 });
 
 test('R3.2 Pricing promo sentences formatted on two distinct lines with .ab-mark', () => {
@@ -128,7 +128,7 @@ test('R3.3 .ab-mark has high-contrast yellow highlight gradient (#ffe14d)', () =
 
 // --- R4: STICKY MOBILE CTA & SQUARE WHATSAPP BUTTON ---
 test('R4.1 Sticky mobile CTA contains square WhatsApp button to the left of main CTA', () => {
-  const sticky = /<aside class="ab-sticky-mobile-cta"[^>]*>\s*<div class="ab-sticky-info">[\s\S]*?<\/div>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"[^>]*>\s*Prenota ora\s*<\/a>/;
+  const sticky = /<aside class="ab-sticky-mobile-cta"[^>]*>\s*<div class="ab-sticky-info">[\s\S]*?<\/div>\s*<a class="ab-sticky-wa"[^>]*>[\s\S]*?<\/a>\s*<a class="ab-cta ab-cta--primary ab-sticky-btn"[^>]*>\s*Acquista ora\s*<\/a>/;
   expect(html).toMatch(sticky);
   expect(ghlHtml).toMatch(sticky);
 });

@@ -280,7 +280,7 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(!/Video testimonianza \d/.test(src), `No "Video testimonianza N" labels in ${label}`);
   assert(/<video class="ab-hero-video" src="https:\/\/assets\.cdn\.filesafe\.space\/[^"]+" poster="[^"]+" controls playsinline/.test(src), `Hero uses a native <video> from HighLevel Media with poster and controls in ${label}`);
   assert(!/class="ab-vsl-poster-img"/.test(src), `Hero photo replaced by video in ${label}`);
-  assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
+  assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Acquista ora\s*<\/a>/.test(src), `Pricing CTA reads "Acquista ora" in ${label}`);
   assert(count(/class="ab-mark"/g, src) === 3, `Headline + two pricing sentences highlighted in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
   assert(!src.includes('ab-hero-video-fallback'), `Hero has no "Non vedi il video?" fallback link in ${label}`);

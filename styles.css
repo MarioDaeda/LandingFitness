@@ -1954,7 +1954,7 @@
   transition: transform 420ms cubic-bezier(0.34, 1.35, 0.64, 1), opacity 220ms var(--ab-ease-out);
 }
 
-/* Sinistra: nome + prezzo; destra: WhatsApp + Prenota ora */
+/* Sinistra: nome + prezzo; destra: WhatsApp + Acquista ora */
 #ab-mobility-checkup .ab-sticky-info {
   display: flex;
   flex-direction: column;
