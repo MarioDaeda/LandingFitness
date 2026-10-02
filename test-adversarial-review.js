@@ -211,11 +211,21 @@ test('Query param forwarding handles edge cases gracefully', () => {
   global.window = origWindow;
 });
 
+test('R2.8 Auto-slider cancels RAF loop and suspends ticks immediately when paused', () => {
+  expect(js).toContain('window.cancelAnimationFrame(rafId)');
+  expect(js).toContain('if (!inView || document.hidden || isModalOpen() || paused)');
+});
+
+test('R2.9 isModalOpen memoizes modalEl and update avoids scrollWidth query during autoscroll', () => {
+  expect(js).toContain('let modalEl = null;');
+  expect(js).toContain('const max = looping ? 0 : (slider.scrollWidth - slider.clientWidth);');
+});
+
 console.log(`\n========================================`);
 if (failures.length > 0) {
   console.error(`TOTAL FAILURES: ${failures.length}`);
   process.exit(1);
 } else {
-  console.log(`ALL ADVERSARIAL TESTS PASSED (${20} test cases)!`);
+  console.log(`ALL ADVERSARIAL TESTS PASSED (${22} test cases)!`);
   process.exit(0);
 }

@@ -4295,9 +4295,9 @@
 
     function update() {
       ticking = false;
-      const max = slider.scrollWidth - slider.clientWidth;
-      const x = slider.scrollLeft;
       const looping = slider.classList.contains("ab-autoscrolling");
+      const max = looping ? 0 : (slider.scrollWidth - slider.clientWidth);
+      const x = slider.scrollLeft;
 
       const fadeL = looping || x > 4 ? "36px" : "0px";
       const fadeR = looping || x < max - 24 ? "36px" : "0px";
@@ -4404,40 +4404,44 @@
       return cachedLw;
     }
 
+    let modalEl = null;
     function isModalOpen() {
-      const modal = document.querySelector(".ab-video-modal");
-      return !!(modal && modal.open);
+      if (!modalEl) modalEl = document.querySelector(".ab-video-modal");
+      return !!(modalEl && modalEl.open);
     }
 
     function tick(ts) {
       rafId = 0;
-      if (!inView || document.hidden || isModalOpen()) { last = 0; return; }
+      if (!inView || document.hidden || isModalOpen() || paused) { last = 0; return; }
       if (!last) last = ts;
       const dt = Math.min(ts - last, 64);
       last = ts;
-      if (!paused) {
-        if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
-        pos += (SPEED * dt) / 1000;
-        const lw = getLoopWidth();
-        if (lw > 0 && pos >= lw) {
-          pos -= lw;
-          slider.scrollLeft = pos;
-        } else if (lw > 0 && pos < 0) {
-          pos += lw;
-          slider.scrollLeft = pos;
-        } else {
-          slider.scrollLeft = pos;
-        }
+      if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
+      pos += (SPEED * dt) / 1000;
+      const lw = getLoopWidth();
+      if (lw > 0 && pos >= lw) {
+        pos -= lw;
+        slider.scrollLeft = pos;
+      } else if (lw > 0 && pos < 0) {
+        pos += lw;
+        slider.scrollLeft = pos;
+      } else {
+        slider.scrollLeft = pos;
       }
       rafId = window.requestAnimationFrame(tick);
     }
 
     function start() {
-      if (!rafId && inView && !document.hidden && !isModalOpen()) { last = 0; rafId = window.requestAnimationFrame(tick); }
+      if (!rafId && inView && !document.hidden && !isModalOpen() && !paused) { last = 0; rafId = window.requestAnimationFrame(tick); }
     }
 
     function pause() {
       paused = true;
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+      last = 0;
       slider.style.scrollSnapType = "x mandatory";
       slider.classList.add("is-paused");
       window.clearTimeout(resumeTimer);
