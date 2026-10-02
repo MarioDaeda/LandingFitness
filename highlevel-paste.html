@@ -122,7 +122,7 @@
   line-height: 1.18;
   font-weight: 800;
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.025em; /* esplicito: isola dal tema GHL e stringe i titoli grandi */
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-4);
@@ -135,7 +135,7 @@
   line-height: 1.24;
   font-weight: 800;
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.02em; /* esplicito: isola dal tema GHL e stringe i titoli grandi */
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-3);
@@ -148,7 +148,7 @@
   line-height: 1.35;
   font-weight: 700;
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.01em; /* esplicito: isola dal tema GHL e stringe i titoli grandi */
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-2);
@@ -762,7 +762,7 @@
   font-family: var(--ab-font-serif);
   font-size: clamp(28px, 4vw, 42px);
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.02em; /* esplicito: isola dal tema GHL e stringe i titoli grandi */
   color: #ffffff;
   margin-top: 0;
   margin-bottom: var(--ab-space-4);
@@ -1306,7 +1306,7 @@
   font-size: 17px;
   font-weight: 700;
   text-transform: none;
-  letter-spacing: normal;
+  letter-spacing: -0.01em; /* esplicito: isola dal tema GHL e stringe i titoli grandi */
   color: var(--ab-color-ink);
   margin-top: 0;
   margin-bottom: var(--ab-space-2);
@@ -2268,6 +2268,47 @@
 
 #ab-mobility-checkup.ab-js img[loading="lazy"] {
   transition: opacity 400ms var(--ab-ease-out);
+}
+
+/* ==========================================================================
+   DETTAGLI TIPOGRAFICI
+   ========================================================================== */
+#ab-mobility-checkup .ab-title-h1,
+#ab-mobility-checkup .ab-title-h2,
+#ab-mobility-checkup .ab-title-h3,
+#ab-mobility-checkup .ab-bridge__title {
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Niente vedove/orfane nei testi lunghi e nelle citazioni */
+#ab-mobility-checkup .ab-reveal-text,
+#ab-mobility-checkup .ab-map-q-desc,
+#ab-mobility-checkup .ab-faq-content p,
+#ab-mobility-checkup .ab-quote-ugolini p,
+#ab-mobility-checkup .ab-quote-inline,
+#ab-mobility-checkup .ab-pricing-credit-text,
+#ab-mobility-checkup .ab-objection-a {
+  text-wrap: pretty;
+}
+
+#ab-mobility-checkup .ab-problem-quote,
+#ab-mobility-checkup .ab-objection-q,
+#ab-mobility-checkup .ab-offer-item strong,
+#ab-mobility-checkup .ab-reveal-highlight {
+  text-wrap: balance;
+}
+
+/* Cifre allineate in prezzi, contatori, numerazioni e timer */
+#ab-mobility-checkup .ab-price-original,
+#ab-mobility-checkup .ab-price-promo,
+#ab-mobility-checkup .ab-sticky-price,
+#ab-mobility-checkup .ab-reveal-num,
+#ab-mobility-checkup .ab-step-badge,
+#ab-mobility-checkup .ab-why-card__num,
+#ab-mobility-checkup .ab-formula-sign {
+  font-variant-numeric: tabular-nums lining-nums;
 }
 </style>
 

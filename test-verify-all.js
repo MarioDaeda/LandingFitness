@@ -189,11 +189,11 @@ assert(waForwarded.includes('utm_source=meta_ad'), 'appendQueryParams appends tr
 global.window = origWindow;
 
 console.log('\n=== 11. Heading Scoped Resets (GHL Theme Isolation) Check ===');
-assert(/#ab-mobility-checkup \.ab-title-h1\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H1 has scoped text-transform none and letter-spacing normal');
-assert(/#ab-mobility-checkup \.ab-title-h2\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H2 has scoped text-transform none and letter-spacing normal');
-assert(/#ab-mobility-checkup \.ab-title-h3\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'H3 has scoped text-transform none and letter-spacing normal');
-assert(/#ab-mobility-checkup \.ab-bridge__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'Bridge title has scoped heading resets');
-assert(/#ab-mobility-checkup \.ab-why-card__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*normal;/s.test(css), 'Why card title has scoped heading resets');
+assert(/#ab-mobility-checkup \.ab-title-h1\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*(?:normal|-?[\d.]+em);/s.test(css), 'H1 has scoped text-transform none and explicit letter-spacing (normal or em)');
+assert(/#ab-mobility-checkup \.ab-title-h2\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*(?:normal|-?[\d.]+em);/s.test(css), 'H2 has scoped text-transform none and explicit letter-spacing (normal or em)');
+assert(/#ab-mobility-checkup \.ab-title-h3\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*(?:normal|-?[\d.]+em);/s.test(css), 'H3 has scoped text-transform none and explicit letter-spacing (normal or em)');
+assert(/#ab-mobility-checkup \.ab-bridge__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*(?:normal|-?[\d.]+em);/s.test(css), 'Bridge title has scoped heading resets');
+assert(/#ab-mobility-checkup \.ab-why-card__title\s*\{[^}]*text-transform:\s*none;[^}]*letter-spacing:\s*(?:normal|-?[\d.]+em);/s.test(css), 'Why card title has scoped heading resets');
 
 console.log('\n=== 12. Accessibility, CLS & Media Aspect Ratio Checks ===');
 assert(html.includes('role="region"') && html.includes('ab-chat-slider'), 'Chat slider in index.html has role="region"');
