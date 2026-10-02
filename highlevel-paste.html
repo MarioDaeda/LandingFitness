@@ -13,28 +13,28 @@
 
 #ab-mobility-checkup {
   /* Design Tokens Fondamentali */
-  --ab-color-canvas: #f4f1e9;
-  --ab-color-canvas-alt: #ece8dc;
-  --ab-color-surface: #fffdf8;
-  --ab-color-surface-hover: #f9f6ee;
-  --ab-color-ink: #17201d;
-  --ab-color-ink-muted: #424e49;
-  --ab-color-muted: #5f6964;
-  --ab-color-primary: #1f5848;
-  --ab-color-primary-hover: #174638;
-  --ab-color-primary-dark: #12372c;
-  --ab-color-primary-subtle: #e8f0ec;
-  --ab-color-accent: #A3552F;
-  --ab-color-accent-hover: #8C4725;
-  --ab-color-accent-subtle: #fbf0ea;
-  --ab-color-line: rgba(23, 32, 29, 0.12);
-  --ab-color-line-dark: rgba(255, 255, 255, 0.14);
-  --ab-color-success: #287558;
-  --ab-color-danger: #a74436;
-  --ab-color-danger-subtle: #faecea;
+  --ab-color-canvas: #f3f4f6;
+  --ab-color-canvas-alt: #e7e9ee;
+  --ab-color-surface: #ffffff;
+  --ab-color-surface-hover: #f8f9fb;
+  --ab-color-ink: #0e1217;
+  --ab-color-ink-muted: #38414b;
+  --ab-color-muted: #566170;
+  --ab-color-primary: #1d3fb8;
+  --ab-color-primary-hover: #16308f;
+  --ab-color-primary-dark: #0c1a45;
+  --ab-color-primary-subtle: #e9edfa;
+  --ab-color-accent: #b8420f;
+  --ab-color-accent-hover: #9a350b;
+  --ab-color-accent-subtle: #fbece4;
+  --ab-color-line: rgba(14, 18, 23, 0.14);
+  --ab-color-line-dark: rgba(255, 255, 255, 0.16);
+  --ab-color-success: #1a7f4b;
+  --ab-color-danger: #b42318;
+  --ab-color-danger-subtle: #fbeceb;
 
   --ab-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --ab-font-serif: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", serif;
+  --ab-font-serif: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
   --ab-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --ab-space-1: 4px;
@@ -50,18 +50,19 @@
   --ab-space-20: 80px;
   --ab-space-24: 96px;
 
-  --ab-radius-sm: 6px;
-  --ab-radius-md: 10px;
-  --ab-radius-lg: 16px;
-  --ab-radius-xl: 24px;
+  --ab-radius-sm: 4px;
+  --ab-radius-md: 6px;
+  --ab-radius-lg: 10px;
+  --ab-radius-xl: 14px;
   --ab-radius-full: 9999px;
 
-  --ab-shadow-sm: 0 1px 3px rgba(23, 32, 29, 0.05);
-  --ab-shadow-md: 0 4px 14px rgba(23, 32, 29, 0.07);
-  --ab-shadow-lg: 0 12px 30px rgba(23, 32, 29, 0.09);
-  --ab-shadow-btn: 0 4px 12px rgba(31, 88, 72, 0.22);
+  --ab-shadow-sm: 0 1px 2px rgba(14, 18, 23, 0.06);
+  --ab-shadow-md: 0 2px 8px rgba(14, 18, 23, 0.08);
+  --ab-shadow-lg: 0 8px 24px rgba(14, 18, 23, 0.10);
+  --ab-shadow-btn: 0 2px 6px rgba(29, 63, 184, 0.28);
   --ab-shadow-wa: 0 4px 12px rgba(37, 211, 102, 0.25);
 
+  --ab-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ab-container-max: 1160px;
   --ab-container-narrow: 780px;
 
@@ -119,7 +120,7 @@
   font-family: var(--ab-font-serif);
   font-size: clamp(28px, 4.5vw, 46px);
   line-height: 1.18;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: none;
   letter-spacing: normal;
   color: var(--ab-color-ink);
@@ -132,7 +133,7 @@
   font-family: var(--ab-font-serif);
   font-size: clamp(24px, 3.5vw, 36px);
   line-height: 1.24;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: none;
   letter-spacing: normal;
   color: var(--ab-color-ink);
@@ -240,7 +241,7 @@
   cursor: pointer;
   text-align: center;
   text-wrap: balance;
-  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background-color 200ms var(--ab-ease-out), transform 150ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out), color 200ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-cta:focus-visible {
@@ -254,16 +255,18 @@
   box-shadow: var(--ab-shadow-btn);
 }
 
-#ab-mobility-checkup .ab-cta--primary:hover {
-  background-color: var(--ab-color-primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(31, 88, 72, 0.32);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-cta--primary:hover {
+    background-color: var(--ab-color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(29, 63, 184, 0.34);
+  }
 }
 
 #ab-mobility-checkup .ab-cta--primary:active {
   background-color: var(--ab-color-primary-dark);
   transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(31, 88, 72, 0.2);
+  box-shadow: 0 2px 6px rgba(29, 63, 184, 0.22);
 }
 
 #ab-mobility-checkup .ab-cta--inverted {
@@ -272,11 +275,13 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
-#ab-mobility-checkup .ab-cta--inverted:hover {
-  background-color: #f7f9f8;
-  color: var(--ab-color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-cta--inverted:hover {
+    background-color: #f7f9f8;
+    color: var(--ab-color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
 }
 
 #ab-mobility-checkup .ab-cta--whatsapp {
@@ -286,10 +291,12 @@
   font-size: 15.5px;
 }
 
-#ab-mobility-checkup .ab-cta--whatsapp:hover {
-  background-color: #20bd5a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-cta--whatsapp:hover {
+    background-color: #20bd5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  }
 }
 
 #ab-mobility-checkup .ab-cta--whatsapp:active {
@@ -320,7 +327,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: opacity 250ms ease, transform 250ms ease;
+  transition: opacity 250ms var(--ab-ease-out), transform 250ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-top-bar.ab-top-bar--active {
@@ -424,7 +431,7 @@
   position: relative;
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  background: #17201d;
+  background: #0e1217;
 }
 
 #ab-mobility-checkup .ab-hero-photo-card .ab-vsl-ratio {
@@ -452,12 +459,14 @@
   background: var(--ab-color-canvas);
   border: 1px solid var(--ab-color-line);
   border-radius: var(--ab-radius-md);
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  transition: border-color 200ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out);
 }
 
-#ab-mobility-checkup .ab-reveal-item:hover {
-  border-color: rgba(31, 88, 72, 0.35);
-  box-shadow: var(--ab-shadow-sm);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-reveal-item:hover {
+    border-color: rgba(29, 63, 184, 0.38);
+    box-shadow: var(--ab-shadow-sm);
+  }
 }
 
 #ab-mobility-checkup .ab-reveal-num {
@@ -513,7 +522,7 @@
 }
 
 #ab-mobility-checkup .ab-proof-card--featured {
-  border-color: rgba(31, 88, 72, 0.25);
+  border-color: rgba(29, 63, 184, 0.28);
 }
 
 #ab-mobility-checkup .ab-proof-header {
@@ -677,12 +686,14 @@
   background: var(--ab-color-canvas);
   border: 1px solid var(--ab-color-line);
   border-radius: var(--ab-radius-md);
-  transition: transform 150ms ease, border-color 200ms ease;
+  transition: transform 150ms var(--ab-ease-out), border-color 200ms var(--ab-ease-out);
 }
 
-#ab-mobility-checkup .ab-problem-card:hover {
-  border-color: rgba(201, 110, 75, 0.35);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-problem-card:hover {
+    border-color: rgba(184, 66, 15, 0.38);
+    transform: translateY(-1px);
+  }
 }
 
 #ab-mobility-checkup .ab-problem-icon-wrap {
@@ -951,7 +962,8 @@
 
 #ab-mobility-checkup .ab-map-mockup-wrapper {
   background: #ffffff;
-  border: 1px solid rgba(23, 32, 29, 0.18);
+  padding-top: var(--ab-space-10);
+  border: 1px solid rgba(14, 18, 23, 0.18);
   border-radius: var(--ab-radius-lg);
   padding: var(--ab-space-6);
   box-shadow: var(--ab-shadow-md);
@@ -970,7 +982,7 @@
   background: var(--ab-color-primary-subtle);
   color: var(--ab-color-primary);
   padding: 4px 10px;
-  border-radius: var(--ab-radius-full);
+  border-radius: var(--ab-radius-sm);
 }
 
 #ab-mobility-checkup .ab-map-doc-header {
@@ -995,29 +1007,59 @@
 #ab-mobility-checkup .ab-map-doc-preview-body {
   display: flex;
   flex-direction: column;
-  gap: var(--ab-space-3);
 }
 
-#ab-mobility-checkup .ab-map-doc-section-box {
-  background: var(--ab-color-canvas);
-  border: 1px dashed var(--ab-color-line);
-  border-radius: var(--ab-radius-sm);
-  padding: 12px 14px;
+#ab-mobility-checkup .ab-map-doc-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  column-gap: var(--ab-space-3);
+  padding: var(--ab-space-4) 0;
+  border-bottom: 1px solid var(--ab-color-line);
+}
+
+#ab-mobility-checkup .ab-map-doc-num {
+  font-family: var(--ab-font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--ab-color-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 #ab-mobility-checkup .ab-map-doc-sec-tag {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ab-color-primary);
-  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+  color: var(--ab-color-ink);
+  margin-bottom: var(--ab-space-2);
 }
 
-#ab-mobility-checkup .ab-map-doc-sec-text {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ab-color-ink);
+#ab-mobility-checkup .ab-map-doc-lines {
+  display: grid;
+  gap: 6px;
+}
+
+#ab-mobility-checkup .ab-map-doc-lines span {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ab-color-canvas-alt);
+}
+
+#ab-mobility-checkup .ab-map-doc-lines span:nth-child(1) { width: 100%; }
+#ab-mobility-checkup .ab-map-doc-lines span:nth-child(2) { width: 84%; }
+#ab-mobility-checkup .ab-map-doc-lines span:nth-child(3) { width: 92%; }
+#ab-mobility-checkup .ab-map-doc-lines span:nth-child(4) { width: 46%; }
+
+#ab-mobility-checkup .ab-map-doc-row--plus {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+#ab-mobility-checkup .ab-map-doc-row--plus .ab-map-doc-num,
+#ab-mobility-checkup .ab-map-doc-row--plus .ab-map-doc-sec-tag {
+  color: var(--ab-color-accent);
 }
 
 #ab-mobility-checkup .ab-map-questions-heading {
@@ -1057,7 +1099,7 @@
 
 #ab-mobility-checkup .ab-map-bonus-exercises {
   background: var(--ab-color-primary-subtle);
-  border: 1px solid rgba(31, 88, 72, 0.25);
+  border: 1px solid rgba(29, 63, 184, 0.28);
   border-radius: var(--ab-radius-md);
   padding: var(--ab-space-4);
   margin-top: var(--ab-space-5);
@@ -1084,60 +1126,61 @@
 /* ==========================================================================
    10. DESTINAZIONI DI MOVIMENTO
    ========================================================================== */
-#ab-mobility-checkup .ab-destinations-grid {
+#ab-mobility-checkup .ab-dest-feature {
+  margin: var(--ab-space-8) 0 var(--ab-space-10);
+}
+
+#ab-mobility-checkup .ab-dest-feature-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: var(--ab-radius-lg);
+}
+
+#ab-mobility-checkup .ab-destinations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--ab-space-6);
+  counter-reset: ab-dest;
+  border-top: 2px solid var(--ab-color-ink);
 }
 
-#ab-mobility-checkup .ab-destination-card {
-  background: var(--ab-color-surface);
-  border: 1px solid var(--ab-color-line);
-  border-radius: var(--ab-radius-lg);
-  padding: var(--ab-space-6);
-  box-shadow: var(--ab-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--ab-space-3);
+#ab-mobility-checkup .ab-destination-item {
+  counter-increment: ab-dest;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  column-gap: var(--ab-space-3);
+  padding: var(--ab-space-6) 0;
+  border-bottom: 1px solid var(--ab-color-line);
 }
 
-#ab-mobility-checkup .ab-dest-media-placeholder {
-  min-height: 110px;
-  background: var(--ab-color-canvas);
-  border: 1px dashed var(--ab-color-line);
-  border-radius: var(--ab-radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ab-color-muted);
-  font-size: 12.5px;
+#ab-mobility-checkup .ab-destination-item::before {
+  content: counter(ab-dest, decimal-leading-zero);
+  font-family: var(--ab-font-mono);
+  font-size: 13px;
   font-weight: 600;
+  line-height: 1.9;
+  color: var(--ab-color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+#ab-mobility-checkup .ab-destination-item .ab-title-h3 {
   margin-bottom: var(--ab-space-2);
 }
 
-#ab-mobility-checkup .ab-dest-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--ab-radius-sm);
-  background: var(--ab-color-primary-subtle);
-  color: var(--ab-color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#ab-mobility-checkup .ab-destination-item .ab-body {
+  margin: 0;
 }
 
-#ab-mobility-checkup .ab-dest-icon svg {
-  width: 24px;
-  height: 24px;
-  stroke-width: 2;
+#ab-mobility-checkup .ab-destination-item--custom::before {
+  color: var(--ab-color-accent);
 }
 
-#ab-mobility-checkup .ab-destination-card--custom {
-  border-left: 4px solid var(--ab-color-accent);
-}
-
-#ab-mobility-checkup .ab-dest-icon--custom {
-  background: var(--ab-color-accent-subtle);
+#ab-mobility-checkup .ab-destination-item--custom .ab-title-h3 {
   color: var(--ab-color-accent);
 }
 
@@ -1277,7 +1320,7 @@
 
 #ab-mobility-checkup .ab-bio-photo-placeholder {
   min-height: 280px;
-  background: linear-gradient(135deg, #1f5848, #12372c);
+  background: var(--ab-color-primary-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1532,7 +1575,7 @@
 #ab-mobility-checkup .ab-offer-countdown-box {
   display: none;
   background: var(--ab-color-accent-subtle);
-  border: 1px solid rgba(201, 110, 75, 0.25);
+  border: 1px solid rgba(184, 66, 15, 0.28);
   color: var(--ab-color-accent);
   padding: 8px 14px;
   border-radius: var(--ab-radius-sm);
@@ -1606,11 +1649,13 @@
   border: 1px solid var(--ab-color-line);
   border-radius: var(--ab-radius-md);
   overflow: hidden;
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  transition: border-color 200ms var(--ab-ease-out), box-shadow 200ms var(--ab-ease-out);
 }
 
-#ab-mobility-checkup .ab-faq-item:hover {
-  border-color: rgba(31, 88, 72, 0.35);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-faq-item:hover {
+    border-color: rgba(29, 63, 184, 0.38);
+  }
 }
 
 #ab-mobility-checkup .ab-faq-item[open] {
@@ -1647,7 +1692,7 @@
   height: 20px;
   min-width: 20px;
   color: var(--ab-color-primary);
-  transition: transform 250ms ease;
+  transition: transform 250ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-faq-item[open] .ab-faq-icon {
@@ -1762,12 +1807,14 @@
   padding: 8px 12px;
   color: #a4b0ab;
   text-decoration: none;
-  transition: color 150ms ease;
+  transition: color 150ms var(--ab-ease-out);
 }
 
-#ab-mobility-checkup .ab-footer-link:hover {
-  color: #ffffff;
-  text-decoration: underline;
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-footer-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 }
 
 #ab-mobility-checkup .ab-footer-link--static {
@@ -1781,14 +1828,14 @@
 }
 
 #ab-mobility-checkup .ab-footer-separator {
-  color: #5f6964;
+  color: #8c9b95;
   user-select: none;
 }
 
 #ab-mobility-checkup .ab-footer-disclaimer {
   font-size: 11.5px;
   line-height: 1.5;
-  color: #A3B1AB;
+  color: #aab4c4;
   text-align: center;
   max-width: 720px;
   margin: 0 auto;
@@ -1807,7 +1854,7 @@
   border-top: 1px solid var(--ab-color-line);
   padding: 10px 16px;
   padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-  box-shadow: 0 -4px 16px rgba(23, 32, 29, 0.12);
+  box-shadow: 0 -4px 16px rgba(14, 18, 23, 0.14);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1815,7 +1862,7 @@
   transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms var(--ab-ease-out);
 }
 
 #ab-mobility-checkup .ab-sticky-mobile-cta.ab-sticky--visible {
@@ -1868,8 +1915,13 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #ab-mobility-checkup .ab-destinations-grid {
+  #ab-mobility-checkup .ab-destinations-list {
     grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--ab-space-12);
+  }
+
+  #ab-mobility-checkup .ab-dest-feature-img {
+    aspect-ratio: 2 / 1;
   }
 
   #ab-mobility-checkup .ab-why-dest-grid {
@@ -1924,15 +1976,36 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
+  #ab-mobility-checkup .ab-map-mockup-col {
+    display: flex;
+    align-self: stretch;
+  }
+
+  #ab-mobility-checkup .ab-map-mockup-col .ab-map-mockup-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #ab-mobility-checkup .ab-map-mockup-col .ab-map-doc-preview-body {
+    flex: 1;
+  }
+
+  #ab-mobility-checkup .ab-map-mockup-col .ab-map-doc-row {
+    flex: 1;
+    align-content: center;
+  }
+
   #ab-mobility-checkup .ab-map-layout {
     display: grid;
-    grid-template-columns: 45% 55%;
-    align-items: start;
+    grid-template-columns: 42% 58%;
+    align-items: stretch;
     gap: var(--ab-space-10);
   }
 
-  #ab-mobility-checkup .ab-destinations-grid {
-    grid-template-columns: repeat(3, 1fr);
+  #ab-mobility-checkup .ab-dest-feature-img {
+    aspect-ratio: 21 / 9;
+    object-position: 50% 38%;
   }
 
   #ab-mobility-checkup .ab-bio-grid {
@@ -1978,23 +2051,10 @@
   box-shadow: var(--ab-shadow-sm);
 }
 
-#ab-mobility-checkup .ab-dest-img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: var(--ab-radius-md);
-  display: block;
-  transition: transform 0.25s ease;
-}
-
-#ab-mobility-checkup .ab-destination-card:hover .ab-dest-img {
-  transform: scale(1.02);
-}
-
 #ab-mobility-checkup .ab-bio-img {
   width: 100%;
   aspect-ratio: 2 / 3;
+  object-position: 50% 20%;
   object-fit: cover;
   object-position: center;
   border-radius: var(--ab-radius-lg);
@@ -2017,12 +2077,14 @@
   display: block;
   box-shadow: var(--ab-shadow-sm);
   background: var(--ab-color-surface);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s var(--ab-ease-out), box-shadow 0.25s var(--ab-ease-out);
 }
 
-#ab-mobility-checkup .ab-proof-card:hover .ab-review-img {
-  transform: translateY(-2px);
-  box-shadow: var(--ab-shadow-md);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-proof-card:hover .ab-review-img {
+    transform: translateY(-2px);
+    box-shadow: var(--ab-shadow-md);
+  }
 }
 
 #ab-mobility-checkup .ab-vsl-poster-img {
@@ -2034,13 +2096,15 @@
   object-fit: cover;
   display: block;
   filter: brightness(0.96);
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 300ms var(--ab-ease-out), filter 300ms var(--ab-ease-out);
   z-index: 1;
 }
 
-#ab-mobility-checkup .ab-vsl-card:hover .ab-vsl-poster-img {
-  filter: brightness(1);
-  transform: scale(1.02);
+@media (hover: hover) {
+  #ab-mobility-checkup .ab-vsl-card:hover .ab-vsl-poster-img {
+    filter: brightness(1);
+    transform: scale(1.02);
+  }
 }
 
 #ab-mobility-checkup .ab-hero-photo-caption {
@@ -2049,7 +2113,7 @@
   left: 0;
   right: 0;
   padding: 12px 18px;
-  background: linear-gradient(to top, rgba(18, 55, 44, 0.82) 0%, rgba(18, 55, 44, 0.3) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(12, 26, 69, 0.82) 0%, rgba(12, 26, 69, 0.3) 60%, transparent 100%);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
@@ -2072,6 +2136,36 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* ==========================================================================
+   ACCESSIBILITA' — focus e target (WAI-ARIA APG / WCAG 2.1 AA)
+   ========================================================================== */
+#ab-mobility-checkup a:focus-visible,
+#ab-mobility-checkup summary:focus-visible,
+#ab-mobility-checkup [tabindex]:focus-visible {
+  outline: 3px solid var(--ab-color-primary);
+  outline-offset: 3px;
+}
+
+#ab-mobility-checkup .ab-footer a:focus-visible {
+  outline-color: #ffffff;
+}
+
+#ab-mobility-checkup .ab-footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 6px;
+}
+
+/* Bordo 1px interno sulle foto: stacca l'immagine dallo sfondo (Make Interfaces Feel Better) */
+#ab-mobility-checkup .ab-bio-img,
+#ab-mobility-checkup .ab-dest-feature-img,
+#ab-mobility-checkup .ab-review-img {
+  outline: 1px solid rgba(14, 18, 23, 0.10);
+  outline-offset: -1px;
 }
 </style>
 
@@ -2566,14 +2660,34 @@
                 <div class="ab-map-doc-subtitle">Documento Personale di Sintesi · Andrea Bolzan</div>
               </div>
               
-              <div class="ab-map-doc-preview-body">
-                <div class="ab-map-doc-section-box">
-                  <div class="ab-map-doc-sec-tag">Destinazione</div>
-                  <div class="ab-map-doc-sec-text">Traguardo concordato, motivazione profonda e direzione di movimento personalizzata.</div>
+              <div class="ab-map-doc-preview-body" aria-hidden="true">
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">01</span>
+                  <div><div class="ab-map-doc-sec-tag">Destinazione</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
                 </div>
-                <div class="ab-map-doc-section-box">
-                  <div class="ab-map-doc-sec-tag">Punto Zero & Priorità</div>
-                  <div class="ab-map-doc-sec-text">Analisi dei test, punti di forza e sequenza di intervento personalizzata.</div>
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">02</span>
+                  <div><div class="ab-map-doc-sec-tag">Punto zero</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
+                </div>
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">03</span>
+                  <div><div class="ab-map-doc-sec-tag">Punti di forza</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
+                </div>
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">04</span>
+                  <div><div class="ab-map-doc-sec-tag">Punti critici</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
+                </div>
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">05</span>
+                  <div><div class="ab-map-doc-sec-tag">Priorità</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
+                </div>
+                <div class="ab-map-doc-row">
+                  <span class="ab-map-doc-num">06</span>
+                  <div><div class="ab-map-doc-sec-tag">Direzione</div><div class="ab-map-doc-lines"><span></span><span></span><span></span><span></span></div></div>
+                </div>
+                <div class="ab-map-doc-row ab-map-doc-row--plus">
+                  <span class="ab-map-doc-num">+</span>
+                  <div><div class="ab-map-doc-sec-tag">I tuoi primi esercizi</div><div class="ab-map-doc-lines"><span></span><span></span></div></div>
                 </div>
               </div>
             </div>
@@ -2649,72 +2763,49 @@
         <h2 class="ab-title-h2">Qual è il movimento che vuoi sbloccare?</h2>
         <p class="ab-subtitle">Il Check-up è il primo passo per arrivarci, qualunque sia.</p>
 
-        <div class="ab-destinations-grid">
-          
-          <div class="ab-destination-card">
-            <img src="https://lh3.googleusercontent.com/d/1ilx4y0i0kNj7LfHllFx6aMVWS-l7xIc0=s1200" alt="Andrea Bolzan esegue una verticale a una mano davanti all'Arco della Pace a Milano" class="ab-dest-img" loading="lazy" width="800" height="533">
-            <div class="ab-dest-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="18" r="2"></circle><line x1="12" y1="16" x2="12" y2="8"></line><line x1="8" y1="5" x2="16" y2="5"></line></svg>
-            </div>
-            <h3 class="ab-title-h3">La verticale</h3>
-            <p class="ab-body">
-              Quando la alleni, insegni al tuo corpo a capire dov'è nello spazio. E il giorno che inciampi sul marciapiede, se ne accorge.
-            </p>
-          </div>
+        <figure class="ab-dest-feature">
+          <img src="https://lh3.googleusercontent.com/d/1eRM85m9_xPp1lTT2uyPiWnCRfwwZObrh=s1200" alt="Andrea Bolzan in mezza accosciata su un muretto di mattoni, un braccio teso in avanti" class="ab-dest-feature-img" loading="lazy" width="1600" height="1065">
+        </figure>
 
-          <div class="ab-destination-card">
-            <div class="ab-dest-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19h16"></path><path d="m7 19 5-14 5 14"></path></svg>
+        <ul class="ab-destinations-list">
+          <li class="ab-destination-item">
+            <div>
+              <h3 class="ab-title-h3">La verticale</h3>
+              <p class="ab-body">Quando la alleni, insegni al tuo corpo a capire dov'è nello spazio. E il giorno che inciampi sul marciapiede, se ne accorge.</p>
             </div>
-            <h3 class="ab-title-h3">La pike</h3>
-            <p class="ab-body ab-dest-clarify"><em>Piegarsi in avanti a gambe tese.</em></p>
-            <p class="ab-body">
-              Per anni non ce l'ho avuta. I clienti che ci sono passati mi raccontano di dormire meglio, di avere meno tensione al collo, meno mal di testa.
-            </p>
-          </div>
-
-          <div class="ab-destination-card">
-            <img src="https://lh3.googleusercontent.com/d/1eRM85m9_xPp1lTT2uyPiWnCRfwwZObrh=s1200" alt="Andrea Bolzan in accosciata profonda dinamica e controllo del movimento" class="ab-dest-img" loading="lazy" width="800" height="533">
-            <div class="ab-dest-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 4v7"></path><path d="M9 11h6"></path><path d="m8 15 4 5 4-5"></path></svg>
+          </li>
+          <li class="ab-destination-item">
+            <div>
+              <h3 class="ab-title-h3">La pike</h3>
+              <p class="ab-body ab-dest-clarify"><em>Piegarsi in avanti a gambe tese.</em></p>
+              <p class="ab-body">Per anni non ce l'ho avuta. I clienti che ci sono passati mi raccontano di dormire meglio, di avere meno tensione al collo, meno mal di testa.</p>
             </div>
-            <h3 class="ab-title-h3">L'accosciata completa</h3>
-            <p class="ab-body">
-              Sederti a terra e rialzarti senza mani, abbassarti a raccogliere qualcosa senza pensarci: è la libertà di movimento che usi ogni giorno.
-            </p>
-          </div>
-
-          <div class="ab-destination-card">
-            <div class="ab-dest-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
+          </li>
+          <li class="ab-destination-item">
+            <div>
+              <h3 class="ab-title-h3">L'accosciata completa</h3>
+              <p class="ab-body">Sederti a terra e rialzarti senza mani, abbassarti a raccogliere qualcosa senza pensarci: è la libertà di movimento che usi ogni giorno.</p>
             </div>
-            <h3 class="ab-title-h3">Il trekking</h3>
-            <p class="ab-body">
-              Camminare in montagna tutto il giorno, senza sentirti tutto scassato a metà strada, né il giorno dopo.
-            </p>
-          </div>
-
-          <div class="ab-destination-card">
-            <div class="ab-dest-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </li>
+          <li class="ab-destination-item">
+            <div>
+              <h3 class="ab-title-h3">Il trekking</h3>
+              <p class="ab-body">Camminare in montagna tutto il giorno, senza sentirti tutto scassato a metà strada, né il giorno dopo.</p>
             </div>
-            <h3 class="ab-title-h3">L'arrampicata</h3>
-            <p class="ab-body">
-              Alzare i piedi dove serve, mentre i tuoi compagni restano con le anche inchiodate.
-            </p>
-          </div>
-
-          <div class="ab-destination-card ab-destination-card--custom">
-            <div class="ab-dest-icon ab-dest-icon--custom" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+          </li>
+          <li class="ab-destination-item">
+            <div>
+              <h3 class="ab-title-h3">L'arrampicata</h3>
+              <p class="ab-body">Alzare i piedi dove serve, mentre i tuoi compagni restano con le anche inchiodate.</p>
             </div>
-            <h3 class="ab-title-h3">Il tuo</h3>
-            <p class="ab-body">
-              Può essere qualcosa che non c'entra niente con questi. L'importante è averne uno. E se ancora non ce l'hai, lo troviamo insieme.
-            </p>
-          </div>
-
-        </div>
+          </li>
+          <li class="ab-destination-item ab-destination-item--custom">
+            <div>
+              <h3 class="ab-title-h3">Il tuo</h3>
+              <p class="ab-body">Può essere qualcosa che non c'entra niente con questi. L'importante è averne uno. E se ancora non ce l'hai, lo troviamo insieme.</p>
+            </div>
+          </li>
+        </ul>
 
       </div>
     </section>
@@ -2777,7 +2868,7 @@
           
           <div class="ab-bio-image-col">
             <div class="ab-bio-photo-card">
-              <img src="https://lh3.googleusercontent.com/d/15UxBgSMf4rUVGcLQ1u8ga7bRiZdZhSaW=s1200" alt="Andrea Bolzan, insegnante di movimento e mobilità, in verticale a una mano a Milano" class="ab-bio-img" loading="lazy" width="800" height="1200">
+              <img src="https://lh3.googleusercontent.com/d/15UxBgSMf4rUVGcLQ1u8ga7bRiZdZhSaW=s1200" alt="Andrea Bolzan, insegnante di movimento e mobilità, in verticale a una mano a Milano" class="ab-bio-img" loading="lazy" width="1065" height="1600">
               <div class="ab-bio-photo-caption">
                 Andrea Bolzan — Insegnante di Movimento e Mobilità
               </div>

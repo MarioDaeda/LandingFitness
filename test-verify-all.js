@@ -157,8 +157,8 @@ assert(!/X\s+su/i.test(html) && !/X\s+su/i.test(ghlHtml), 'No "X su" placeholder
 assert(!/\[ASSET/i.test(js) && !/X\s+su/i.test(js), 'No placeholders remaining in script.js');
 
 console.log('\n=== 9. WCAG AA Contrast Tokens Check ===');
-assert(css.includes('--ab-color-accent: #A3552F;'), 'Accent color set to #A3552F (contrast >= 4.5:1)');
-assert(css.includes('#A3B1AB'), 'Footer disclaimer color set to #A3B1AB (contrast >= 4.5:1)');
+assert(css.includes('--ab-color-accent: #b8420f;'), 'Accent color set to #b8420f (contrast >= 4.5:1)');
+assert(css.includes('#aab4c4'), 'Footer disclaimer color set to #aab4c4 (contrast >= 4.5:1)');
 
 console.log('\n=== 10. Script IIFE, Tracking & Query Params Forwarding Check ===');
 assert(js.includes('(function () {') || js.includes('(function() {'), 'script.js encapsulates code in an IIFE');
