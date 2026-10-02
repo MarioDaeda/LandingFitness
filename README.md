@@ -4,6 +4,15 @@ Sales page long-form ad alta conversione progettata per l'integrazione diretta a
 
 ---
 
+> ### 🤖 Documentazione per Sviluppatori & LLM / Agenti AI
+> Se sei un LLM (Claude, ChatGPT, Gemini, Cursor, Copilot) o un nuovo sviluppatore che deve modificare o estendere questo progetto, consulta prima:
+> - 📄 **[`CONTEXT.md`](CONTEXT.md)**: Modello di business, target, vincoli architetturali GHL, regole di isolamento CSS e pipeline di build.
+> - 🎨 **[`SKILLS.md`](SKILLS.md)**: Repository e risorse di design utilizzate ([Transitions.dev](https://transitions.dev), [Make Interfaces Feel Better](https://interfaces.emilkowal.ski), Impeccable, mattpocock-skills).
+> - 🧪 **[`test-verify-all.js`](test-verify-all.js)**: Suite di 64 test automatizzati di conformità.
+> - 📸 **[`PLAN-INTEGRAZIONE-FOTO.md`](PLAN-INTEGRAZIONE-FOTO.md)**: Inventario di tutti i file e foto Google Drive integrati.
+
+---
+
 ## 1. Quale file incollare in GoHighLevel
 Il deliverable finale e autosufficiente è:
 👉 **`highlevel-paste.html`**
