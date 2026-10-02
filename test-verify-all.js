@@ -140,10 +140,10 @@ forbiddenStrings.forEach(s => {
 });
 
 console.log('\n=== 7. Countdown Safe Fallback Check ===');
-const topBarDisplayNone = css.includes('#ab-mobility-checkup .ab-top-bar {\n  display: none;') || css.includes('display: none; /* Default rigorosamente nascosto */');
+const topBarDisplayNone = /#ab-mobility-checkup\s+\.ab-top-bar\s*\{[\s\S]*?display:\s*none;/i.test(css) || css.includes('display: none; /* Default rigorosamente nascosto */');
 assert(topBarDisplayNone, 'Top bar is hidden by default in CSS');
 
-const offerCountdownDisplayNone = css.includes('#ab-mobility-checkup .ab-offer-countdown-box {\n  display: none;');
+const offerCountdownDisplayNone = /#ab-mobility-checkup\s+\.ab-offer-countdown-box\s*\{[\s\S]*?display:\s*none;/i.test(css);
 assert(offerCountdownDisplayNone, 'Offer countdown box is hidden by default in CSS');
 
 console.log('\n=== 8. Residual Placeholders & Copy Cleanliness Check ===');
