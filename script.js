@@ -334,6 +334,8 @@
     if (cards.length < 2) return;
     const total = cards.length;
 
+    const autoScrollControl = setupAutoScroll(slider, cards);
+
     const dots = document.createElement("div");
     dots.className = dotsClass;
     dots.setAttribute("aria-hidden", "true");
@@ -343,13 +345,20 @@
       d.setAttribute("role", "button");
       d.setAttribute("tabindex", "0");
       d.setAttribute("aria-label", "Vai alla slide " + (i + 1));
-      d.addEventListener("click", function () {
+      function goToSlide() {
+        if (autoScrollControl && autoScrollControl.pause) {
+          autoScrollControl.pause();
+        }
         card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-      });
+        if (autoScrollControl && autoScrollControl.resumeLater) {
+          autoScrollControl.resumeLater(3000);
+        }
+      }
+      d.addEventListener("click", goToSlide);
       d.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+          goToSlide();
         }
       });
       dots.appendChild(d);
@@ -382,7 +391,6 @@
     }
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    setupAutoScroll(slider, cards);
     slider.querySelectorAll("img").forEach(function (img) {
       if (!img.complete) {
         img.addEventListener("load", onScroll, { once: true });
@@ -395,11 +403,11 @@
   /**
    * Scorrimento lento e continuo (loop infinito con card clonate).
    * Si ferma con hover del mouse, tocco/dito appoggiato, focus da tastiera o scroll manuale,
-   * e riparte 2,5 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
+   * e riparte 3 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
    */
   function setupAutoScroll(slider, originals) {
-    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return null;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
 
     const clones = originals.map(function (card) {
       const clone = card.cloneNode(true);
@@ -421,9 +429,20 @@
     let rafId = 0;
     let last = 0;
     let resumeTimer = 0;
+    let cachedLw = 0;
 
-    function loopWidth() {
-      return clones[0].offsetLeft - originals[0].offsetLeft;
+    function computeLoopWidth() {
+      if (clones.length > 0 && originals.length > 0) {
+        cachedLw = clones[0].offsetLeft - originals[0].offsetLeft;
+      }
+      return cachedLw;
+    }
+
+    function getLoopWidth() {
+      if (cachedLw <= 0) {
+        computeLoopWidth();
+      }
+      return cachedLw;
     }
 
     function tick(ts) {
@@ -435,9 +454,16 @@
       if (!paused) {
         if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
         pos += (SPEED * dt) / 1000;
-        const lw = loopWidth();
-        if (lw > 0 && pos >= lw) pos -= lw;
-        slider.scrollLeft = pos;
+        const lw = getLoopWidth();
+        if (lw > 0 && pos >= lw) {
+          pos -= lw;
+          slider.scrollLeft = pos;
+        } else if (lw > 0 && pos < 0) {
+          pos += lw;
+          slider.scrollLeft = pos;
+        } else {
+          slider.scrollLeft = pos;
+        }
       }
       rafId = window.requestAnimationFrame(tick);
     }
@@ -457,6 +483,11 @@
       window.clearTimeout(resumeTimer);
       resumeTimer = window.setTimeout(function () {
         pos = slider.scrollLeft;
+        const lw = getLoopWidth();
+        if (lw > 0 && pos >= lw) {
+          pos -= lw;
+          slider.scrollLeft = pos;
+        }
         slider.style.scrollSnapType = "none";
         slider.classList.remove("is-paused");
         paused = false;
@@ -475,17 +506,30 @@
     slider.addEventListener("focusin", pause);
     slider.addEventListener("focusout", function () { resumeLater(RESUME_DELAY); });
 
+    window.addEventListener("resize", computeLoopWidth);
+    slider.querySelectorAll("img").forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener("load", computeLoopWidth, { once: true });
+      }
+    });
+
     document.addEventListener("visibilitychange", start);
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         inView = entries[0].isIntersecting;
-        if (inView) start();
+        if (inView) {
+          computeLoopWidth();
+          start();
+        }
       }, { threshold: 0.1 }).observe(slider);
     } else {
       inView = true;
+      computeLoopWidth();
       start();
     }
+
+    return { pause: pause, resumeLater: resumeLater };
   }
 
   /**
@@ -520,13 +564,26 @@
       if (!link) return;
       e.preventDefault();
       opener = link;
+      const videoId = link.getAttribute("data-video-id");
       const iframe = document.createElement("iframe");
-      iframe.src = "https://drive.google.com/file/d/" + link.getAttribute("data-video-id") + "/preview";
+      iframe.src = "https://drive.google.com/file/d/" + videoId + "/preview";
       iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
       iframe.allow = "autoplay; fullscreen";
       iframe.setAttribute("allowfullscreen", "");
+
+      const fallback = document.createElement("div");
+      fallback.className = "ab-video-modal-fallback";
+      const fallbackLink = document.createElement("a");
+      fallbackLink.href = "https://drive.google.com/file/d/" + videoId + "/view";
+      fallbackLink.target = "_blank";
+      fallbackLink.rel = "noopener noreferrer";
+      fallbackLink.className = "ab-video-modal-fallback-link";
+      fallbackLink.textContent = "Non parte il video? Aprilo direttamente su Google Drive";
+      fallback.appendChild(fallbackLink);
+
       frame.innerHTML = "";
       frame.appendChild(iframe);
+      frame.appendChild(fallback);
       dialog.showModal();
     });
   }

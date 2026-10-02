@@ -2360,6 +2360,33 @@
   background: #0e1217;
 }
 
+#ab-mobility-checkup .ab-hero-video-fallback {
+  padding: 8px 12px;
+  background: var(--ab-color-surface);
+  border-top: 1px solid var(--ab-color-line);
+  text-align: center;
+}
+
+#ab-mobility-checkup .ab-hero-video-fallback-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ab-color-ink-muted);
+  text-decoration: none;
+  min-height: 36px;
+  padding: 2px 8px;
+  border-radius: var(--ab-radius-sm);
+  transition: color 150ms var(--ab-ease-out);
+}
+
+#ab-mobility-checkup .ab-hero-video-fallback-link:hover {
+  color: var(--ab-color-primary);
+  text-decoration: underline;
+}
+
 /* ==========================================================================
    SLIDER A SCORRIMENTO LENTO (testimonianze + feedback)
    Scroll libero (niente snap): il JS avanza lentamente e si ferma al tocco/hover.
@@ -2479,6 +2506,28 @@
   width: min(90vw, 420px);
   height: min(82vh, 748px);
   border-radius: var(--ab-radius-lg);
+}
+
+#ab-mobility-checkup .ab-video-modal-fallback {
+  text-align: center;
+  padding: 8px 12px;
+  background: #0e1217;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: var(--ab-radius-lg);
+  border-bottom-right-radius: var(--ab-radius-lg);
+}
+
+#ab-mobility-checkup .ab-video-modal-fallback-link {
+  color: #aab4c4;
+  font-size: 13px;
+  text-decoration: underline;
+  display: inline-block;
+  min-height: 36px;
+  line-height: 36px;
+}
+
+#ab-mobility-checkup .ab-video-modal-fallback-link:hover {
+  color: #ffffff;
 }
 
 #ab-mobility-checkup .ab-video-close {
@@ -2675,6 +2724,12 @@
             <div class="ab-vsl-card ab-hero-video-card">
               <div class="ab-vsl-ratio">
                 <iframe class="ab-hero-video" src="https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/preview" title="Video di presentazione del Check-up di Mobilità — Andrea Bolzan" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div class="ab-hero-video-fallback">
+                <a class="ab-hero-video-fallback-link" href="https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/view" target="_blank" rel="noopener noreferrer">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Non vedi il video? Aprilo direttamente su Google Drive</span>
+                </a>
               </div>
             </div>
           </div>
@@ -4179,6 +4234,8 @@
     if (cards.length < 2) return;
     const total = cards.length;
 
+    const autoScrollControl = setupAutoScroll(slider, cards);
+
     const dots = document.createElement("div");
     dots.className = dotsClass;
     dots.setAttribute("aria-hidden", "true");
@@ -4188,13 +4245,20 @@
       d.setAttribute("role", "button");
       d.setAttribute("tabindex", "0");
       d.setAttribute("aria-label", "Vai alla slide " + (i + 1));
-      d.addEventListener("click", function () {
+      function goToSlide() {
+        if (autoScrollControl && autoScrollControl.pause) {
+          autoScrollControl.pause();
+        }
         card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-      });
+        if (autoScrollControl && autoScrollControl.resumeLater) {
+          autoScrollControl.resumeLater(3000);
+        }
+      }
+      d.addEventListener("click", goToSlide);
       d.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          card.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+          goToSlide();
         }
       });
       dots.appendChild(d);
@@ -4227,7 +4291,6 @@
     }
     slider.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    setupAutoScroll(slider, cards);
     slider.querySelectorAll("img").forEach(function (img) {
       if (!img.complete) {
         img.addEventListener("load", onScroll, { once: true });
@@ -4240,11 +4303,11 @@
   /**
    * Scorrimento lento e continuo (loop infinito con card clonate).
    * Si ferma con hover del mouse, tocco/dito appoggiato, focus da tastiera o scroll manuale,
-   * e riparte 2,5 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
+   * e riparte 3 s dopo il rilascio. Disattivato con prefers-reduced-motion e fuori schermo.
    */
   function setupAutoScroll(slider, originals) {
-    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!slider || !slider.classList.contains("ab-auto-slider") || originals.length < 2) return null;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return null;
 
     const clones = originals.map(function (card) {
       const clone = card.cloneNode(true);
@@ -4266,9 +4329,20 @@
     let rafId = 0;
     let last = 0;
     let resumeTimer = 0;
+    let cachedLw = 0;
 
-    function loopWidth() {
-      return clones[0].offsetLeft - originals[0].offsetLeft;
+    function computeLoopWidth() {
+      if (clones.length > 0 && originals.length > 0) {
+        cachedLw = clones[0].offsetLeft - originals[0].offsetLeft;
+      }
+      return cachedLw;
+    }
+
+    function getLoopWidth() {
+      if (cachedLw <= 0) {
+        computeLoopWidth();
+      }
+      return cachedLw;
     }
 
     function tick(ts) {
@@ -4280,9 +4354,16 @@
       if (!paused) {
         if (Math.abs(slider.scrollLeft - pos) > 2) pos = slider.scrollLeft; // l'utente ha spostato lo slider
         pos += (SPEED * dt) / 1000;
-        const lw = loopWidth();
-        if (lw > 0 && pos >= lw) pos -= lw;
-        slider.scrollLeft = pos;
+        const lw = getLoopWidth();
+        if (lw > 0 && pos >= lw) {
+          pos -= lw;
+          slider.scrollLeft = pos;
+        } else if (lw > 0 && pos < 0) {
+          pos += lw;
+          slider.scrollLeft = pos;
+        } else {
+          slider.scrollLeft = pos;
+        }
       }
       rafId = window.requestAnimationFrame(tick);
     }
@@ -4302,6 +4383,11 @@
       window.clearTimeout(resumeTimer);
       resumeTimer = window.setTimeout(function () {
         pos = slider.scrollLeft;
+        const lw = getLoopWidth();
+        if (lw > 0 && pos >= lw) {
+          pos -= lw;
+          slider.scrollLeft = pos;
+        }
         slider.style.scrollSnapType = "none";
         slider.classList.remove("is-paused");
         paused = false;
@@ -4320,17 +4406,30 @@
     slider.addEventListener("focusin", pause);
     slider.addEventListener("focusout", function () { resumeLater(RESUME_DELAY); });
 
+    window.addEventListener("resize", computeLoopWidth);
+    slider.querySelectorAll("img").forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener("load", computeLoopWidth, { once: true });
+      }
+    });
+
     document.addEventListener("visibilitychange", start);
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         inView = entries[0].isIntersecting;
-        if (inView) start();
+        if (inView) {
+          computeLoopWidth();
+          start();
+        }
       }, { threshold: 0.1 }).observe(slider);
     } else {
       inView = true;
+      computeLoopWidth();
       start();
     }
+
+    return { pause: pause, resumeLater: resumeLater };
   }
 
   /**
@@ -4365,13 +4464,26 @@
       if (!link) return;
       e.preventDefault();
       opener = link;
+      const videoId = link.getAttribute("data-video-id");
       const iframe = document.createElement("iframe");
-      iframe.src = "https://drive.google.com/file/d/" + link.getAttribute("data-video-id") + "/preview";
+      iframe.src = "https://drive.google.com/file/d/" + videoId + "/preview";
       iframe.title = link.getAttribute("aria-label") || "Video testimonianza";
       iframe.allow = "autoplay; fullscreen";
       iframe.setAttribute("allowfullscreen", "");
+
+      const fallback = document.createElement("div");
+      fallback.className = "ab-video-modal-fallback";
+      const fallbackLink = document.createElement("a");
+      fallbackLink.href = "https://drive.google.com/file/d/" + videoId + "/view";
+      fallbackLink.target = "_blank";
+      fallbackLink.rel = "noopener noreferrer";
+      fallbackLink.className = "ab-video-modal-fallback-link";
+      fallbackLink.textContent = "Non parte il video? Aprilo direttamente su Google Drive";
+      fallback.appendChild(fallbackLink);
+
       frame.innerHTML = "";
       frame.appendChild(iframe);
+      frame.appendChild(fallback);
       dialog.showModal();
     });
   }

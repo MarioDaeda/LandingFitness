@@ -280,11 +280,16 @@ for (const [label, src] of [['index.html', html], ['highlevel-paste.html', ghlHt
   assert(/<a class="ab-cta ab-cta--primary ab-cta--full"[^>]*>\s*Compra ora\s*<\/a>/.test(src), `Pricing CTA reads "Compra ora" in ${label}`);
   assert(count(/class="ab-mark"/g, src) === 2, `Two highlighted pricing sentences in ${label}`);
   assert(/<a class="ab-sticky-wa"[^>]*data-whatsapp-link/.test(src), `Sticky bar has square WhatsApp button in ${label}`);
+  assert(src.includes('https://drive.google.com/file/d/1y2War-Tw4YqxpwSnb8AzF12W0OztL5gw/view'), `Hero shows direct fallback link in ${label}`);
+  assert(src.includes('class="ab-hero-video-fallback-link"'), `Hero fallback link class present in ${label}`);
 }
 assert(/\.ab-mark\s*\{[^}]*#ffe14d/s.test(css), 'Pricing sentences are underlined/highlighted in yellow');
 assert(/\.ab-sticky-wa\s*\{[^}]*width:\s*52px;[^}]*height:\s*52px;/s.test(css), 'Sticky WhatsApp button is a 52px square');
+assert(css.includes('.ab-hero-video-fallback-link'), 'Hero fallback link styles present in CSS');
 assert(js.includes('function setupAutoScroll') && js.includes('"touchstart", pause') && js.includes('"mouseenter", pause'), 'Auto-scroll pauses on touch and hover');
 assert(js.includes('prefers-reduced-motion') && js.includes('function setupVideoModal'), 'Auto-scroll respects reduced motion; video modal is registered');
+assert(js.includes('ab-video-modal-fallback'), 'Video modal fallback link registered in JS');
+assert(js.includes('autoScrollControl.pause()'), 'Slider dots coordinate pausing with auto-scroll');
 assert(/@media \(max-width: 767px\)\s*\{\s*#ab-mobility-checkup \.ab-journey-connector-bar\s*\{[^}]*flex-direction:\s*column/s.test(css), 'Punto Zero -> Destinazione bar is vertical on mobile');
 
 console.log('\n========================================');
