@@ -44,6 +44,8 @@
 
     // 3b. Reveal allo scroll con stagger
     setupScrollReveal(root);
+    setupChatSlider(root);
+    setupImageFade(root);
 
     // 4. Inizializzazione controllata GSAP (se presente ed abilitato)
     if (AB_CONFIG.enableAnimations) {
@@ -285,6 +287,66 @@
 
     root.classList.add("ab-js");
     targets.forEach(function (el) { observer.observe(el); });
+  }
+
+
+  /**
+   * Immagini lazy: fade-in quando arrivano (placeholder colorato nel CSS).
+   * Solo per le immagini non ancora caricate; error/load sbloccano sempre la visibilita'.
+   */
+  function setupImageFade(root) {
+    root.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      if (img.complete) return;
+      img.classList.add("ab-img-wait");
+      const done = function () { img.classList.remove("ab-img-wait"); };
+      img.addEventListener("load", done, { once: true });
+      img.addEventListener("error", done, { once: true });
+    });
+  }
+
+  /**
+   * Slider chat: fade ai bordi solo dove c'e' altro da scorrere + pallini di posizione.
+   */
+  function setupChatSlider(root) {
+    const slider = root.querySelector(".ab-chat-slider");
+    if (!slider) return;
+    const cards = Array.prototype.slice.call(slider.querySelectorAll(".ab-chat-card"));
+    if (cards.length < 2) return;
+
+    const dots = document.createElement("div");
+    dots.className = "ab-slider-dots";
+    dots.setAttribute("aria-hidden", "true");
+    const dotEls = cards.map(function () {
+      const d = document.createElement("span");
+      d.className = "ab-slider-dot";
+      dots.appendChild(d);
+      return d;
+    });
+    slider.insertAdjacentElement("afterend", dots);
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const max = slider.scrollWidth - slider.clientWidth;
+      const x = slider.scrollLeft;
+      slider.style.setProperty("--ab-fade-l", x > 4 ? "36px" : "0px");
+      slider.style.setProperty("--ab-fade-r", x < max - 24 ? "36px" : "0px");
+
+      let active = 0;
+      let best = Infinity;
+      cards.forEach(function (card, i) {
+        const dist = Math.abs(card.offsetLeft - slider.offsetLeft - x);
+        if (dist < best) { best = dist; active = i; }
+      });
+      if (max > 0 && x >= max - 24) active = cards.length - 1;
+      dotEls.forEach(function (d, i) { d.classList.toggle("is-active", i === active); });
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }
+    slider.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
   }
 
   /**
