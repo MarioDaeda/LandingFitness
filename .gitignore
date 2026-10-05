@@ -7,3 +7,6 @@ claude*
 
 # Personal photos for AI training: never commit
 LandingMusicBadio/image/
+
+# Local MCP server config
+.mcp.json
